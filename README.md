@@ -36,6 +36,12 @@ Exemples de projet destinés à être géré par l'application :
 
 Siteweb : [https://streaks.app/](https://streaks.app/)
 
+- **Things**
+
+Things est une application de gestion de projets et de tâches. Son concept se rapproche beaucoup de l'application RoadLine à la différence que l'interface utilisateur n'a pas été pensée de la même manière. Cette application n'est disponible que sur des appareils de la marque Apple contrairement à l'application RoadLine qui prend en charge les appareils iOS et Android.
+
+Siteweb : [https://culturedcode.com/things/](https://culturedcode.com/things/)
+
 - **Monday.com**
 
 Monday.com est une application de gestion de projet d'entreprise. Cette application est destinée à permettre la gestion de gros projets pour lesquels les tâches peuvent être réparties entre les différents membres du projet.
@@ -44,9 +50,17 @@ Siteweb : [https://monday.com/](https://monday.com/)
 
 ### User stories
 
-- En tant qu'**utilisateur**, je veux pouvoir **me connecter** afin de **concerver mes projets et mes tâches**.
-- En tant qu'**utilisateur**, je veux pouvoir **créer des projets** afin de **gérer mes différentes tâches**.
-- En tant qu'**utilisateur**, je veux pouvoir **créer des tâches** afin de **gérer l'évolution de mon projet**.
+- En tant qu'**utilisateur**, je veux pouvoir **me connecter** afin de **conserver mes projets et mes tâches**.
+- En tant qu'**utilisateur**, je veux pouvoir **créer un projet** afin de **gérer mes différentes tâches**.
+- En tant qu'**utilisateur**, je veux pouvoir **afficher mes projets** afin de **pouvoir les gérer**.
+- En tant qu'**utilisateur**, je veux pouvoir **ajouter un projet à mes favoris** afin d'y **accéder plus rapidement**.
+- En tant qu'**utilisateur**, je veux pouvoir **créer une tâche** afin d'**ajouter un nouvel objectif**.
+- En tant qu'**utilisateur**, je veux pouvoir **afficher mes tâches** afin de **pouvoir les gérer**.
+- En tant qu'**utilisateur**, je veux pouvoir **terminer une tâche** afin d'**avancer dans l'évolution de mon projet**.
+
+### Logos
+
+![Logos](images/logos.png)
 
 ### Moodboard
 
