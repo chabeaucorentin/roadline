@@ -1,6 +1,6 @@
 # Projet Flutter 2022 - RoadLine
 
-![APPNAME](images/logo.png)
+![RoadLine](images/logo.png)
 
 __Bienvenue dans la documentation de RoadLine !__
 
@@ -88,6 +88,6 @@ __[:page_facing_up: Énoncé du projet](ressources/enonce.pdf)__
 
   Ressources utiles au développement du projet.
 
-* __[:rocket: source/](source/)__
+* __[:rocket: roadline/](roadline/)__
 
   Dossier principal contenant le code source du projet.
