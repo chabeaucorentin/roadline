@@ -41,7 +41,7 @@ class Login extends StatelessWidget {
                         ),
                         const PasswordInput(),
                         const SizedBox(
-                          height: kDefaultElementSpacing / 3,
+                          height: kDefaultElementSpacing / 3.0,
                         ),
                         Align(
                           alignment: Alignment.centerRight,
@@ -80,7 +80,7 @@ class Login extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(
-                            height: kDefaultElementSpacing / 3,
+                            height: kDefaultElementSpacing / 3.0,
                           ),
                           Link(
                             'Inscrivez-vous',

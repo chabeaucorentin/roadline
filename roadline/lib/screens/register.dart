@@ -77,7 +77,7 @@ class Register extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(
-                            height: kDefaultElementSpacing / 3,
+                            height: kDefaultElementSpacing / 3.0,
                           ),
                           Link(
                             'Connectez-vous',

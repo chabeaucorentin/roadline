@@ -9,5 +9,5 @@ Map<String, WidgetBuilder> router = {
   kLoginRoute: (context) => Login(),
   kRegisterRoute: (context) => Register(),
   kResetPasswordRoute: (context) => ResetPassword(),
-  kHomeRoute: (context) => const Home(),
+  kHomeRoute: (context) => Home(),
 };
