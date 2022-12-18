@@ -45,7 +45,7 @@ class DataInput extends StatelessWidget {
           ),
           child: Icon(
             icon,
-            size: kDefaultIconSize,
+            size: kDefaultInputIconSize,
             color: isDark ? kDarkInputContentColor : kInputContentColor,
           ),
         ),

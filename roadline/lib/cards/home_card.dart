@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roadline/cards/counter_card.dart';
+import 'package:roadline/cards/counters_card.dart';
 import 'package:roadline/partials/buttons/button.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
@@ -16,113 +16,81 @@ class _CounterCardState extends State<HomeCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: kDefaultElementSpacing,
+      padding: const EdgeInsets.only(
+        left: kDefaultElementSpacing,
+        top: kDefaultElementSpacing * 1.5,
+        right: kDefaultElementSpacing,
+        bottom: kDefaultElementSpacing * 2.0,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const SizedBox(
-            height: kDefaultElementSpacing * 1.5,
+      decoration: const BoxDecoration(
+          color: kDarkBackgroundColor,
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(40.0),
+          )),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: kMainMaxWidth,
           ),
-          const Text(
-            'Bonjour, Corentin Chabeau',
-            style: TextStyle(
-              color: kDarkPrimaryColor,
-              fontSize: kCardTitleFontSize,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const SizedBox(
-            height: kDefaultElementSpacing / 2.0,
-          ),
-          const Text(
-            'Jeudi, 24 novembre 2022',
-            style: TextStyle(
-              color: kDarkCaptionColor,
-              fontSize: kDefaultFontSize,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const SizedBox(
-            height: kDefaultElementSpacing * 1.5,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const <Widget>[
-              CounterCard(
-                text: 'Tâches en cours',
-                counter: 12,
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 6.0,
-                ),
-                child: SizedBox(
-                  height: 55,
-                  width: kDefaultElementSpacing * 2,
-                  child: VerticalDivider(
-                    color: kDarkSeparatorColor,
-                    thickness: 1.0,
-                  ),
-                ),
-              ),
-              CounterCard(
-                text: 'Tâches en retard',
-                counter: 5,
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 6.0,
-                ),
-                child: SizedBox(
-                  height: 55,
-                  width: kDefaultElementSpacing * 2,
-                  child: VerticalDivider(
-                    color: kDarkSeparatorColor,
-                    thickness: 1.0,
-                  ),
-                ),
-              ),
-              CounterCard(
-                text: 'Tâches terminées',
-                counter: 23,
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: kDefaultElementSpacing * 2,
-          ),
-          Row(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Expanded(
-                child: Button(
-                  "Projets",
-                  icon: Icons.inventory_2,
-                  onTap: () {
-                    Navigator.pushNamed(
-                        context, kRegisterRoute);
-                  },
-                  isDark: true,
+              const Text(
+                'Bonjour, Corentin Chabeau',
+                style: TextStyle(
+                  color: kDarkPrimaryColor,
+                  fontSize: kCardTitleFontSize,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               const SizedBox(
-                width: kDefaultElementSpacing,
+                height: kDefaultElementSpacing / 2.0,
               ),
-              Expanded(
-                child: Button(
-                  "Tâches",
-                  icon: Icons.checklist,
-                  onTap: () {
-                    Navigator.pushNamed(
-                        context, kRegisterRoute);
-                  },
-                  isDark: true,
+              const Text(
+                'Jeudi, 24 novembre 2022',
+                style: TextStyle(
+                  color: kDarkCaptionColor,
+                  fontSize: kDefaultFontSize,
+                  fontWeight: FontWeight.w500,
                 ),
+              ),
+              const SizedBox(
+                height: kDefaultElementSpacing * 1.5,
+              ),
+              const CountersCard(),
+              const SizedBox(
+                height: kDefaultElementSpacing * 2.0,
+              ),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Button(
+                      'Projets',
+                      icon: Icons.inventory_2,
+                      onTap: () {
+                        Navigator.pushNamed(context, kRegisterRoute);
+                      },
+                      isDark: true,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: kDefaultElementSpacing,
+                  ),
+                  Expanded(
+                    child: Button(
+                      'Tâches',
+                      icon: Icons.checklist,
+                      onTap: () {
+                        Navigator.pushNamed(context, kRegisterRoute);
+                      },
+                      isDark: true,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }

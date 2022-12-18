@@ -34,33 +34,40 @@ class Register extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     const FormHeader(),
-                    Column(
-                      children: <Widget>[
-                        const FullNameInput(),
-                        const SizedBox(
-                          height: kDefaultElementSpacing,
+                    Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(
+                          maxWidth: kDefaultCardMaxWidth,
                         ),
-                        const EmailInput(),
-                        const SizedBox(
-                          height: kDefaultElementSpacing,
+                        child: Column(
+                          children: <Widget>[
+                            const FullNameInput(),
+                            const SizedBox(
+                              height: kDefaultElementSpacing,
+                            ),
+                            const EmailInput(),
+                            const SizedBox(
+                              height: kDefaultElementSpacing,
+                            ),
+                            const PasswordInput(),
+                            const SizedBox(
+                              height: kDefaultElementSpacing,
+                            ),
+                            const PasswordInput(
+                                hintText: 'Confirmez le mot de passe'),
+                            const SizedBox(
+                              height: kDefaultElementSpacing,
+                            ),
+                            Button(
+                              'Inscription',
+                              onTap: () {
+                                Navigator.pushNamed(context, kHomeRoute);
+                              },
+                              isDark: true,
+                            ),
+                          ],
                         ),
-                        const PasswordInput(),
-                        const SizedBox(
-                          height: kDefaultElementSpacing,
-                        ),
-                        const PasswordInput(
-                            hintText: 'Confirmez le mot de passe'),
-                        const SizedBox(
-                          height: kDefaultElementSpacing,
-                        ),
-                        Button(
-                          'Inscription',
-                          onTap: () {
-                            Navigator.pushNamed(context, kHomeRoute);
-                          },
-                          isDark: true,
-                        ),
-                      ],
+                      ),
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(

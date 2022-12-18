@@ -8,23 +8,23 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: kSpacingPadding,
-        horizontal: kDefaultElementSpacing - 3,
+        horizontal: kDefaultElementSpacing - 3.0,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const <Widget>[
           Icon(
             Icons.menu,
-            size: 35.0,
+            size: kDefaultIconSize,
             color: kDarkLighterColor,
           ),
           Logo(),
           Icon(
             Icons.account_circle,
-            size: 35.0,
+            size: kDefaultIconSize,
             color: kDarkLighterColor,
           ),
         ],

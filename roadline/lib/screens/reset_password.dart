@@ -32,32 +32,46 @@ class ResetPassword extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     const FormHeader(),
-                    Column(
-                      children: <Widget>[
-                        const EmailInput(),
-                        const SizedBox(
-                          height: kDefaultElementSpacing,
+                    Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(
+                          maxWidth: kDefaultCardMaxWidth,
                         ),
-                        Button(
-                          'Envoyer le code',
-                          onTap: () {
-                            Navigator.pushNamed(context, kHomeRoute);
-                          },
-                          isDark: true,
+                        child: Column(
+                          children: <Widget>[
+                            const EmailInput(),
+                            const SizedBox(
+                              height: kDefaultElementSpacing,
+                            ),
+                            Button(
+                              'Envoyer le code',
+                              onTap: () {
+                                Navigator.pushNamed(context, kHomeRoute);
+                              },
+                              isDark: true,
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(
-                        top: 75.0,
-                        bottom: 44.0,
                       ),
-                      child: BorderedButton(
-                        'Retour à la connexion',
-                        onTap: () {
-                          Navigator.pushNamed(context, kLoginRoute);
-                        },
-                        isDark: true,
+                    ),
+                    Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(
+                          maxWidth: 450,
+                        ),
+                        child: Container(
+                          padding: const EdgeInsets.only(
+                            top: 75.0,
+                            bottom: 44.0,
+                          ),
+                          child: BorderedButton(
+                            'Retour à la connexion',
+                            onTap: () {
+                              Navigator.pushNamed(context, kLoginRoute);
+                            },
+                            isDark: true,
+                          ),
+                        ),
                       ),
                     ),
                   ],

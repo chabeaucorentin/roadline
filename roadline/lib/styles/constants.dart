@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 // COLORS
 const kPrimaryColor = Color(0xFF023E8A);
 const kSecondaryColor = Color(0xFF0077B6);
-const kCaptionColor = Color(0xFF0077B6);
 const kBackgroundColor = Color(0xFFFFFFFF);
+const kCardContentColor = Color(0xFF023E8A);
+const kCardBackgroundColor = Color(0xFFCAF0F8);
 const kInputContentColor = Color(0xFF023E8A);
 const kInputBackgroundColor = Color(0xFFCAF0F8);
 const kLinkColor = Color(0xFF023E8A);
@@ -29,8 +30,11 @@ const double kBigFontSize = 17.0;
 const double kTitleFontSize = 30.0;
 const double kHeaderFontSize = 25.0;
 const double kCardTitleFontSize = 20.0;
+const double kDefaultCardMaxWidth = 450.0;
+const double kMainMaxWidth = 900.0;
 const double kCounterSize = 50.0;
-const double kDefaultIconSize = 24.0;
+const double kDefaultIconSize = 35.0;
+const double kDefaultInputIconSize = 24.0;
 const double kInputFontSize = 17.0;
 const double kButtonFontSize = 17.0;
 

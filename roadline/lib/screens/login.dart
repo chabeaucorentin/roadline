@@ -33,37 +33,45 @@ class Login extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     const FormHeader(),
-                    Column(
-                      children: <Widget>[
-                        const EmailInput(),
-                        const SizedBox(
-                          height: kDefaultElementSpacing,
+                    Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(
+                          maxWidth: kDefaultCardMaxWidth,
                         ),
-                        const PasswordInput(),
-                        const SizedBox(
-                          height: kDefaultElementSpacing / 3.0,
+                        child: Column(
+                          children: <Widget>[
+                            const EmailInput(),
+                            const SizedBox(
+                              height: kDefaultElementSpacing,
+                            ),
+                            const PasswordInput(),
+                            const SizedBox(
+                              height: kDefaultElementSpacing / 3.0,
+                            ),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Link(
+                                'Mot de passe oublié ?',
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, kResetPasswordRoute);
+                                },
+                                isDark: true,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: kDefaultElementSpacing,
+                            ),
+                            Button(
+                              'Connexion',
+                              onTap: () {
+                                Navigator.pushNamed(context, kHomeRoute);
+                              },
+                              isDark: true,
+                            ),
+                          ],
                         ),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Link(
-                            'Mot de passe oublié ?',
-                            onTap: () {
-                              Navigator.pushNamed(context, kResetPasswordRoute);
-                            },
-                            isDark: true,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: kDefaultElementSpacing,
-                        ),
-                        Button(
-                          'Connexion',
-                          onTap: () {
-                            Navigator.pushNamed(context, kHomeRoute);
-                          },
-                          isDark: true,
-                        ),
-                      ],
+                      ),
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(

@@ -19,7 +19,7 @@ class BorderedButton extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(
             color: isDark ? kDarkButtonBackgroundColor : kButtonBackgroundColor,
-            width: 2,
+            width: 2.0,
           ),
           borderRadius: kBorderRadius,
         ),
