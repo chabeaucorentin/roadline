@@ -19,63 +19,61 @@ class ResetPassword extends StatelessWidget {
         child: Form(
           key: _resetFormKey,
           child: SingleChildScrollView(
-            child: ConstrainedBox(
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: kDefaultElementSpacing,
+              ),
               constraints: BoxConstraints(
                 minHeight: MediaQuery.of(context).size.height,
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: kDefaultElementSpacing,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    const FormHeader(),
-                    Center(
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(
-                          maxWidth: kDefaultCardMaxWidth,
-                        ),
-                        child: Column(
-                          children: <Widget>[
-                            const EmailInput(),
-                            const SizedBox(
-                              height: kDefaultElementSpacing,
-                            ),
-                            Button(
-                              'Envoyer le code',
-                              onTap: () {
-                                Navigator.pushNamed(context, kHomeRoute);
-                              },
-                              isDark: true,
-                            ),
-                          ],
-                        ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  const FormHeader(),
+                  Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        maxWidth: kDefaultCardMaxWidth,
                       ),
-                    ),
-                    Center(
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(
-                          maxWidth: 450,
-                        ),
-                        child: Container(
-                          padding: const EdgeInsets.only(
-                            top: 75.0,
-                            bottom: 44.0,
+                      child: Column(
+                        children: <Widget>[
+                          const EmailInput(),
+                          const SizedBox(
+                            height: kDefaultElementSpacing,
                           ),
-                          child: BorderedButton(
-                            'Retour à la connexion',
+                          Button(
+                            'Envoyer le code',
                             onTap: () {
-                              Navigator.pushNamed(context, kLoginRoute);
+                              Navigator.pushNamed(context, kHomeRoute);
                             },
                             isDark: true,
                           ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        maxWidth: kDefaultCardMaxWidth,
+                      ),
+                      child: Container(
+                        padding: const EdgeInsets.only(
+                          top: 75.0,
+                          bottom: 44.0,
+                        ),
+                        child: BorderedButton(
+                          'Retour à la connexion',
+                          onTap: () {
+                            Navigator.pushNamed(context, kLoginRoute);
+                          },
+                          isDark: true,
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

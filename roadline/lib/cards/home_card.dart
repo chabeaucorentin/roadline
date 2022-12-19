@@ -68,7 +68,7 @@ class _CounterCardState extends State<HomeCard> {
                       'Projets',
                       icon: Icons.inventory_2,
                       onTap: () {
-                        Navigator.pushNamed(context, kRegisterRoute);
+                        Navigator.pushNamed(context, kProjectsRoute);
                       },
                       isDark: true,
                     ),
@@ -81,7 +81,7 @@ class _CounterCardState extends State<HomeCard> {
                       'Tâches',
                       icon: Icons.checklist,
                       onTap: () {
-                        Navigator.pushNamed(context, kRegisterRoute);
+                        Navigator.pushNamed(context, kTasksRoute);
                       },
                       isDark: true,
                     ),

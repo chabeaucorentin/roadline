@@ -12,7 +12,9 @@ class FormHeader extends StatelessWidget {
         padding: EdgeInsets.symmetric(
           vertical: 75.0,
         ),
-        child: Logo(isBig: true),
+        child: Logo(
+          isBig: true,
+        ),
       ),
     );
   }

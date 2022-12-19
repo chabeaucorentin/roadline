@@ -21,84 +21,82 @@ class Register extends StatelessWidget {
         child: Form(
           key: _registerFormKey,
           child: SingleChildScrollView(
-            child: ConstrainedBox(
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: kDefaultElementSpacing,
+              ),
               constraints: BoxConstraints(
                 minHeight: MediaQuery.of(context).size.height,
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: kDefaultElementSpacing,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    const FormHeader(),
-                    Center(
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(
-                          maxWidth: kDefaultCardMaxWidth,
-                        ),
-                        child: Column(
-                          children: <Widget>[
-                            const FullNameInput(),
-                            const SizedBox(
-                              height: kDefaultElementSpacing,
-                            ),
-                            const EmailInput(),
-                            const SizedBox(
-                              height: kDefaultElementSpacing,
-                            ),
-                            const PasswordInput(),
-                            const SizedBox(
-                              height: kDefaultElementSpacing,
-                            ),
-                            const PasswordInput(
-                                hintText: 'Confirmez le mot de passe'),
-                            const SizedBox(
-                              height: kDefaultElementSpacing,
-                            ),
-                            Button(
-                              'Inscription',
-                              onTap: () {
-                                Navigator.pushNamed(context, kHomeRoute);
-                              },
-                              isDark: true,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 75.0,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  const FormHeader(),
+                  Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        maxWidth: kDefaultCardMaxWidth,
                       ),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          const Text(
-                            'Déjà un compte ?',
-                            style: TextStyle(
-                              color: kDarkLighterColor,
-                              fontSize: kDefaultFontSize,
-                            ),
-                          ),
+                          const FullNameInput(),
                           const SizedBox(
-                            height: kDefaultElementSpacing / 3.0,
+                            height: kDefaultElementSpacing,
                           ),
-                          Link(
-                            'Connectez-vous',
+                          const EmailInput(),
+                          const SizedBox(
+                            height: kDefaultElementSpacing,
+                          ),
+                          const PasswordInput(),
+                          const SizedBox(
+                            height: kDefaultElementSpacing,
+                          ),
+                          const PasswordInput(
+                              hintText: 'Confirmez le mot de passe'),
+                          const SizedBox(
+                            height: kDefaultElementSpacing,
+                          ),
+                          Button(
+                            'Inscription',
                             onTap: () {
-                              Navigator.pushNamed(context, kLoginRoute);
+                              Navigator.pushNamed(context, kHomeRoute);
                             },
-                            isBig: true,
                             isDark: true,
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 75.0,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Text(
+                          'Déjà un compte ?',
+                          style: TextStyle(
+                            color: kDarkLighterColor,
+                            fontSize: kDefaultFontSize,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: kDefaultElementSpacing / 3.0,
+                        ),
+                        Link(
+                          'Connectez-vous',
+                          onTap: () {
+                            Navigator.pushNamed(context, kLoginRoute);
+                          },
+                          isBig: true,
+                          isDark: true,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

@@ -20,89 +20,87 @@ class Login extends StatelessWidget {
         child: Form(
           key: _loginFormKey,
           child: SingleChildScrollView(
-            child: ConstrainedBox(
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: kDefaultElementSpacing,
+              ),
               constraints: BoxConstraints(
                 minHeight: MediaQuery.of(context).size.height,
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: kDefaultElementSpacing,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    const FormHeader(),
-                    Center(
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(
-                          maxWidth: kDefaultCardMaxWidth,
-                        ),
-                        child: Column(
-                          children: <Widget>[
-                            const EmailInput(),
-                            const SizedBox(
-                              height: kDefaultElementSpacing,
-                            ),
-                            const PasswordInput(),
-                            const SizedBox(
-                              height: kDefaultElementSpacing / 3.0,
-                            ),
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: Link(
-                                'Mot de passe oublié ?',
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, kResetPasswordRoute);
-                                },
-                                isDark: true,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: kDefaultElementSpacing,
-                            ),
-                            Button(
-                              'Connexion',
-                              onTap: () {
-                                Navigator.pushNamed(context, kHomeRoute);
-                              },
-                              isDark: true,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 75.0,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  const FormHeader(),
+                  Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        maxWidth: kDefaultCardMaxWidth,
                       ),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          const Text(
-                            'Pas encore de compte ?',
-                            style: TextStyle(
-                              color: kDarkLighterColor,
-                              fontSize: kDefaultFontSize,
-                            ),
+                          const EmailInput(),
+                          const SizedBox(
+                            height: kDefaultElementSpacing,
                           ),
+                          const PasswordInput(),
                           const SizedBox(
                             height: kDefaultElementSpacing / 3.0,
                           ),
-                          Link(
-                            'Inscrivez-vous',
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Link(
+                              'Mot de passe oublié ?',
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, kResetPasswordRoute);
+                              },
+                              isDark: true,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: kDefaultElementSpacing,
+                          ),
+                          Button(
+                            'Connexion',
                             onTap: () {
-                              Navigator.pushNamed(context, kRegisterRoute);
+                              Navigator.pushNamed(context, kHomeRoute);
                             },
-                            isBig: true,
                             isDark: true,
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 75.0,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Text(
+                          'Pas encore de compte ?',
+                          style: TextStyle(
+                            color: kDarkLighterColor,
+                            fontSize: kDefaultFontSize,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: kDefaultElementSpacing / 3.0,
+                        ),
+                        Link(
+                          'Inscrivez-vous',
+                          onTap: () {
+                            Navigator.pushNamed(context, kRegisterRoute);
+                          },
+                          isBig: true,
+                          isDark: true,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
