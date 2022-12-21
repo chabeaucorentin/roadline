@@ -31,15 +31,18 @@ class NavBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          GestureDetector(
-            onTap: onTapLeft ??
-                () {
-                  Navigator.pop(context);
-                },
-            child: Icon(
-              iconLeft ?? Icons.arrow_back,
-              size: kDefaultIconSize,
-              color: kDarkLighterColor,
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: onTapLeft ??
+                  () {
+                    Navigator.pop(context);
+                  },
+              child: Icon(
+                iconLeft ?? Icons.arrow_back,
+                size: kDefaultIconSize,
+                color: kDarkLighterColor,
+              ),
             ),
           ),
           if (title != null) ...[
@@ -54,12 +57,15 @@ class NavBar extends StatelessWidget {
           ] else ...[
             const Logo(),
           ],
-          GestureDetector(
-            onTap: onTapRight,
-            child: Icon(
-              iconRight,
-              size: kDefaultIconSize,
-              color: kDarkLighterColor,
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: onTapRight,
+              child: Icon(
+                iconRight,
+                size: kDefaultIconSize,
+                color: kDarkLighterColor,
+              ),
             ),
           ),
         ],

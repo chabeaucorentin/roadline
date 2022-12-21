@@ -13,38 +13,42 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          color: isDark ? kDarkButtonBackgroundColor : kButtonBackgroundColor,
-          borderRadius: kBorderRadius,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            if (icon != null) ...[
-              Icon(
-                icon,
-                color: isDark ? kDarkButtonContentColor : kButtonContentColor,
-              ),
-            ],
-            Padding(
-              padding: EdgeInsets.only(
-                left: icon != null ? kSpacingPadding : 0.0,
-                top: kAdjustmentPadding - 2.0,
-                bottom: kAdjustmentPadding + 1.0,
-              ),
-              child: Text(
-                label,
-                style: TextStyle(
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          decoration: BoxDecoration(
+            color: isDark ? kDarkButtonBackgroundColor : kButtonBackgroundColor,
+            borderRadius: kBorderRadius,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              if (icon != null) ...[
+                Icon(
+                  icon,
                   color: isDark ? kDarkButtonContentColor : kButtonContentColor,
-                  fontSize: kButtonFontSize,
-                  fontWeight: FontWeight.w700,
                 ),
-              ),
-            )
-          ],
+              ],
+              Padding(
+                padding: EdgeInsets.only(
+                  left: icon != null ? kSpacingPadding : 0.0,
+                  top: kAdjustmentPadding - 2.0,
+                  bottom: kAdjustmentPadding + 1.0,
+                ),
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    color:
+                        isDark ? kDarkButtonContentColor : kButtonContentColor,
+                    fontSize: kButtonFontSize,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

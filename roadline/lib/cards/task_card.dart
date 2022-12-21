@@ -36,23 +36,28 @@ class _TaskCardState extends State<TaskCard> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Container(
-            height: 30.0,
-            width: 30.0,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: kCardContentColor,
-                width: 2.0,
-              ),
-              shape: BoxShape.circle,
-            ),
-            child: widget.completed
-                ? const Icon(
-                    Icons.check,
-                    size: 20.0,
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              child: Container(
+                height: 30.0,
+                width: 30.0,
+                decoration: BoxDecoration(
+                  border: Border.all(
                     color: kCardContentColor,
-                  )
-                : null,
+                    width: 2.0,
+                  ),
+                  shape: BoxShape.circle,
+                ),
+                child: widget.completed
+                    ? const Icon(
+                        Icons.check,
+                        size: 20.0,
+                        color: kCardContentColor,
+                      )
+                    : null,
+              ),
+            ),
           ),
           const SizedBox(
             width: kDefaultPadding,

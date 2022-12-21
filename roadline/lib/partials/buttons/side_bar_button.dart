@@ -17,49 +17,52 @@ class SideBarButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, route);
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          vertical: 12.0,
-          horizontal: kDefaultElementSpacing - 2.0,
-        ),
-        color: ModalRoute.of(context)?.settings.name == route
-            ? kSideBarSelectedBackgroundColor
-            : kBackgroundColor,
-        child: Row(
-          children: <Widget>[
-            Icon(
-              icon,
-              size: 20.0,
-              color: kPrimaryColor,
-            ),
-            const SizedBox(
-              width: kDefaultElementSpacing,
-            ),
-            Expanded(
-              child: Text(
-                label,
-                style: const TextStyle(
-                  color: kPrimaryColor,
-                  fontSize: kDefaultFontSize,
-                  fontWeight: FontWeight.w700,
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, route);
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            vertical: 12.0,
+            horizontal: kDefaultElementSpacing - 2.0,
+          ),
+          color: ModalRoute.of(context)?.settings.name == route
+              ? kSideBarSelectedBackgroundColor
+              : kBackgroundColor,
+          child: Row(
+            children: <Widget>[
+              Icon(
+                icon,
+                size: 20.0,
+                color: kPrimaryColor,
+              ),
+              const SizedBox(
+                width: kDefaultElementSpacing,
+              ),
+              Expanded(
+                child: Text(
+                  label,
+                  style: const TextStyle(
+                    color: kPrimaryColor,
+                    fontSize: kDefaultFontSize,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
-            ),
-            if (counter != null) ...[
-              Text(
-                counter.toString(),
-                style: const TextStyle(
-                  color: kPrimaryColor,
-                  fontSize: kButtonFontSize,
-                  fontWeight: FontWeight.w700,
+              if (counter != null) ...[
+                Text(
+                  counter.toString(),
+                  style: const TextStyle(
+                    color: kPrimaryColor,
+                    fontSize: kButtonFontSize,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

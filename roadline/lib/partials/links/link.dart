@@ -16,14 +16,17 @@ class Link extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Text(
-        text,
-        style: TextStyle(
-          color: isDark ? kDarkLinkColor : kLinkColor,
-          fontSize: isBig ? kBigFontSize : kDefaultFontSize,
-          fontWeight: FontWeight.w700,
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Text(
+          text,
+          style: TextStyle(
+            color: isDark ? kDarkLinkColor : kLinkColor,
+            fontSize: isBig ? kBigFontSize : kDefaultFontSize,
+            fontWeight: FontWeight.w700,
+          ),
         ),
       ),
     );
