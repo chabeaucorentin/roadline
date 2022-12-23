@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roadline/partials/buttons/button.dart';
 import 'package:roadline/partials/forms/email_input.dart';
-import 'package:roadline/partials/forms/fullname_input.dart';
+import 'package:roadline/partials/forms/full_name_input.dart';
 import 'package:roadline/partials/forms/password_input.dart';
 import 'package:roadline/partials/headers/form_header.dart';
 import 'package:roadline/partials/links/link.dart';

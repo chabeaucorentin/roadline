@@ -114,7 +114,7 @@ class Home extends StatelessWidget {
               button: Button(
                 'Créer un projet',
                 onTap: () {
-                  Navigator.pushNamed(context, kRegisterRoute);
+                  Navigator.pushNamed(context, kNewProjectRoute);
                 },
               ),
             ),

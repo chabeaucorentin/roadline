@@ -6,7 +6,7 @@ import 'package:roadline/styles/constants.dart';
 class NavBar extends StatelessWidget {
   const NavBar(
       {this.title,
-      this.iconLeft,
+      this.iconLeft = Icons.arrow_back,
       this.onTapLeft,
       this.iconRight,
       this.onTapRight,
@@ -32,14 +32,17 @@ class NavBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           MouseRegion(
-            cursor: SystemMouseCursors.click,
+            cursor: onTapLeft != null || iconLeft == Icons.arrow_back
+                ? SystemMouseCursors.click
+                : MouseCursor.defer,
             child: GestureDetector(
-              onTap: onTapLeft ??
-                  () {
-                    Navigator.pop(context);
-                  },
+              onTap: iconLeft != Icons.arrow_back
+                  ? onTapLeft
+                  : () {
+                      Navigator.pop(context);
+                    },
               child: Icon(
-                iconLeft ?? Icons.arrow_back,
+                iconLeft,
                 size: kDefaultIconSize,
                 color: kDarkLighterColor,
               ),
@@ -58,7 +61,9 @@ class NavBar extends StatelessWidget {
             const Logo(),
           ],
           MouseRegion(
-            cursor: SystemMouseCursors.click,
+            cursor: onTapRight != null
+                ? SystemMouseCursors.click
+                : MouseCursor.defer,
             child: GestureDetector(
               onTap: onTapRight,
               child: Icon(

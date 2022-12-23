@@ -31,10 +31,11 @@ class Tasks extends StatelessWidget {
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
-                    color: kBackgroundColor,
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(20.0),
-                    )),
+                  color: kBackgroundColor,
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(20.0),
+                  ),
+                ),
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -53,7 +54,7 @@ class Tasks extends StatelessWidget {
                             Button(
                               'Ajouter une tâche',
                               onTap: () {
-                                Navigator.pushNamed(context, kRegisterRoute);
+                                Navigator.pushNamed(context, kAddTaskRoute);
                               },
                             ),
                             const SizedBox(

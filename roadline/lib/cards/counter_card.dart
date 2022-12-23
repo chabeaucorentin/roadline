@@ -23,29 +23,32 @@ class _CounterCardState extends State<CounterCard> {
           onTap: () {
             Navigator.pushNamed(context, kTasksRoute);
           },
-          child: Column(
-            children: <Widget>[
-              Text(
-                widget.counter.toString(),
-                style: const TextStyle(
-                  color: kDarkSecondaryColor,
-                  fontSize: kCounterSize,
-                  fontWeight: FontWeight.w700,
+          child: Container(
+            color: kDarkBackgroundColor,
+            child: Column(
+              children: <Widget>[
+                Text(
+                  widget.counter.toString(),
+                  style: const TextStyle(
+                    color: kDarkSecondaryColor,
+                    fontSize: kCounterSize,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: kDefaultElementSpacing / 4.0,
-              ),
-              Text(
-                widget.text,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: kDarkPrimaryColor,
-                  fontSize: kDefaultFontSize,
-                  fontWeight: FontWeight.w700,
+                const SizedBox(
+                  height: kDefaultElementSpacing / 4.0,
                 ),
-              ),
-            ],
+                Text(
+                  widget.text,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: kDarkPrimaryColor,
+                    fontSize: kDefaultFontSize,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

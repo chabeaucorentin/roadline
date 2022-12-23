@@ -29,10 +29,11 @@ class Projects extends StatelessWidget {
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
-                    color: kBackgroundColor,
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(20.0),
-                    )),
+                  color: kBackgroundColor,
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(20.0),
+                  ),
+                ),
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -51,7 +52,7 @@ class Projects extends StatelessWidget {
                             Button(
                               'Créer un projet',
                               onTap: () {
-                                Navigator.pushNamed(context, kRegisterRoute);
+                                Navigator.pushNamed(context, kNewProjectRoute);
                               },
                             ),
                             const SizedBox(
@@ -69,18 +70,22 @@ class Projects extends StatelessWidget {
                             const ProjectCard(
                               name: 'Nom du projet 1',
                               date: 'Date du projet',
+                              nbCompleted: 5,
+                              nbTasks: 10,
+                            ),
+                            const ProjectCard(
+                              name: 'Nom du projet 2',
                               nbCompleted: 2,
                               nbTasks: 5,
                             ),
                             const ProjectCard(
-                              name: 'Nom du projet 2',
+                              name: 'Nom du projet 3',
                               date: 'Date du projet',
                               nbCompleted: 5,
                               nbTasks: 10,
                             ),
                             const ProjectCard(
-                              name: 'Nom du projet 3',
-                              date: 'Date du projet',
+                              name: 'Nom du projet 4',
                               nbCompleted: 7,
                               nbTasks: 10,
                             ),

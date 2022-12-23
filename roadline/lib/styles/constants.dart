@@ -11,6 +11,7 @@ const kSideBarSelectedBackgroundColor = Color(0xFFCAF0F8);
 const kSideBarSeparatorColor = Color(0xFF0196C7);
 const kInputContentColor = Color(0xFF023E8A);
 const kInputBackgroundColor = Color(0xFFCAF0F8);
+const kSwitchColor = Color(0xFF023E8A);
 const kLinkColor = Color(0xFF023E8A);
 const kButtonContentColor = Color(0xFFCAF0F8);
 const kButtonBackgroundColor = Color(0xFF023E8A);

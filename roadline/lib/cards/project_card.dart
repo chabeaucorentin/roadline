@@ -6,13 +6,13 @@ import 'package:roadline/styles/constants.dart';
 class ProjectCard extends StatefulWidget {
   const ProjectCard(
       {required this.name,
-      required this.date,
+      this.date,
       required this.nbCompleted,
       required this.nbTasks,
       super.key});
 
   final String name;
-  final String date;
+  final String? date;
   final int nbCompleted;
   final int nbTasks;
 
@@ -71,14 +71,17 @@ class _ProjectCardState extends State<ProjectCard> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text(
-                            widget.date,
-                            style: const TextStyle(
-                              color: kSecondaryColor,
-                              fontSize: kBigFontSize,
-                              fontWeight: FontWeight.w700,
+                          if (widget.date != null) ...[
+                            Text(
+                              widget.date!,
+                              style: const TextStyle(
+                                color: kSecondaryColor,
+                                fontSize: kBigFontSize,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
-                          ),
+                            const Spacer(),
+                          ],
                           Row(
                             children: <Widget>[
                               Text(

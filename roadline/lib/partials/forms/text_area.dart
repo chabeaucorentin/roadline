@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:roadline/styles/constants.dart';
 
 @immutable
-class DataInput extends StatelessWidget {
-  const DataInput(
+class TextArea extends StatelessWidget {
+  const TextArea(
       {this.value,
-      required this.icon,
-      this.hintText,
-      this.keyboardType = TextInputType.text,
       this.autofocus = false,
       this.obscureText = false,
       this.onChanged,
@@ -16,9 +13,6 @@ class DataInput extends StatelessWidget {
       super.key});
 
   final String? value;
-  final IconData icon;
-  final String? hintText;
-  final TextInputType keyboardType;
   final bool autofocus;
   final bool obscureText;
   final ValueChanged<String>? onChanged;
@@ -30,31 +24,7 @@ class DataInput extends StatelessWidget {
     return TextFormField(
       initialValue: value,
       decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: TextStyle(
-          color: isDark ? kDarkInputContentColor : kInputContentColor,
-          fontSize: kInputFontSize,
-          fontWeight: FontWeight.w700,
-        ),
-        prefixIcon: Padding(
-          padding: const EdgeInsets.only(
-            left: kDefaultPadding,
-            top: kSpacingPadding,
-            right: kSpacingPadding,
-            bottom: kSpacingPadding,
-          ),
-          child: Icon(
-            icon,
-            size: kDefaultInputIconSize,
-            color: isDark ? kDarkInputContentColor : kInputContentColor,
-          ),
-        ),
-        contentPadding: const EdgeInsets.only(
-          left: kAdjustmentPadding,
-          top: kAdjustmentPadding,
-          right: kSpacingPadding,
-          bottom: kAdjustmentPadding,
-        ),
+        contentPadding: const EdgeInsets.all(kAdjustmentPadding),
         filled: true,
         fillColor: isDark ? kDarkInputBackgroundColor : kInputBackgroundColor,
         focusColor: isDark ? kDarkInputContentColor : kInputContentColor,
@@ -63,14 +33,14 @@ class DataInput extends StatelessWidget {
           borderSide: BorderSide.none,
         ),
       ),
-      keyboardType: keyboardType,
+      keyboardType: TextInputType.multiline,
       style: TextStyle(
         color: isDark ? kDarkInputContentColor : kInputContentColor,
-        fontSize: kInputFontSize,
         fontWeight: FontWeight.w500,
       ),
       autofocus: autofocus,
       obscureText: obscureText,
+      maxLines: 10,
       onChanged: onChanged,
       validator: validator,
       cursorColor: isDark ? kDarkInputContentColor : kInputContentColor,
