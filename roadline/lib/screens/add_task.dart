@@ -8,7 +8,7 @@ import 'package:roadline/partials/forms/desc_text_area.dart';
 import 'package:roadline/partials/forms/project_name_input.dart';
 import 'package:roadline/partials/forms/task_name_input.dart';
 import 'package:roadline/partials/forms/time_picker.dart';
-import 'package:roadline/partials/navbar/nav_bar.dart';
+import 'package:roadline/partials/navbar/close_nav_bar.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
@@ -25,11 +25,11 @@ class AddTask extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const NavBar(
+            const CloseNavBar(
               title: 'Ajouter une tâche',
             ),
             Expanded(
-              child: Container(
+              child: DecoratedBox(
                 decoration: const BoxDecoration(
                   color: kBackgroundColor,
                   borderRadius: BorderRadius.vertical(
@@ -74,7 +74,7 @@ class AddTask extends StatelessWidget {
                                 ),
                                 Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     const Text(
                                       'Date',
@@ -99,7 +99,7 @@ class AddTask extends StatelessWidget {
                                 ),
                                 Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     const Text(
                                       'Heure',

@@ -29,7 +29,7 @@ class Home extends StatelessWidget {
               mainKey: _key,
             ),
             Expanded(
-              child: Container(
+              child: ColoredBox(
                 color: kBackgroundColor,
                 child: Stack(
                   children: <Widget>[

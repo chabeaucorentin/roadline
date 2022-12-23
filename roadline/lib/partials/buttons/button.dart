@@ -17,7 +17,7 @@ class Button extends StatelessWidget {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: onTap,
-        child: Container(
+        child: DecoratedBox(
           decoration: BoxDecoration(
             color: isDark ? kDarkButtonBackgroundColor : kButtonBackgroundColor,
             borderRadius: kBorderRadius,

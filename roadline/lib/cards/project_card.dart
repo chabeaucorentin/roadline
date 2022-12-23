@@ -4,7 +4,7 @@ import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
 @immutable
-class ProjectCard extends StatefulWidget {
+class ProjectCard extends StatelessWidget {
   const ProjectCard(
       {required this.name,
       this.date,
@@ -17,11 +17,6 @@ class ProjectCard extends StatefulWidget {
   final int nbCompleted;
   final int nbTasks;
 
-  @override
-  State<ProjectCard> createState() => _ProjectCardState();
-}
-
-class _ProjectCardState extends State<ProjectCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -46,8 +41,8 @@ class _ProjectCardState extends State<ProjectCard> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  height: 70.0,
                   width: 70.0,
+                  height: 70.0,
                   decoration: const BoxDecoration(
                     color: kCardContentColor,
                     shape: BoxShape.circle,
@@ -62,7 +57,7 @@ class _ProjectCardState extends State<ProjectCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        widget.name,
+                        name,
                         style: const TextStyle(
                           color: kCardContentColor,
                           fontSize: kCardTitleFontSize,
@@ -75,9 +70,9 @@ class _ProjectCardState extends State<ProjectCard> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          if (widget.date != null) ...[
+                          if (date != null) ...[
                             Text(
-                              widget.date!,
+                              date!,
                               style: const TextStyle(
                                 color: kSecondaryColor,
                                 fontSize: kBigFontSize,
@@ -89,7 +84,7 @@ class _ProjectCardState extends State<ProjectCard> {
                           Row(
                             children: <Widget>[
                               Text(
-                                widget.nbCompleted.toString(),
+                                nbCompleted.toString(),
                                 style: const TextStyle(
                                   color: kCardContentColor,
                                   fontSize: kBigFontSize,
@@ -111,7 +106,7 @@ class _ProjectCardState extends State<ProjectCard> {
                                 width: kSpacingPadding / 2.0,
                               ),
                               Text(
-                                widget.nbTasks.toString(),
+                                nbTasks.toString(),
                                 style: const TextStyle(
                                   color: kSecondaryColor,
                                   fontSize: kBigFontSize,
@@ -126,7 +121,7 @@ class _ProjectCardState extends State<ProjectCard> {
                         height: kSpacingPadding,
                       ),
                       ProgressBar(
-                        percent: widget.nbCompleted / widget.nbTasks,
+                        percent: nbCompleted / nbTasks,
                       ),
                     ],
                   ),

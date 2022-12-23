@@ -3,17 +3,12 @@ import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
 @immutable
-class CounterCard extends StatefulWidget {
+class CounterCard extends StatelessWidget {
   const CounterCard({required this.text, required this.counter, super.key});
 
   final String text;
   final int counter;
 
-  @override
-  State<CounterCard> createState() => _CounterCardState();
-}
-
-class _CounterCardState extends State<CounterCard> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -23,12 +18,12 @@ class _CounterCardState extends State<CounterCard> {
           onTap: () {
             Navigator.pushNamed(context, kTasksRoute);
           },
-          child: Container(
+          child: ColoredBox(
             color: kDarkBackgroundColor,
             child: Column(
               children: <Widget>[
                 Text(
-                  widget.counter.toString(),
+                  counter.toString(),
                   style: const TextStyle(
                     color: kDarkSecondaryColor,
                     fontSize: kCounterSize,
@@ -39,7 +34,7 @@ class _CounterCardState extends State<CounterCard> {
                   height: kDefaultElementSpacing / 4.0,
                 ),
                 Text(
-                  widget.text,
+                  text,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: kDarkPrimaryColor,

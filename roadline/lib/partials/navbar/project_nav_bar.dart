@@ -14,7 +14,7 @@ class ProjectNavBar extends StatelessWidget {
       ),
       color: kDarkBackgroundColor,
       constraints: const BoxConstraints(
-        maxWidth: kMainMaxWidth + 10.0,
+        maxWidth: kMainMaxWidth + kDefaultElementSpacing * 2.0 - 1.0,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

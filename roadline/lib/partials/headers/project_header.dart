@@ -8,7 +8,7 @@ class ProjectHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return DecoratedBox(
       decoration: const BoxDecoration(
         color: kDarkBackgroundColor,
         borderRadius: BorderRadius.only(
@@ -16,7 +16,7 @@ class ProjectHeader extends StatelessWidget {
         ),
       ),
       child: Column(
-        children: [
+        children: <Widget>[
           const ProjectNavBar(),
           Padding(
             padding: const EdgeInsets.only(

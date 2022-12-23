@@ -10,7 +10,7 @@ class SideBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: kDarkBackgroundColor,
       child: SafeArea(
         child: Column(
@@ -24,7 +24,7 @@ class SideBar extends StatelessWidget {
               child: Logo(),
             ),
             Expanded(
-              child: Container(
+              child: ColoredBox(
                 color: kBackgroundColor,
                 child: SingleChildScrollView(
                   child: Column(

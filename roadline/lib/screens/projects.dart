@@ -27,7 +27,7 @@ class Projects extends StatelessWidget {
               title: 'Projets',
             ),
             Expanded(
-              child: Container(
+              child: DecoratedBox(
                 decoration: const BoxDecoration(
                   color: kBackgroundColor,
                   borderRadius: BorderRadius.vertical(

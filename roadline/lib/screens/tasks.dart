@@ -29,7 +29,7 @@ class Tasks extends StatelessWidget {
             ),
             const TasksTabBar(),
             Expanded(
-              child: Container(
+              child: DecoratedBox(
                 decoration: const BoxDecoration(
                   color: kBackgroundColor,
                   borderRadius: BorderRadius.vertical(

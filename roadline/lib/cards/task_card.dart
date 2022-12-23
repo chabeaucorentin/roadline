@@ -40,8 +40,8 @@ class _TaskCardState extends State<TaskCard> {
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
               child: Container(
-                height: 30.0,
                 width: 30.0,
+                height: 30.0,
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: kCardContentColor,

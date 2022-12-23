@@ -7,7 +7,7 @@ import 'package:roadline/partials/components/shadow_box.dart';
 import 'package:roadline/partials/forms/date_picker.dart';
 import 'package:roadline/partials/forms/desc_text_area.dart';
 import 'package:roadline/partials/forms/project_name_input.dart';
-import 'package:roadline/partials/navbar/nav_bar.dart';
+import 'package:roadline/partials/navbar/close_nav_bar.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
@@ -23,11 +23,11 @@ class NewProject extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const NavBar(
+            const CloseNavBar(
               title: 'Créer un projet',
             ),
             Expanded(
-              child: Container(
+              child: DecoratedBox(
                 decoration: const BoxDecoration(
                   color: kBackgroundColor,
                   borderRadius: BorderRadius.vertical(
