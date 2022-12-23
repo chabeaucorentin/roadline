@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roadline/partials/components/progress_bar.dart';
+import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
 @immutable
@@ -30,6 +31,9 @@ class _ProjectCardState extends State<ProjectCard> {
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, kProjectRoute);
+          },
           child: Container(
             padding: const EdgeInsets.all(
               kDefaultPadding,

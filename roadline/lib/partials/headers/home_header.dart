@@ -5,14 +5,9 @@ import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
 @immutable
-class HomeCard extends StatefulWidget {
-  const HomeCard({super.key});
+class HomeHeader extends StatelessWidget {
+  const HomeHeader({super.key});
 
-  @override
-  State<HomeCard> createState() => _CounterCardState();
-}
-
-class _CounterCardState extends State<HomeCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,10 +18,11 @@ class _CounterCardState extends State<HomeCard> {
         bottom: kDefaultElementSpacing * 2.0,
       ),
       decoration: const BoxDecoration(
-          color: kDarkBackgroundColor,
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(40.0),
-          )),
+        color: kDarkBackgroundColor,
+        borderRadius: BorderRadius.only(
+          bottomRight: Radius.circular(40.0),
+        ),
+      ),
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(

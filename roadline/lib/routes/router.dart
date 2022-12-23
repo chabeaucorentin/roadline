@@ -4,6 +4,7 @@ import 'package:roadline/screens/add_task.dart';
 import 'package:roadline/screens/home.dart';
 import 'package:roadline/screens/login.dart';
 import 'package:roadline/screens/new_project.dart';
+import 'package:roadline/screens/project.dart';
 import 'package:roadline/screens/projects.dart';
 import 'package:roadline/screens/register.dart';
 import 'package:roadline/screens/reset_password.dart';
@@ -18,4 +19,5 @@ Map<String, WidgetBuilder> router = {
   kNewProjectRoute: (context) => NewProject(),
   kTasksRoute: (context) => Tasks(),
   kAddTaskRoute: (context) => AddTask(),
+  kProjectRoute: (context) => Project(),
 };

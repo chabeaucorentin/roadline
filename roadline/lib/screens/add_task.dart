@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:roadline/partials/buttons/bottom_button.dart';
 import 'package:roadline/partials/buttons/button.dart';
-import 'package:roadline/partials/components/image_selector.dart';
 import 'package:roadline/partials/components/shadow_box.dart';
 import 'package:roadline/partials/forms/date_picker.dart';
 import 'package:roadline/partials/forms/desc_text_area.dart';

@@ -21,12 +21,13 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         vertical: kSpacingPadding,
-        horizontal: kDefaultElementSpacing - 3.0,
+        horizontal: kDefaultElementSpacing - 5.0,
       ),
+      color: kDarkBackgroundColor,
       constraints: const BoxConstraints(
-        maxWidth: kMainMaxWidth + 6.0,
+        maxWidth: kMainMaxWidth + 10.0,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

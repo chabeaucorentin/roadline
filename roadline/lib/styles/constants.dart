@@ -44,6 +44,7 @@ const double kDefaultCardMaxWidth = 450.0;
 const double kMainMaxWidth = 900.0;
 const double kCounterSize = 50.0;
 const double kDefaultIconSize = 35.0;
+const double kAdjustmentIconSize = 30.0;
 const double kDefaultInputIconSize = 24.0;
 const double kInputFontSize = 17.0;
 const double kButtonFontSize = 17.0;

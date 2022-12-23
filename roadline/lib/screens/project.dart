@@ -1,33 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:roadline/partials/headers/home_header.dart';
-import 'package:roadline/cards/project_card.dart';
+import 'package:roadline/cards/task_card.dart';
 import 'package:roadline/partials/buttons/bottom_button.dart';
 import 'package:roadline/partials/buttons/button.dart';
 import 'package:roadline/partials/components/shadow_box.dart';
-import 'package:roadline/partials/navbar/main_nav_bar.dart';
-import 'package:roadline/partials/sidebar/side_bar.dart';
+import 'package:roadline/partials/headers/project_header.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
-class Home extends StatelessWidget {
-  Home({super.key});
-
-  final _key = GlobalKey<ScaffoldState>();
+class Project extends StatelessWidget {
+  Project({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _key,
-      drawer: const Drawer(
-        child: SideBar(),
-      ),
       backgroundColor: kDarkBackgroundColor,
       body: SafeArea(
         child: Column(
-          children: [
-            MainNavBar(
-              mainKey: _key,
-            ),
+          children: <Widget>[
             Expanded(
               child: Container(
                 color: kBackgroundColor,
@@ -37,7 +26,7 @@ class Home extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          const HomeHeader(),
+                          const ProjectHeader(),
                           Padding(
                             padding: const EdgeInsets.only(
                               left: kDefaultElementSpacing,
@@ -54,7 +43,7 @@ class Home extends StatelessWidget {
                                       CrossAxisAlignment.stretch,
                                   children: const <Widget>[
                                     Text(
-                                      'Favoris',
+                                      'Tâches',
                                       style: TextStyle(
                                         color: kPrimaryColor,
                                         fontSize: kCardTitleFontSize,
@@ -64,38 +53,25 @@ class Home extends StatelessWidget {
                                     SizedBox(
                                       height: kDefaultElementSpacing * 0.75,
                                     ),
-                                    /*Padding(
-                                      padding: EdgeInsets.only(
-                                        top: kDefaultElementSpacing * 0.5,
-                                        bottom: kDefaultElementSpacing * 0.75,
-                                      ),
-                                      child: Text(
-                                        'Aucun projet en favoris',
-                                        style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontSize: kBigFontSize,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),*/
-                                    ProjectCard(
-                                      name: 'Nom du projet 1',
-                                      date: 'Date du projet',
-                                      nbCompleted: 2,
-                                      nbTasks: 5,
+                                    TaskCard(
+                                      completed: true,
+                                      name: 'Tâche 1',
+                                      date: 'Date et heure',
                                     ),
-                                    ProjectCard(
-                                      name: 'Nom du projet 2',
-                                      date: 'Date du projet',
-                                      nbCompleted: 5,
-                                      nbTasks: 10,
+                                    TaskCard(
+                                      completed: true,
+                                      name: 'Tâche 2',
+                                      date: 'Date et heure',
                                     ),
-                                    ProjectCard(
-                                      name: 'Nom du projet 3',
-                                      date: 'Date du projet',
-                                      nbCompleted: 7,
-                                      nbTasks: 10,
+                                    TaskCard(
+                                      completed: true,
+                                      name: 'Tâche 3',
+                                      date: 'Date et heure',
+                                    ),
+                                    TaskCard(
+                                      completed: true,
+                                      name: 'Tâche 4',
+                                      date: 'Date et heure',
                                     ),
                                   ],
                                 ),
@@ -112,9 +88,9 @@ class Home extends StatelessWidget {
             ),
             BottomButton(
               button: Button(
-                'Créer un projet',
+                'Ajouter une tâche',
                 onTap: () {
-                  Navigator.pushNamed(context, kNewProjectRoute);
+                  Navigator.pushNamed(context, kAddTaskRoute);
                 },
               ),
             ),
