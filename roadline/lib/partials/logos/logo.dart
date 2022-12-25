@@ -26,9 +26,9 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image(
-      height: !isBig ? 30.0 : null,
-      width: isBig ? 200.0 : null,
       image: getImage(),
+      width: isBig ? 200.0 : null,
+      height: !isBig ? 30.0 : null,
     );
   }
 }

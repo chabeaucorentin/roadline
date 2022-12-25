@@ -40,8 +40,6 @@ class _TaskCardState extends State<TaskCard> {
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
               child: Container(
-                width: 30.0,
-                height: 30.0,
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: kCardContentColor,
@@ -49,6 +47,8 @@ class _TaskCardState extends State<TaskCard> {
                   ),
                   shape: BoxShape.circle,
                 ),
+                width: 30.0,
+                height: 30.0,
                 child: widget.completed
                     ? const Icon(
                         Icons.check,

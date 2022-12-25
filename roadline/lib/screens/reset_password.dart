@@ -27,8 +27,8 @@ class ResetPassword extends StatelessWidget {
                 minHeight: MediaQuery.of(context).size.height,
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   const FormHeader(),
                   Center(
@@ -54,22 +54,20 @@ class ResetPassword extends StatelessWidget {
                     ),
                   ),
                   Center(
-                    child: ConstrainedBox(
+                    child: Container(
+                      padding: const EdgeInsets.only(
+                        top: 75.0,
+                        bottom: 44.0,
+                      ),
                       constraints: const BoxConstraints(
                         maxWidth: kDefaultCardMaxWidth,
                       ),
-                      child: Container(
-                        padding: const EdgeInsets.only(
-                          top: 75.0,
-                          bottom: 44.0,
-                        ),
-                        child: BorderedButton(
-                          'Retour à la connexion',
-                          onTap: () {
-                            Navigator.pushNamed(context, kLoginRoute);
-                          },
-                          isDark: true,
-                        ),
+                      child: BorderedButton(
+                        'Retour à la connexion',
+                        onTap: () {
+                          Navigator.pushNamed(context, kLoginRoute);
+                        },
+                        isDark: true,
                       ),
                     ),
                   ),

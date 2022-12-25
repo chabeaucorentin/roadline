@@ -16,12 +16,12 @@ class _ImageSelectorState extends State<ImageSelector> {
       child: Stack(
         children: <Widget>[
           Container(
-            width: 150.0,
-            height: 150.0,
             decoration: const BoxDecoration(
               color: kCardBackgroundColor,
               shape: BoxShape.circle,
             ),
+            width: 150.0,
+            height: 150.0,
             child: const Icon(
               Icons.panorama,
               size: 75.0,
@@ -35,12 +35,12 @@ class _ImageSelectorState extends State<ImageSelector> {
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 child: Container(
-                  width: 50.0,
-                  height: 50.0,
                   decoration: const BoxDecoration(
                     color: kButtonBackgroundColor,
                     shape: BoxShape.circle,
                   ),
+                  width: 50.0,
+                  height: 50.0,
                   child: const Icon(
                     Icons.edit,
                     size: kAdjustmentIconSize,

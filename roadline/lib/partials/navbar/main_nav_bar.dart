@@ -19,7 +19,7 @@ class MainNavBar extends StatelessWidget {
       },
       iconRight: Icons.account_circle,
       onTapRight: () {
-        Navigator.pushNamed(context, kLoginRoute);
+        Navigator.pushNamed(context, kProfileRoute);
       },
     );
   }

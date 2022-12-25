@@ -17,7 +17,7 @@ class BorderedButton extends StatelessWidget {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: onTap,
-        child: Container(
+        child: DecoratedBox(
           decoration: BoxDecoration(
             border: Border.all(
               color:

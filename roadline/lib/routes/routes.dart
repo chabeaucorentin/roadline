@@ -7,4 +7,5 @@ const String kProjectRoute = '/project';
 const String kNewProjectRoute = '/newProject';
 const String kTasksRoute = '/tasks';
 const String kAddTaskRoute = '/addTask';
+const String kProfileRoute = '/profile';
 const String kError = '/error';

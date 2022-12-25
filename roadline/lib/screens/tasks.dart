@@ -22,7 +22,7 @@ class Tasks extends StatelessWidget {
       backgroundColor: kDarkBackgroundColor,
       body: SafeArea(
         child: Column(
-          children: [
+          children: <Widget>[
             MainNavBar(
               mainKey: _key,
               title: 'Tâches',

@@ -10,42 +10,38 @@ class CountersCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const <Widget>[
-        CounterCard(
+      children: <Widget>[
+        const CounterCard(
           text: 'Tâches en cours',
           counter: 12,
         ),
-        Padding(
-          padding: EdgeInsets.only(
+        Container(
+          padding: const EdgeInsets.only(
             top: 6.0,
           ),
-          child: SizedBox(
-            height: 55.0,
-            width: kDefaultElementSpacing * 2.0,
-            child: VerticalDivider(
-              color: kDarkSeparatorColor,
-              thickness: 1.0,
-            ),
+          width: kDefaultElementSpacing * 2.0,
+          height: 55.0,
+          child: const VerticalDivider(
+            color: kDarkSeparatorColor,
+            thickness: 1.0,
           ),
         ),
-        CounterCard(
+        const CounterCard(
           text: 'Tâches en retard',
           counter: 5,
         ),
-        Padding(
-          padding: EdgeInsets.only(
+        Container(
+          padding: const EdgeInsets.only(
             top: 6.0,
           ),
-          child: SizedBox(
-            height: 55,
-            width: kDefaultElementSpacing * 2.0,
-            child: VerticalDivider(
-              color: kDarkSeparatorColor,
-              thickness: 1.0,
-            ),
+          width: kDefaultElementSpacing * 2.0,
+          height: 55,
+          child: const VerticalDivider(
+            color: kDarkSeparatorColor,
+            thickness: 1.0,
           ),
         ),
-        CounterCard(
+        const CounterCard(
           text: 'Tâches terminées',
           counter: 23,
         ),

@@ -29,8 +29,8 @@ class Register extends StatelessWidget {
                 minHeight: MediaQuery.of(context).size.height,
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   const FormHeader(),
                   Center(
@@ -68,7 +68,7 @@ class Register extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
+                  Padding(
                     padding: const EdgeInsets.symmetric(
                       vertical: 75.0,
                     ),

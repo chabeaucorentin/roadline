@@ -24,7 +24,7 @@ class AddTask extends StatelessWidget {
       backgroundColor: kDarkBackgroundColor,
       body: SafeArea(
         child: Column(
-          children: [
+          children: <Widget>[
             const CloseNavBar(
               title: 'Ajouter une tâche',
             ),

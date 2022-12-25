@@ -41,12 +41,12 @@ class ProjectCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  width: 70.0,
-                  height: 70.0,
                   decoration: const BoxDecoration(
                     color: kCardContentColor,
                     shape: BoxShape.circle,
                   ),
+                  width: 70.0,
+                  height: 70.0,
                 ),
                 const SizedBox(
                   width: kDefaultPadding,

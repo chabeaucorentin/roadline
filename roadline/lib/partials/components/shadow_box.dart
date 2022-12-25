@@ -8,7 +8,7 @@ class ShadowBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: <Widget>[
         const Spacer(),
         Container(
           height: kDefaultElementSpacing + kGradientHeight / 2.0,

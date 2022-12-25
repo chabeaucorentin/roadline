@@ -18,7 +18,7 @@ class Project extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Expanded(
-              child: Container(
+              child: ColoredBox(
                 color: kBackgroundColor,
                 child: Stack(
                   children: <Widget>[

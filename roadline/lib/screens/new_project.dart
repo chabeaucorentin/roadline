@@ -22,7 +22,7 @@ class NewProject extends StatelessWidget {
       backgroundColor: kDarkBackgroundColor,
       body: SafeArea(
         child: Column(
-          children: [
+          children: <Widget>[
             const CloseNavBar(
               title: 'Créer un projet',
             ),
