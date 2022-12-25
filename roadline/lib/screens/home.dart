@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:roadline/partials/headers/home_header.dart';
 import 'package:roadline/cards/project_card.dart';
-import 'package:roadline/partials/buttons/bottom_button.dart';
 import 'package:roadline/partials/buttons/button.dart';
+import 'package:roadline/partials/components/bottom_widget.dart';
 import 'package:roadline/partials/components/shadow_box.dart';
+import 'package:roadline/partials/headers/home_header.dart';
 import 'package:roadline/partials/navbar/main_nav_bar.dart';
 import 'package:roadline/partials/sidebar/side_bar.dart';
 import 'package:roadline/routes/routes.dart';
@@ -110,8 +110,8 @@ class Home extends StatelessWidget {
                 ),
               ),
             ),
-            BottomButton(
-              button: Button(
+            BottomWidget(
+              child: Button(
                 'Créer un projet',
                 onTap: () {
                   Navigator.pushNamed(context, kNewProjectRoute);

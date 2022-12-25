@@ -13,7 +13,7 @@ class ProfileCard extends StatelessWidget {
         Container(
           padding: const EdgeInsets.only(
             left: kDefaultElementSpacing,
-            top: kDefaultElementSpacing + 50.0,
+            top: kDefaultElementSpacing + 42.0,
             right: kDefaultElementSpacing,
             bottom: kDefaultElementSpacing,
           ),

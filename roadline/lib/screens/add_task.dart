@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
-import 'package:roadline/partials/buttons/bottom_button.dart';
 import 'package:roadline/partials/buttons/button.dart';
+import 'package:roadline/partials/components/bottom_widget.dart';
 import 'package:roadline/partials/components/shadow_box.dart';
 import 'package:roadline/partials/forms/date_picker.dart';
 import 'package:roadline/partials/forms/desc_text_area.dart';
@@ -130,8 +130,8 @@ class AddTask extends StatelessWidget {
                 ),
               ),
             ),
-            BottomButton(
-              button: Button(
+            BottomWidget(
+              child: Button(
                 'Ajouter',
                 onTap: () {
                   Navigator.pushNamed(context, kRegisterRoute);

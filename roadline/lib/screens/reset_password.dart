@@ -27,8 +27,8 @@ class ResetPassword extends StatelessWidget {
                 minHeight: MediaQuery.of(context).size.height,
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   const FormHeader(),
                   Center(

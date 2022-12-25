@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:roadline/partials/buttons/arrow_button.dart';
-import 'package:roadline/partials/buttons/bottom_button.dart';
-import 'package:roadline/partials/buttons/button.dart';
+import 'package:roadline/partials/buttons/logout_button.dart';
+import 'package:roadline/partials/components/bottom_widget.dart';
 import 'package:roadline/partials/headers/profile_header.dart';
-import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
 class Profile extends StatelessWidget {
@@ -90,13 +89,8 @@ class Profile extends StatelessWidget {
                 const SizedBox(
                   height: kDefaultElementSpacing,
                 ),
-                BottomButton(
-                  button: Button(
-                    'Déconnexion',
-                    onTap: () {
-                      Navigator.pushNamed(context, kLoginRoute);
-                    },
-                  ),
+                const BottomWidget(
+                  child: LogoutButton(),
                 ),
               ],
             ),

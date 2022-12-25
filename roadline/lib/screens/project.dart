@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roadline/cards/task_card.dart';
-import 'package:roadline/partials/buttons/bottom_button.dart';
 import 'package:roadline/partials/buttons/button.dart';
+import 'package:roadline/partials/components/bottom_widget.dart';
 import 'package:roadline/partials/components/shadow_box.dart';
 import 'package:roadline/partials/headers/project_header.dart';
 import 'package:roadline/routes/routes.dart';
@@ -86,8 +86,8 @@ class Project extends StatelessWidget {
                 ),
               ),
             ),
-            BottomButton(
-              button: Button(
+            BottomWidget(
+              child: Button(
                 'Ajouter une tâche',
                 onTap: () {
                   Navigator.pushNamed(context, kAddTaskRoute);

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:roadline/partials/buttons/button.dart';
 import 'package:roadline/styles/constants.dart';
 
 @immutable
-class BottomButton extends StatelessWidget {
-  const BottomButton({required this.button, super.key});
+class BottomWidget extends StatelessWidget {
+  const BottomWidget({required this.child, super.key});
 
-  final Button button;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,7 @@ class BottomButton extends StatelessWidget {
           constraints: const BoxConstraints(
             maxWidth: kMainMaxWidth,
           ),
-          child: button,
+          child: child,
         ),
       ),
     );
