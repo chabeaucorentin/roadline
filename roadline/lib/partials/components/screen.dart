@@ -25,25 +25,30 @@ class Screen extends StatelessWidget {
     return Scaffold(
       key: mainKey,
       drawer: drawer,
-      backgroundColor: isDark ? kDarkBackgroundColor : kBackgroundColor,
+      backgroundColor: isBottomDark ? kDarkBackgroundColor : kBackgroundColor,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: isDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
         child: Stack(
           children: <Widget>[
-            Column(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    height: double.infinity,
+            SafeArea(
+              top: false,
+              bottom: false,
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      color: isDark ? kDarkBackgroundColor : kBackgroundColor,
+                      height: double.infinity,
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: Container(
-                    color: !isBottomDark ? kBackgroundColor : null,
-                    height: double.infinity,
+                  Expanded(
+                    child: Container(
+                      color: !isBottomDark ? kBackgroundColor : null,
+                      height: double.infinity,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             SafeArea(
               bottom: bottomSafeArea,

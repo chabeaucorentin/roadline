@@ -12,6 +12,7 @@ class SideBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Screen(
+      bottomSafeArea: false,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
