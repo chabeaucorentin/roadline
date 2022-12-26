@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       initialRoute: kHomeRoute,
       routes: router,
       theme: ThemeData(
+        brightness: Brightness.light,
         fontFamily: 'Roboto',
       ),
     );

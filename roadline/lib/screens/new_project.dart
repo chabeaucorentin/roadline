@@ -3,6 +3,7 @@ import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:roadline/partials/buttons/button.dart';
 import 'package:roadline/partials/components/bottom_widget.dart';
 import 'package:roadline/partials/components/image_selector.dart';
+import 'package:roadline/partials/components/screen.dart';
 import 'package:roadline/partials/components/shadow_box.dart';
 import 'package:roadline/partials/forms/date_picker.dart';
 import 'package:roadline/partials/forms/desc_text_area.dart';
@@ -18,101 +19,97 @@ class NewProject extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kDarkBackgroundColor,
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            const CloseNavBar(
-              title: 'Créer un projet',
-            ),
-            Expanded(
-              child: DecoratedBox(
-                decoration: const BoxDecoration(
-                  color: kBackgroundColor,
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(20.0),
-                  ),
+    return Screen(
+      child: Column(
+        children: <Widget>[
+          const CloseNavBar(
+            title: 'Créer un projet',
+          ),
+          Expanded(
+            child: DecoratedBox(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(20.0),
                 ),
-                child: Stack(
-                  children: <Widget>[
-                    SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.all(kDefaultElementSpacing),
-                        child: Center(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints(
-                              maxWidth: kMainMaxWidth,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                const ImageSelector(),
-                                const SizedBox(
-                                  height: kDefaultElementSpacing,
+              ),
+              child: Stack(
+                children: <Widget>[
+                  SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(kDefaultElementSpacing),
+                      child: Center(
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(
+                            maxWidth: kMainMaxWidth,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const ImageSelector(),
+                              const SizedBox(
+                                height: kDefaultElementSpacing,
+                              ),
+                              const ProjectNameInput(),
+                              const SizedBox(
+                                height: kDefaultElementSpacing - 4.0,
+                              ),
+                              const Text(
+                                'Description',
+                                style: TextStyle(
+                                  color: kPrimaryColor,
+                                  fontSize: kBigFontSize,
+                                  fontWeight: FontWeight.w700,
                                 ),
-                                const ProjectNameInput(),
-                                const SizedBox(
-                                  height: kDefaultElementSpacing - 4.0,
-                                ),
-                                const Text(
-                                  'Description',
-                                  style: TextStyle(
-                                    color: kPrimaryColor,
-                                    fontSize: kBigFontSize,
-                                    fontWeight: FontWeight.w700,
+                              ),
+                              const SizedBox(
+                                height: kSpacingPadding,
+                              ),
+                              const DescTextArea(),
+                              const SizedBox(
+                                height: kDefaultElementSpacing,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  const Text(
+                                    'Date de fin',
+                                    style: TextStyle(
+                                      color: kPrimaryColor,
+                                      fontSize: kBigFontSize,
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: kSpacingPadding,
-                                ),
-                                const DescTextArea(),
-                                const SizedBox(
-                                  height: kDefaultElementSpacing,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    const Text(
-                                      'Date de fin',
-                                      style: TextStyle(
-                                        color: kPrimaryColor,
-                                        fontSize: kBigFontSize,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                    AdvancedSwitch(
-                                      controller: _asDate,
-                                      activeColor: kSwitchColor,
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: kDefaultElementSpacing,
-                                ),
-                                const DatePicker(),
-                              ],
-                            ),
+                                  AdvancedSwitch(
+                                    controller: _asDate,
+                                    activeColor: kSwitchColor,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: kDefaultElementSpacing,
+                              ),
+                              const DatePicker(),
+                            ],
                           ),
                         ),
                       ),
                     ),
-                    const ShadowBox(),
-                  ],
-                ),
+                  ),
+                  const ShadowBox(),
+                ],
               ),
             ),
-            BottomWidget(
-              child: Button(
-                'Créer',
-                onTap: () {
-                  Navigator.pushNamed(context, kRegisterRoute);
-                },
-              ),
+          ),
+          BottomWidget(
+            child: Button(
+              'Créer',
+              onTap: () {
+                Navigator.pushNamed(context, kRegisterRoute);
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

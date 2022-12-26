@@ -13,7 +13,7 @@ class BottomWidget extends StatelessWidget {
       padding: const EdgeInsets.only(
         left: kDefaultElementSpacing,
         right: kDefaultElementSpacing,
-        bottom: 44.0,
+        bottom: kDefaultElementSpacing,
       ),
       color: kBackgroundColor,
       child: Center(
