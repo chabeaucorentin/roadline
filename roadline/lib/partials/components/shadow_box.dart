@@ -11,22 +11,20 @@ class ShadowBox extends StatelessWidget {
       children: <Widget>[
         const Spacer(),
         Container(
-          height: kDefaultElementSpacing + kGradientHeight / 2.0,
+          height: kDefaultElementSpacing,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
                 kBackgroundColor.withOpacity(0.0),
-                kBackgroundColor.withOpacity(0.75),
+                kBackgroundColor.withOpacity(0.5),
                 kBackgroundColor,
               ],
               stops: const [
                 0.0,
-                (kGradientHeight / 1.5) /
-                    (kDefaultElementSpacing + kGradientHeight / 2.0),
-                (kGradientHeight) /
-                    (kDefaultElementSpacing + kGradientHeight / 2.0),
+                (kGradientHeight / 2.0) / kDefaultElementSpacing,
+                kGradientHeight / kDefaultElementSpacing,
               ],
             ),
           ),

@@ -50,7 +50,7 @@ const double kAdjustmentIconSize = 30.0;
 const double kDefaultInputIconSize = 24.0;
 const double kInputFontSize = 17.0;
 const double kButtonFontSize = 17.0;
-const double kGradientHeight = 15.0;
+const double kGradientHeight = 14.0;
 
 // PADDINGS
 const double kDefaultPadding = 20.0;
