@@ -40,8 +40,8 @@ class BorderedButton extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(
                   left: icon != null ? kSpacingPadding : 0.0,
-                  top: kAdjustmentPadding - 4.0,
-                  bottom: kAdjustmentPadding - 1.0,
+                  top: kAdjustmentPadding - 2.0,
+                  bottom: kAdjustmentPadding + 1.0,
                 ),
                 child: Text(
                   label,
