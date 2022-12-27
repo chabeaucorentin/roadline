@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roadline/partials/buttons/bordered_button.dart';
 import 'package:roadline/partials/buttons/button.dart';
+import 'package:roadline/partials/components/bottom_padding.dart';
 import 'package:roadline/partials/components/screen.dart';
 import 'package:roadline/partials/forms/email_input.dart';
 import 'package:roadline/partials/headers/form_header.dart';
@@ -29,7 +30,6 @@ class ResetPassword extends StatelessWidget {
                   minHeight: constraints.maxHeight,
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     const FormHeader(),
@@ -55,23 +55,28 @@ class ResetPassword extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Center(
-                      child: Container(
-                        padding: const EdgeInsets.only(
-                          top: 75.0,
-                          bottom: kDefaultElementSpacing,
+                    Column(
+                      children: <Widget>[
+                        Center(
+                          child: Container(
+                            padding: const EdgeInsets.only(
+                              top: 75.0,
+                              bottom: kDefaultElementSpacing,
+                            ),
+                            constraints: const BoxConstraints(
+                              maxWidth: kDefaultCardMaxWidth,
+                            ),
+                            child: BorderedButton(
+                              'Retour à la connexion',
+                              onTap: () {
+                                Navigator.pushNamed(context, kLoginRoute);
+                              },
+                              isDark: true,
+                            ),
+                          ),
                         ),
-                        constraints: const BoxConstraints(
-                          maxWidth: kDefaultCardMaxWidth,
-                        ),
-                        child: BorderedButton(
-                          'Retour à la connexion',
-                          onTap: () {
-                            Navigator.pushNamed(context, kLoginRoute);
-                          },
-                          isDark: true,
-                        ),
-                      ),
+                        const BottomPadding(),
+                      ],
                     ),
                   ],
                 ),

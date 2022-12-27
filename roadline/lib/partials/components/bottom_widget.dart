@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roadline/partials/components/bottom_padding.dart';
 import 'package:roadline/styles/constants.dart';
 
 @immutable
@@ -15,14 +16,18 @@ class BottomWidget extends StatelessWidget {
         right: kDefaultElementSpacing,
         bottom: kDefaultElementSpacing,
       ),
-      color: kBackgroundColor,
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(
-            maxWidth: kMainMaxWidth,
+      child: Column(
+        children: <Widget>[
+          Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: kMainMaxWidth,
+              ),
+              child: child,
+            ),
           ),
-          child: child,
-        ),
+          const BottomPadding(),
+        ],
       ),
     );
   }

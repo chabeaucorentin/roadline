@@ -21,7 +21,6 @@ class Project extends StatelessWidget {
               children: <Widget>[
                 SingleChildScrollView(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       const ProjectHeader(),
                       Padding(
@@ -36,7 +35,7 @@ class Project extends StatelessWidget {
                               maxWidth: kMainMaxWidth,
                             ),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: const <Widget>[
                                 Text(
                                   'Tâches',

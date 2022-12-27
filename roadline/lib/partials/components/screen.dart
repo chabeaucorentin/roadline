@@ -7,15 +7,13 @@ class Screen extends StatelessWidget {
   const Screen(
       {this.mainKey,
       this.drawer,
-      required this.child,
-      this.bottomSafeArea = true,
       this.isDark = true,
       this.isBottomDark = false,
+      required this.child,
       super.key});
 
   final Key? mainKey;
   final Widget? drawer;
-  final bool bottomSafeArea;
   final bool isDark;
   final bool isBottomDark;
   final Widget child;
@@ -32,27 +30,13 @@ class Screen extends StatelessWidget {
           children: <Widget>[
             SafeArea(
               top: false,
-              bottom: false,
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      color: isDark ? kDarkBackgroundColor : kBackgroundColor,
-                      height: double.infinity,
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      color: !isBottomDark ? kBackgroundColor : null,
-                      height: double.infinity,
-                    ),
-                  ),
-                ],
+              child: Container(
+                color: isDark ? kDarkBackgroundColor : kBackgroundColor,
               ),
             ),
             SafeArea(
-              bottom: bottomSafeArea,
-              child: ColoredBox(
+              bottom: false,
+              child: Container(
                 color: isBottomDark ? kDarkBackgroundColor : kBackgroundColor,
                 child: child,
               ),

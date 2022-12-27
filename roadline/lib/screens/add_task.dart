@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:roadline/partials/buttons/button.dart';
-import 'package:roadline/partials/components/bottom_widget.dart';
+import 'package:roadline/partials/components/bottom_padding.dart';
 import 'package:roadline/partials/components/screen.dart';
-import 'package:roadline/partials/components/shadow_box.dart';
 import 'package:roadline/partials/forms/date_picker.dart';
 import 'package:roadline/partials/forms/desc_text_area.dart';
 import 'package:roadline/partials/forms/project_name_input.dart';
@@ -28,111 +27,125 @@ class AddTask extends StatelessWidget {
             title: 'Ajouter une tâche',
           ),
           Expanded(
-            child: DecoratedBox(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(20.0),
-                ),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.all(kDefaultElementSpacing),
-                      child: Center(
-                        child: ConstrainedBox(
-                          constraints: const BoxConstraints(
+            child: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return ColoredBox(
+                  color: kDarkBackgroundColor,
+                  child: DecoratedBox(
+                    decoration: const BoxDecoration(
+                      color: kBackgroundColor,
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(20.0),
+                      ),
+                    ),
+                    child: Center(
+                      child: SingleChildScrollView(
+                        child: Container(
+                          padding: const EdgeInsets.all(kDefaultElementSpacing),
+                          constraints: BoxConstraints(
                             maxWidth: kMainMaxWidth,
+                            minHeight: constraints.maxHeight,
                           ),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              const TaskNameInput(),
-                              const SizedBox(
-                                height: kDefaultElementSpacing,
-                              ),
-                              const ProjectNameInput(),
-                              const SizedBox(
-                                height: kDefaultElementSpacing - 4.0,
-                              ),
-                              const Text(
-                                'Notes',
-                                style: TextStyle(
-                                  color: kPrimaryColor,
-                                  fontSize: kBigFontSize,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: kSpacingPadding,
-                              ),
-                              const DescTextArea(),
-                              const SizedBox(
-                                height: kDefaultElementSpacing,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
+                                  const TaskNameInput(),
+                                  const SizedBox(
+                                    height: kDefaultElementSpacing,
+                                  ),
+                                  const ProjectNameInput(),
+                                  const SizedBox(
+                                    height: kDefaultElementSpacing - 4.0,
+                                  ),
                                   const Text(
-                                    'Date',
+                                    'Notes',
                                     style: TextStyle(
                                       color: kPrimaryColor,
                                       fontSize: kBigFontSize,
                                       fontWeight: FontWeight.w700,
                                     ),
                                   ),
-                                  AdvancedSwitch(
-                                    controller: _asDate,
-                                    activeColor: kSwitchColor,
+                                  const SizedBox(
+                                    height: kSpacingPadding,
+                                  ),
+                                  const DescTextArea(),
+                                  const SizedBox(
+                                    height: kDefaultElementSpacing,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      const Text(
+                                        'Date',
+                                        style: TextStyle(
+                                          color: kPrimaryColor,
+                                          fontSize: kBigFontSize,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                      AdvancedSwitch(
+                                        controller: _asDate,
+                                        activeColor: kSwitchColor,
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: kDefaultElementSpacing,
+                                  ),
+                                  const DatePicker(),
+                                  const SizedBox(
+                                    height: kDefaultElementSpacing,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      const Text(
+                                        'Heure',
+                                        style: TextStyle(
+                                          color: kPrimaryColor,
+                                          fontSize: kBigFontSize,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                      AdvancedSwitch(
+                                        controller: _asTime,
+                                        activeColor: kSwitchColor,
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: kDefaultElementSpacing,
+                                  ),
+                                  const TimePicker(),
+                                  const SizedBox(
+                                    height: kDefaultElementSpacing,
                                   ),
                                 ],
                               ),
-                              const SizedBox(
-                                height: kDefaultElementSpacing,
-                              ),
-                              const DatePicker(),
-                              const SizedBox(
-                                height: kDefaultElementSpacing,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                              Column(
                                 children: <Widget>[
-                                  const Text(
-                                    'Heure',
-                                    style: TextStyle(
-                                      color: kPrimaryColor,
-                                      fontSize: kBigFontSize,
-                                      fontWeight: FontWeight.w700,
-                                    ),
+                                  Button(
+                                    'Ajouter',
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, kRegisterRoute);
+                                    },
                                   ),
-                                  AdvancedSwitch(
-                                    controller: _asTime,
-                                    activeColor: kSwitchColor,
-                                  ),
+                                  const BottomPadding(),
                                 ],
                               ),
-                              const SizedBox(
-                                height: kDefaultElementSpacing,
-                              ),
-                              const TimePicker(),
                             ],
                           ),
                         ),
                       ),
                     ),
                   ),
-                  const ShadowBox(),
-                ],
-              ),
-            ),
-          ),
-          BottomWidget(
-            child: Button(
-              'Ajouter',
-              onTap: () {
-                Navigator.pushNamed(context, kRegisterRoute);
+                );
               },
             ),
           ),

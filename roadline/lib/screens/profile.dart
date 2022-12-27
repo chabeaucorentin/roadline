@@ -37,7 +37,7 @@ class Profile extends StatelessWidget {
                               maxWidth: kMainMaxWidth,
                             ),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 const Text(
                                   'Général',
@@ -79,15 +79,15 @@ class Profile extends StatelessWidget {
                                   icon: Icons.description,
                                   onTap: () {},
                                 ),
+                                const SizedBox(
+                                  height: kDefaultElementSpacing,
+                                ),
                               ],
                             ),
                           ),
                         ),
                       ),
                     ],
-                  ),
-                  const SizedBox(
-                    height: kDefaultElementSpacing,
                   ),
                   const BottomWidget(
                     child: LogoutButton(),

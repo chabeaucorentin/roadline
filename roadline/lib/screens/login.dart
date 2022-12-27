@@ -16,7 +16,6 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Screen(
-      bottomSafeArea: false,
       isBottomDark: true,
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
@@ -32,7 +31,6 @@ class Login extends StatelessWidget {
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     const FormHeader(),
                     Center(

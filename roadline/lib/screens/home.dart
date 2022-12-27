@@ -47,7 +47,7 @@ class Home extends StatelessWidget {
                               maxWidth: kMainMaxWidth,
                             ),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: const <Widget>[
                                 Text(
                                   'Favoris',
