@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "65304549222",
+    "project_id": "roadlineapp",
+    "storage_bucket": "roadlineapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65304549222:android:0847cb6bfbfd4e6c941aa7",
+        "android_client_info": {
+          "package_name": "com.chabcor.roadline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "65304549222-ucbili65614a7musgs9vnuv085q1mi31.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXLzFCqwsgZlAwM2kF4tOEZFoNRrVBA0A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "65304549222-ucbili65614a7musgs9vnuv085q1mi31.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "65304549222-2a3ql3dbqmfdav6i390kg7qd3i0vb81t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.chabcor.roadline"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
