@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roadline/cards/task_card.dart';
 import 'package:roadline/partials/buttons/button.dart';
-import 'package:roadline/partials/components/bottom_padding.dart';
 import 'package:roadline/partials/components/bottom_widget.dart';
 import 'package:roadline/partials/components/screen.dart';
 import 'package:roadline/partials/components/shadow_box.dart';

@@ -38,8 +38,8 @@ class AddTask extends StatelessWidget {
                         top: Radius.circular(20.0),
                       ),
                     ),
-                    child: Center(
-                      child: SingleChildScrollView(
+                    child: SingleChildScrollView(
+                      child: Center(
                         child: Container(
                           padding: const EdgeInsets.all(kDefaultElementSpacing),
                           constraints: BoxConstraints(
