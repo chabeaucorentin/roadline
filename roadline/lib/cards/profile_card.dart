@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:roadline/controllers/user_infos.dart';
 import 'package:roadline/styles/constants.dart';
 
 @immutable
@@ -7,6 +9,8 @@ class ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userInfosProvider = UserInfosProvider();
+
     return Stack(
       alignment: Alignment.topCenter,
       children: <Widget>[
@@ -26,21 +30,29 @@ class ProfileCard extends StatelessWidget {
             top: 50.0,
           ),
           child: Column(
-            children: const <Widget>[
-              Text(
-                'Bonjour, Corentin Chabeau',
-                style: TextStyle(
-                  color: kCardContentColor,
-                  fontSize: kCardTitleFontSize,
-                  fontWeight: FontWeight.w700,
-                ),
+            children: <Widget>[
+              StreamBuilder<String>(
+                stream: userInfosProvider.fullNameStream,
+                builder:
+                    (BuildContext context, AsyncSnapshot<String> snapshot) {
+                  return Text(
+                    snapshot.hasData && snapshot.data!.isNotEmpty
+                        ? snapshot.data!
+                        : 'Utilisateur',
+                    style: const TextStyle(
+                      color: kCardContentColor,
+                      fontSize: kCardTitleFontSize,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  );
+                },
               ),
-              SizedBox(
+              const SizedBox(
                 height: kSpacingPadding,
               ),
               Text(
-                'corentin@chabeau.eu',
-                style: TextStyle(
+                FirebaseAuth.instance.currentUser!.email!,
+                style: const TextStyle(
                   color: kSecondaryColor,
                   fontSize: kBigFontSize,
                   fontWeight: FontWeight.w700,

@@ -27,10 +27,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-
-    _sub = FirebaseAuth.instance.authStateChanges().listen((event) {
+    _sub = FirebaseAuth.instance.authStateChanges().listen((user) {
       _navigatorKey.currentState?.pushNamed(
-        event == null ? kLoginRoute : kHomeRoute,
+        user == null ? kLoginRoute : kHomeRoute,
       );
     });
   }
@@ -38,7 +37,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void dispose() {
     _sub.cancel();
-
     super.dispose();
   }
 

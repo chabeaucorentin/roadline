@@ -42,17 +42,13 @@ class Login extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             EmailInput(
-                              onChanged: (value) {
-                                userAction.email = value;
-                              },
+                              userAction: userAction,
                             ),
                             const SizedBox(
                               height: kDefaultElementSpacing,
                             ),
                             PasswordInput(
-                              onChanged: (value) {
-                                userAction.password = value;
-                              },
+                              userAction: userAction,
                             ),
                             const SizedBox(
                               height: kDefaultElementSpacing / 3.0,

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:roadline/controllers/user_action.dart';
 import 'package:roadline/partials/buttons/bordered_button.dart';
 import 'package:roadline/partials/buttons/button.dart';
 import 'package:roadline/partials/components/bottom_padding.dart';
 import 'package:roadline/partials/components/screen.dart';
 import 'package:roadline/partials/forms/email_input.dart';
 import 'package:roadline/partials/headers/form_header.dart';
-import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
 class ResetPassword extends StatelessWidget {
   ResetPassword({super.key});
 
-  final _resetFormKey = GlobalKey<FormState>();
+  final userAction = UserAction();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class ResetPassword extends StatelessWidget {
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return Form(
-            key: _resetFormKey,
+            key: userAction.formKey,
             child: SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.symmetric(
@@ -40,15 +40,15 @@ class ResetPassword extends StatelessWidget {
                         ),
                         child: Column(
                           children: <Widget>[
-                            const EmailInput(),
+                            EmailInput(
+                              userAction: userAction,
+                            ),
                             const SizedBox(
                               height: kDefaultElementSpacing,
                             ),
                             Button(
                               'Envoyer le code',
-                              onTap: () {
-                                Navigator.pushNamed(context, kHomeRoute);
-                              },
+                              onTap:  () => userAction.resetPassword(context),
                               isDark: true,
                             ),
                           ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roadline/controllers/user_action.dart';
 import 'package:roadline/partials/buttons/button.dart';
 import 'package:roadline/partials/components/screen.dart';
 import 'package:roadline/partials/forms/email_input.dart';
@@ -12,7 +13,7 @@ import 'package:roadline/styles/constants.dart';
 class Register extends StatelessWidget {
   Register({super.key});
 
-  final _registerFormKey = GlobalKey<FormState>();
+  final userAction = UserAction();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class Register extends StatelessWidget {
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return Form(
-            key: _registerFormKey,
+            key: userAction.formKey,
             child: SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.symmetric(
@@ -41,28 +42,34 @@ class Register extends StatelessWidget {
                         ),
                         child: Column(
                           children: <Widget>[
-                            const FullNameInput(),
+                            FullNameInput(
+                              userAction: userAction,
+                            ),
                             const SizedBox(
                               height: kDefaultElementSpacing,
                             ),
-                            const EmailInput(),
+                            EmailInput(
+                              userAction: userAction,
+                            ),
                             const SizedBox(
                               height: kDefaultElementSpacing,
                             ),
-                            const PasswordInput(),
+                            PasswordInput(
+                              userAction: userAction,
+                            ),
                             const SizedBox(
                               height: kDefaultElementSpacing,
                             ),
-                            const PasswordInput(
-                                hintText: 'Confirmez le mot de passe'),
+                            PasswordInput(
+                              userAction: userAction,
+                              isConfirm: true,
+                            ),
                             const SizedBox(
                               height: kDefaultElementSpacing,
                             ),
                             Button(
                               'Inscription',
-                              onTap: () {
-                                Navigator.pushNamed(context, kHomeRoute);
-                              },
+                              onTap:  () => userAction.register(context),
                               isDark: true,
                             ),
                           ],
