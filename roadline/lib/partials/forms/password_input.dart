@@ -3,9 +3,10 @@ import 'package:roadline/partials/forms/data_input.dart';
 
 @immutable
 class PasswordInput extends StatelessWidget {
-  const PasswordInput({this.hintText = 'Mot de passe', super.key});
+  const PasswordInput({this.hintText = 'Mot de passe', this.onChanged, super.key});
 
   final String hintText;
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,13 @@ class PasswordInput extends StatelessWidget {
       hintText: hintText,
       keyboardType: TextInputType.visiblePassword,
       obscureText: true,
-      validator: (val) {
+      onChanged: onChanged,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Le mot de passe doit être renseigné !';
+        } else if (value.length < 6) {
+          return 'Le mot de passe doit contenir au moins 6 caractères !';
+        }
         return null;
       },
       isDark: true,

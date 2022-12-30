@@ -40,6 +40,19 @@ class ProjectNavBar extends StatelessWidget {
                 cursor: SystemMouseCursors.click,
                 child: GestureDetector(
                   child: const Icon(
+                    Icons.star_border, //star
+                    size: kAdjustmentIconSize,
+                    color: kDarkLighterColor,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: kDefaultElementSpacing,
+              ),
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  child: const Icon(
                     Icons.edit,
                     size: kAdjustmentIconSize,
                     color: kDarkLighterColor,

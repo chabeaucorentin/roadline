@@ -20,28 +20,31 @@ class Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: mainKey,
-      drawer: drawer,
-      backgroundColor: isBottomDark ? kDarkBackgroundColor : kBackgroundColor,
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: isDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
-        child: Stack(
-          children: <Widget>[
-            SafeArea(
-              top: false,
-              child: Container(
-                color: isDark ? kDarkBackgroundColor : kBackgroundColor,
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        key: mainKey,
+        drawer: drawer,
+        backgroundColor: isBottomDark ? kDarkBackgroundColor : kBackgroundColor,
+        body: AnnotatedRegion<SystemUiOverlayStyle>(
+          value: isDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
+          child: Stack(
+            children: <Widget>[
+              SafeArea(
+                top: false,
+                child: Container(
+                  color: isDark ? kDarkBackgroundColor : kBackgroundColor,
+                ),
               ),
-            ),
-            SafeArea(
-              bottom: false,
-              child: Container(
-                color: isBottomDark ? kDarkBackgroundColor : kBackgroundColor,
-                child: child,
+              SafeArea(
+                bottom: false,
+                child: Container(
+                  color: isBottomDark ? kDarkBackgroundColor : kBackgroundColor,
+                  child: child,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

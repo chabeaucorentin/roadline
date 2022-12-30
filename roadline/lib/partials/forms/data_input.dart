@@ -36,6 +36,18 @@ class DataInput extends StatelessWidget {
           fontSize: kInputFontSize,
           fontWeight: FontWeight.w700,
         ),
+        errorStyle: const TextStyle(
+          color: kErrorLabelColor,
+          fontSize: kDefaultFontSize,
+          fontWeight: FontWeight.w700,
+        ),
+        errorMaxLines: 2,
+        contentPadding: const EdgeInsets.only(
+          left: kAdjustmentPadding,
+          top: kAdjustmentPadding - 2.0,
+          right: kSpacingPadding,
+          bottom: kAdjustmentPadding + 1.0,
+        ),
         prefixIcon: Padding(
           padding: const EdgeInsets.only(
             left: kDefaultPadding,
@@ -49,18 +61,26 @@ class DataInput extends StatelessWidget {
             color: isDark ? kDarkInputContentColor : kInputContentColor,
           ),
         ),
-        contentPadding: const EdgeInsets.only(
-          left: kAdjustmentPadding,
-          top: kAdjustmentPadding,
-          right: kSpacingPadding,
-          bottom: kAdjustmentPadding,
-        ),
         filled: true,
         fillColor: isDark ? kDarkInputBackgroundColor : kInputBackgroundColor,
         focusColor: isDark ? kDarkInputContentColor : kInputContentColor,
-        border: const UnderlineInputBorder(
+        errorBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: kErrorBorderColor,
+            width: 3.0,
+          ),
           borderRadius: kBorderRadius,
+        ),
+        focusedErrorBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: kErrorBorderColor,
+            width: 3.0,
+          ),
+          borderRadius: kBorderRadius,
+        ),
+        border: const OutlineInputBorder(
           borderSide: BorderSide.none,
+          borderRadius: kBorderRadius,
         ),
       ),
       keyboardType: keyboardType,

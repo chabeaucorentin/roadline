@@ -26,10 +26,12 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  flutter_advanced_switch: ^3.0.1
-  firebase_core: ^2.4.0
   cloud_firestore: ^4.3.0
+  firebase_auth: ^4.2.3
+  firebase_core: ^2.4.0
   firebase_storage: ^11.0.9
+  email_validator: ^2.1.17
+  flutter_advanced_switch: ^3.0.1
 
 dev_dependencies:
   flutter_test:

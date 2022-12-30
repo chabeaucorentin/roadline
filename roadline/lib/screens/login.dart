@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roadline/controllers/user_action.dart';
 import 'package:roadline/partials/buttons/button.dart';
 import 'package:roadline/partials/components/screen.dart';
 import 'package:roadline/partials/forms/email_input.dart';
@@ -11,7 +12,7 @@ import 'package:roadline/styles/constants.dart';
 class Login extends StatelessWidget {
   Login({super.key});
 
-  final _loginFormKey = GlobalKey<FormState>();
+  final userAction = UserAction();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class Login extends StatelessWidget {
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return Form(
-            key: _loginFormKey,
+            key: userAction.formKey,
             child: SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.symmetric(
@@ -40,11 +41,19 @@ class Login extends StatelessWidget {
                         ),
                         child: Column(
                           children: <Widget>[
-                            const EmailInput(),
+                            EmailInput(
+                              onChanged: (value) {
+                                userAction.email = value;
+                              },
+                            ),
                             const SizedBox(
                               height: kDefaultElementSpacing,
                             ),
-                            const PasswordInput(),
+                            PasswordInput(
+                              onChanged: (value) {
+                                userAction.password = value;
+                              },
+                            ),
                             const SizedBox(
                               height: kDefaultElementSpacing / 3.0,
                             ),
@@ -64,9 +73,7 @@ class Login extends StatelessWidget {
                             ),
                             Button(
                               'Connexion',
-                              onTap: () {
-                                Navigator.pushNamed(context, kHomeRoute);
-                              },
+                              onTap: () => userAction.login(context),
                               isDark: true,
                             ),
                           ],

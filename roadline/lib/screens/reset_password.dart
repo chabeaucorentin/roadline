@@ -69,7 +69,7 @@ class ResetPassword extends StatelessWidget {
                             child: BorderedButton(
                               'Retour à la connexion',
                               onTap: () {
-                                Navigator.pushNamed(context, kLoginRoute);
+                                Navigator.pop(context);
                               },
                               isDark: true,
                             ),

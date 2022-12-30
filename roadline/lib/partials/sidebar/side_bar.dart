@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roadline/partials/buttons/side_bar_button.dart';
+import 'package:roadline/partials/components/bottom_padding.dart';
 import 'package:roadline/partials/components/screen.dart';
 import 'package:roadline/partials/logos/logo.dart';
 import 'package:roadline/routes/routes.dart';
@@ -84,6 +85,7 @@ class SideBar extends StatelessWidget {
                       ],
                     ),
                   ),
+                  const BottomPadding(),
                 ],
               ),
             ),

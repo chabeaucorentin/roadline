@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roadline/routes/routes.dart';
+import 'package:roadline/controllers/user_action.dart';
 import 'package:roadline/styles/constants.dart';
 
 @immutable
@@ -11,9 +11,7 @@ class LogoutButton extends StatelessWidget {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        onTap: () {
-          Navigator.pushNamed(context, kLoginRoute);
-        },
+        onTap: () => UserAction.logout(),
         child: Container(
           alignment: Alignment.center,
           decoration: const BoxDecoration(

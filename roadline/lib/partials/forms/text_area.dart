@@ -28,9 +28,9 @@ class TextArea extends StatelessWidget {
         filled: true,
         fillColor: isDark ? kDarkInputBackgroundColor : kInputBackgroundColor,
         focusColor: isDark ? kDarkInputContentColor : kInputContentColor,
-        border: const UnderlineInputBorder(
-          borderRadius: kBorderRadius,
+        border: const OutlineInputBorder(
           borderSide: BorderSide.none,
+          borderRadius: kBorderRadius,
         ),
       ),
       keyboardType: TextInputType.multiline,
