@@ -11,7 +11,7 @@ import 'package:roadline/styles/constants.dart';
 class ResetPassword extends StatelessWidget {
   ResetPassword({super.key});
 
-  final userAction = UserActionController();
+  final userActionController = UserActionController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class ResetPassword extends StatelessWidget {
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return Form(
-            key: userAction.formKey,
+            key: userActionController.formKey,
             child: SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.symmetric(
@@ -41,14 +41,14 @@ class ResetPassword extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             EmailInput(
-                              userAction: userAction,
+                              userActionController: userActionController,
                             ),
                             const SizedBox(
                               height: kDefaultElementSpacing,
                             ),
                             Button(
                               'Envoyer le code',
-                              onTap:  () => userAction.resetPassword(context),
+                              onTap:  () => userActionController.resetPassword(context),
                               isDark: true,
                             ),
                           ],

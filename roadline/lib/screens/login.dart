@@ -12,7 +12,7 @@ import 'package:roadline/styles/constants.dart';
 class Login extends StatelessWidget {
   Login({super.key});
 
-  final userAction = UserActionController();
+  final userActionController = UserActionController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class Login extends StatelessWidget {
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return Form(
-            key: userAction.formKey,
+            key: userActionController.formKey,
             child: SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.symmetric(
@@ -42,13 +42,13 @@ class Login extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             EmailInput(
-                              userAction: userAction,
+                              userActionController: userActionController,
                             ),
                             const SizedBox(
                               height: kDefaultElementSpacing,
                             ),
                             PasswordInput(
-                              userAction: userAction,
+                              userActionController: userActionController,
                             ),
                             const SizedBox(
                               height: kDefaultElementSpacing / 3.0,
@@ -69,7 +69,7 @@ class Login extends StatelessWidget {
                             ),
                             Button(
                               'Connexion',
-                              onTap: () => userAction.login(context),
+                              onTap: () => userActionController.login(context),
                               isDark: true,
                             ),
                           ],

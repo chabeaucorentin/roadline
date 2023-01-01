@@ -11,7 +11,7 @@ class TimePicker extends StatelessWidget {
       value: '12:24',
       icon: Icons.schedule,
       keyboardType: TextInputType.datetime,
-      validator: (val) {
+      validator: (value) {
         return null;
       },
     );

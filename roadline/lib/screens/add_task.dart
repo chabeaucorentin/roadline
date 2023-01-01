@@ -56,7 +56,7 @@ class AddTask extends StatelessWidget {
                                   const SizedBox(
                                     height: kDefaultElementSpacing,
                                   ),
-                                  const ProjectNameInput(),
+                                  //const ProjectNameInput(),
                                   const SizedBox(
                                     height: kDefaultElementSpacing - 4.0,
                                   ),
@@ -71,7 +71,7 @@ class AddTask extends StatelessWidget {
                                   const SizedBox(
                                     height: kSpacingPadding,
                                   ),
-                                  const DescTextArea(),
+                                  //const DescTextArea(),
                                   const SizedBox(
                                     height: kDefaultElementSpacing,
                                   ),
@@ -96,7 +96,7 @@ class AddTask extends StatelessWidget {
                                   const SizedBox(
                                     height: kDefaultElementSpacing,
                                   ),
-                                  const DatePicker(),
+                                  //const DatePicker(),
                                   const SizedBox(
                                     height: kDefaultElementSpacing,
                                   ),

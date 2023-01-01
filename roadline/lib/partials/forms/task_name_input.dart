@@ -10,7 +10,10 @@ class TaskNameInput extends StatelessWidget {
     return DataInput(
       icon: Icons.push_pin,
       hintText: 'Titre de la tâche',
-      validator: (val) {
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Le titre de la tâche doit être renseigné !';
+        }
         return null;
       },
     );

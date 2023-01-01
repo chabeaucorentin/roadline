@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
+import 'package:roadline/controllers/project.dart';
 import 'package:roadline/partials/buttons/button.dart';
 import 'package:roadline/partials/components/bottom_padding.dart';
 import 'package:roadline/partials/components/image_selector.dart';
@@ -8,13 +9,31 @@ import 'package:roadline/partials/forms/date_picker.dart';
 import 'package:roadline/partials/forms/desc_text_area.dart';
 import 'package:roadline/partials/forms/project_name_input.dart';
 import 'package:roadline/partials/navbar/close_nav_bar.dart';
-import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
-class NewProject extends StatelessWidget {
+class NewProject extends StatefulWidget {
   NewProject({super.key});
 
-  final _asDate = ValueNotifier<bool>(true);
+  @override
+  State<NewProject> createState() => _NewProjectState();
+}
+
+class _NewProjectState extends State<NewProject> {
+  final projectController = ProjectController();
+
+  @override
+  void initState() {
+    super.initState();
+    projectController.hasDate.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    projectController.hasDate.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,83 +55,93 @@ class NewProject extends StatelessWidget {
                         top: Radius.circular(20.0),
                       ),
                     ),
-                    child: SingleChildScrollView(
-                      child: Center(
-                        child: Container(
-                          padding: const EdgeInsets.all(kDefaultElementSpacing),
-                          constraints: BoxConstraints(
-                            maxWidth: kMainMaxWidth,
-                            minHeight: constraints.maxHeight,
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  const ImageSelector(),
-                                  const SizedBox(
-                                    height: kDefaultElementSpacing,
-                                  ),
-                                  const ProjectNameInput(),
-                                  const SizedBox(
-                                    height: kDefaultElementSpacing - 4.0,
-                                  ),
-                                  const Text(
-                                    'Description',
-                                    style: TextStyle(
-                                      color: kPrimaryColor,
-                                      fontSize: kBigFontSize,
-                                      fontWeight: FontWeight.w700,
+                    child: Form(
+                      key: projectController.formKey,
+                      child: SingleChildScrollView(
+                        child: Center(
+                          child: Container(
+                            padding:
+                                const EdgeInsets.all(kDefaultElementSpacing),
+                            constraints: BoxConstraints(
+                              maxWidth: kMainMaxWidth,
+                              minHeight: constraints.maxHeight,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    const ImageSelector(),
+                                    const SizedBox(
+                                      height: kDefaultElementSpacing,
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: kSpacingPadding,
-                                  ),
-                                  const DescTextArea(),
-                                  const SizedBox(
-                                    height: kDefaultElementSpacing,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      const Text(
-                                        'Date de fin',
-                                        style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontSize: kBigFontSize,
-                                          fontWeight: FontWeight.w700,
-                                        ),
+                                    ProjectNameInput(
+                                      projectController: projectController,
+                                    ),
+                                    const SizedBox(
+                                      height: kDefaultElementSpacing - 4.0,
+                                    ),
+                                    const Text(
+                                      'Description',
+                                      style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontSize: kBigFontSize,
+                                        fontWeight: FontWeight.w700,
                                       ),
-                                      AdvancedSwitch(
-                                        controller: _asDate,
-                                        activeColor: kSwitchColor,
+                                    ),
+                                    const SizedBox(
+                                      height: kSpacingPadding,
+                                    ),
+                                    DescTextArea(
+                                      projectController: projectController,
+                                    ),
+                                    const SizedBox(
+                                      height: kDefaultElementSpacing,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        const Text(
+                                          'Date de fin',
+                                          style: TextStyle(
+                                            color: kPrimaryColor,
+                                            fontSize: kBigFontSize,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                        AdvancedSwitch(
+                                          controller: projectController.hasDate,
+                                          activeColor: kSwitchColor,
+                                        ),
+                                      ],
+                                    ),
+                                    if (projectController.hasDate.value) ...[
+                                      const SizedBox(
+                                        height: kDefaultElementSpacing,
+                                      ),
+                                      DatePicker(
+                                        projectController: projectController,
                                       ),
                                     ],
-                                  ),
-                                  const SizedBox(
-                                    height: kDefaultElementSpacing,
-                                  ),
-                                  const DatePicker(),
-                                  const SizedBox(
-                                    height: kDefaultElementSpacing,
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: <Widget>[
-                                  Button(
-                                    'Créer',
-                                    onTap: () {
-                                      Navigator.pushNamed(
-                                          context, kRegisterRoute);
-                                    },
-                                  ),
-                                  const BottomPadding(),
-                                ],
-                              )
-                            ],
+                                    const SizedBox(
+                                      height: kDefaultElementSpacing,
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: <Widget>[
+                                    Button(
+                                      'Créer',
+                                      onTap: () =>
+                                          projectController.create(context),
+                                    ),
+                                    const BottomPadding(),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),

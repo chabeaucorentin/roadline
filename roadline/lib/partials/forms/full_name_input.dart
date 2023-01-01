@@ -4,18 +4,18 @@ import 'package:roadline/partials/forms/data_input.dart';
 
 @immutable
 class FullNameInput extends StatelessWidget {
-  const FullNameInput({required this.userAction, super.key});
+  const FullNameInput({required this.userActionController, super.key});
 
-  final UserActionController userAction;
+  final UserActionController userActionController;
 
   @override
   Widget build(BuildContext context) {
     return DataInput(
-      value: userAction.fullName,
+      value: userActionController.fullName,
       icon: Icons.person,
       hintText: 'Nom complet',
       onChanged: (value) {
-        userAction.fullName = value;
+        userActionController.fullName = value;
       },
       validator: (value) {
         if (value == null || value.isEmpty) {

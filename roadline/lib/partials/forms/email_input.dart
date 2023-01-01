@@ -5,19 +5,19 @@ import 'package:roadline/partials/forms/data_input.dart';
 
 @immutable
 class EmailInput extends StatelessWidget {
-  const EmailInput({required this.userAction, super.key});
+  const EmailInput({required this.userActionController, super.key});
 
-  final UserActionController userAction;
+  final UserActionController userActionController;
 
   @override
   Widget build(BuildContext context) {
     return DataInput(
-      value: userAction.email,
+      value: userActionController.email,
       icon: Icons.email,
       hintText: 'Adresse email',
       keyboardType: TextInputType.emailAddress,
       onChanged: (value) {
-        userAction.email = value;
+        userActionController.email = value;
       },
       validator: (value) {
         if (value == null || value.isEmpty) {
