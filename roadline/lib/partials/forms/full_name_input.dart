@@ -6,7 +6,7 @@ import 'package:roadline/partials/forms/data_input.dart';
 class FullNameInput extends StatelessWidget {
   const FullNameInput({required this.userAction, super.key});
 
-  final UserAction userAction;
+  final UserActionController userAction;
 
   @override
   Widget build(BuildContext context) {

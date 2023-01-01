@@ -6,8 +6,8 @@ import 'package:roadline/routes/routes.dart';
 import 'package:roadline/utils/loader.dart';
 import 'package:roadline/utils/status_bar.dart';
 
-class UserAction {
-  UserAction({this.fullName, this.email, this.password, this.confirmPassword});
+class UserActionController {
+  UserActionController({this.fullName, this.email, this.password, this.confirmPassword});
 
   final formKey = GlobalKey<FormState>();
   String? fullName;

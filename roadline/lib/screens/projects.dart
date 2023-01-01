@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:roadline/cards/project_card.dart';
 import 'package:roadline/partials/buttons/button.dart';
@@ -39,56 +41,53 @@ class Projects extends StatelessWidget {
                 ),
                 child: Stack(
                   children: <Widget>[
-                    SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          left: kDefaultElementSpacing,
-                          top: kDefaultElementSpacing,
-                          right: kDefaultElementSpacing,
-                        ),
-                        child: Center(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints(
-                              maxWidth: kMainMaxWidth,
-                            ),
-                            child: Column(
-                              children: const <Widget>[
-                                /*const Text(
-                                  'Aucun projet en favoris',
-                                  style: TextStyle(
-                                    color: kPrimaryColor,
-                                    fontSize: kBigFontSize,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),*/
-                                ProjectCard(
-                                  name: 'Nom du projet 1',
-                                  date: 'Date du projet',
+                    StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(FirebaseAuth.instance.currentUser!.uid)
+                          .collection('projects')
+                          .snapshots(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (snapshot.hasData) {
+                          final projects = snapshot.data!.docs;
+                          if (projects.isNotEmpty) {
+                            return ListView.builder(
+                              padding: const EdgeInsets.only(
+                                left: kDefaultElementSpacing,
+                                top: kDefaultElementSpacing,
+                                right: kDefaultElementSpacing,
+                              ),
+                              itemCount: projects.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                final project = projects[index].data()
+                                    as Map<String, dynamic>;
+                                return ProjectCard(
+                                  name: project.containsKey('title')
+                                      ? project['title']
+                                      : 'Projet',
+                                  date: project.containsKey('endDate')
+                                      ? project['endDate']
+                                      : null,
                                   nbCompleted: 5,
                                   nbTasks: 10,
-                                ),
-                                ProjectCard(
-                                  name: 'Nom du projet 2',
-                                  nbCompleted: 2,
-                                  nbTasks: 5,
-                                ),
-                                ProjectCard(
-                                  name: 'Nom du projet 3',
-                                  date: 'Date du projet',
-                                  nbCompleted: 5,
-                                  nbTasks: 10,
-                                ),
-                                ProjectCard(
-                                  name: 'Nom du projet 4',
-                                  nbCompleted: 7,
-                                  nbTasks: 10,
-                                ),
-                              ],
+                                );
+                              },
+                            );
+                          }
+                        }
+
+                        return const Center(
+                          child: Text(
+                            'Aucun projet',
+                            style: TextStyle(
+                              color: kPrimaryColor,
+                              fontSize: kBigFontSize,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                        ),
-                      ),
+                        );
+                      },
                     ),
                     const ShadowBox(),
                   ],

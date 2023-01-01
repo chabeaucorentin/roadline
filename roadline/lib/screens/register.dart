@@ -13,7 +13,7 @@ import 'package:roadline/styles/constants.dart';
 class Register extends StatelessWidget {
   Register({super.key});
 
-  final userAction = UserAction();
+  final userAction = UserActionController();
 
   @override
   Widget build(BuildContext context) {

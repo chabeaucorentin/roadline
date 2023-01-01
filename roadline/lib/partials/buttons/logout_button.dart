@@ -11,7 +11,7 @@ class LogoutButton extends StatelessWidget {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        onTap: () => UserAction.logout(),
+        onTap: () => UserActionController.logout(),
         child: Container(
           alignment: Alignment.center,
           decoration: const BoxDecoration(

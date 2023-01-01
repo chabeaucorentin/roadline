@@ -7,7 +7,7 @@ import 'package:roadline/partials/forms/data_input.dart';
 class EmailInput extends StatelessWidget {
   const EmailInput({required this.userAction, super.key});
 
-  final UserAction userAction;
+  final UserActionController userAction;
 
   @override
   Widget build(BuildContext context) {

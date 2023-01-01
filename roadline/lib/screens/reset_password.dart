@@ -11,7 +11,7 @@ import 'package:roadline/styles/constants.dart';
 class ResetPassword extends StatelessWidget {
   ResetPassword({super.key});
 
-  final userAction = UserAction();
+  final userAction = UserActionController();
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,7 @@ import 'package:roadline/partials/forms/data_input.dart';
 class PasswordInput extends StatelessWidget {
   const PasswordInput({required this.userAction, this.isConfirm = false, super.key});
 
-  final UserAction userAction;
+  final UserActionController userAction;
   final bool isConfirm;
 
   @override
