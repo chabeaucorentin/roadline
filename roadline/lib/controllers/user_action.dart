@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:roadline/controllers/user_infos.dart';
+import 'package:roadline/providers/user_infos.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/utils/loader.dart';
 import 'package:roadline/utils/status_bar.dart';
@@ -29,7 +29,7 @@ class UserAction {
             .then((value) async {
           await userInfosProvider.fullNameStream.first.then((name) {
             StatusBar.showSuccessMessage(
-              'Bonjour, $name'.trim(),
+              'Bonjour, ${name.isNotEmpty ? name : value.user!.email}',
             );
           });
         });
@@ -59,7 +59,7 @@ class UserAction {
           });
           await userInfosProvider.fullNameStream.first.then((name) {
             StatusBar.showSuccessMessage(
-              'Bienvenue, $name'.trim(),
+              'Bienvenue, ${name.isNotEmpty ? name : value.user!.email}',
             );
           });
         });
@@ -77,11 +77,11 @@ class UserAction {
 
         await FirebaseAuth.instance
             .sendPasswordResetEmail(
-          email: email!,
+          email: email!.trim(),
         )
             .then((value) {
           StatusBar.showSuccessMessage(
-            'Un email a bien été envoyé à l’adresse email $email',
+            'Un email a bien été envoyé à l’adresse email ${email!.trim()}',
           );
           Navigator.pushNamed(context, kLoginRoute);
         });

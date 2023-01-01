@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:roadline/controllers/user_infos.dart';
+import 'package:roadline/providers/user_infos.dart';
 import 'package:roadline/styles/constants.dart';
 
 @immutable

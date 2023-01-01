@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
@@ -11,9 +12,14 @@ class UserInfosProvider {
     final streamController = StreamController<String>();
 
     try {
-      final authStateChangedSubscription = FirebaseAuth.instance.authStateChanges().listen((user) {
+      final authStateChangedSubscription =
+          FirebaseAuth.instance.authStateChanges().listen((user) {
         if (user != null) {
-          FirebaseFirestore.instance.collection('users').doc(user.uid).snapshots().listen((snapshot) {
+          FirebaseFirestore.instance
+              .collection('users')
+              .doc(user.uid)
+              .snapshots()
+              .listen((snapshot) {
             if (snapshot.exists && snapshot.data()!.containsKey('fullName')) {
               streamController.add(snapshot['fullName']);
             } else {
