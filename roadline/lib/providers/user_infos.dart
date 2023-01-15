@@ -11,7 +11,7 @@ class UserInfosProvider {
 
     final authStateChangedSubscription = FirebaseFirestore.instance
         .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .doc(FirebaseAuth.instance.currentUser?.uid)
         .snapshots()
         .listen((snapshot) {
       if (snapshot.exists && snapshot.data()!.containsKey('fullName')) {

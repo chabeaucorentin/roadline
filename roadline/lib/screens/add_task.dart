@@ -12,8 +12,8 @@ import 'package:roadline/partials/navbar/close_nav_bar.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
-class AddTask extends StatelessWidget {
-  AddTask({super.key});
+class AddTaskScreen extends StatelessWidget {
+  AddTaskScreen({super.key});
 
   final _asDate = ValueNotifier<bool>(true);
   final _asTime = ValueNotifier<bool>(true);

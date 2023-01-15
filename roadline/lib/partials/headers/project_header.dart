@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:roadline/models/project.dart';
 import 'package:roadline/partials/navbar/project_nav_bar.dart';
 import 'package:roadline/styles/constants.dart';
 
 @immutable
 class ProjectHeader extends StatelessWidget {
-  const ProjectHeader({super.key});
+  const ProjectHeader({required this.project, super.key});
+
+  final Project project;
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +51,9 @@ class ProjectHeader extends StatelessWidget {
                     const SizedBox(
                       height: kDefaultElementSpacing * 2.0 - 4.0,
                     ),
-                    const Text(
-                      'Nom du projet',
-                      style: TextStyle(
+                    Text(
+                      project.title,
+                      style: const TextStyle(
                         color: kDarkLighterColor,
                         fontSize: kHeaderFontSize,
                         fontWeight: FontWeight.w500,

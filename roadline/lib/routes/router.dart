@@ -5,21 +5,19 @@ import 'package:roadline/screens/home.dart';
 import 'package:roadline/screens/login.dart';
 import 'package:roadline/screens/new_project.dart';
 import 'package:roadline/screens/profile.dart';
-import 'package:roadline/screens/project.dart';
 import 'package:roadline/screens/projects.dart';
 import 'package:roadline/screens/register.dart';
 import 'package:roadline/screens/reset_password.dart';
 import 'package:roadline/screens/tasks.dart';
 
 Map<String, WidgetBuilder> router = {
-  kLoginRoute: (context) => Login(),
-  kRegisterRoute: (context) => Register(),
-  kResetPasswordRoute: (context) => ResetPassword(),
-  kHomeRoute: (context) => Home(),
-  kProjectsRoute: (context) => Projects(),
-  kNewProjectRoute: (context) => NewProject(),
-  kTasksRoute: (context) => Tasks(),
-  kAddTaskRoute: (context) => AddTask(),
-  kProjectRoute: (context) => Project(),
-  kProfileRoute: (context) => Profile(),
+  kLoginRoute: (context) => LoginScreen(),
+  kRegisterRoute: (context) => RegisterScreen(),
+  kResetPasswordRoute: (context) => ResetPasswordScreen(),
+  kHomeRoute: (context) => HomeScreen(),
+  kProjectsRoute: (context) => ProjectsScreen(),
+  kNewProjectRoute: (context) => NewProjectScreen(),
+  kTasksRoute: (context) => TasksScreen(),
+  kAddTaskRoute: (context) => AddTaskScreen(),
+  kProfileRoute: (context) => ProfileScreen(),
 };

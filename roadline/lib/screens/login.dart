@@ -9,8 +9,8 @@ import 'package:roadline/partials/links/link.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
-class Login extends StatelessWidget {
-  Login({super.key});
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
 
   final userActionController = UserActionController();
 

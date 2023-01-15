@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roadline/cards/task_card.dart';
+import 'package:roadline/models/project.dart';
 import 'package:roadline/partials/buttons/button.dart';
 import 'package:roadline/partials/components/bottom_widget.dart';
 import 'package:roadline/partials/components/screen.dart';
@@ -8,8 +9,10 @@ import 'package:roadline/partials/headers/project_header.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
-class Project extends StatelessWidget {
-  Project({super.key});
+class ProjectScreen extends StatelessWidget {
+  ProjectScreen({required this.project, super.key});
+
+  final Project project;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,9 @@ class Project extends StatelessWidget {
                 SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
-                      const ProjectHeader(),
+                      ProjectHeader(
+                        project: project,
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(
                           left: kDefaultElementSpacing,

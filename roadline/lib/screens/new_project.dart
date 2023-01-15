@@ -11,14 +11,14 @@ import 'package:roadline/partials/forms/project_name_input.dart';
 import 'package:roadline/partials/navbar/close_nav_bar.dart';
 import 'package:roadline/styles/constants.dart';
 
-class NewProject extends StatefulWidget {
-  NewProject({super.key});
+class NewProjectScreen extends StatefulWidget {
+  NewProjectScreen({super.key});
 
   @override
-  State<NewProject> createState() => _NewProjectState();
+  State<NewProjectScreen> createState() => _NewProjectScreenState();
 }
 
-class _NewProjectState extends State<NewProject> {
+class _NewProjectScreenState extends State<NewProjectScreen> {
   final projectController = ProjectController();
 
   @override

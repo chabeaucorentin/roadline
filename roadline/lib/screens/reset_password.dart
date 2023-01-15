@@ -8,8 +8,8 @@ import 'package:roadline/partials/forms/email_input.dart';
 import 'package:roadline/partials/headers/form_header.dart';
 import 'package:roadline/styles/constants.dart';
 
-class ResetPassword extends StatelessWidget {
-  ResetPassword({super.key});
+class ResetPasswordScreen extends StatelessWidget {
+  ResetPasswordScreen({super.key});
 
   final userActionController = UserActionController();
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roadline/cards/project_card.dart';
+import 'package:roadline/models/project.dart';
 import 'package:roadline/partials/buttons/button.dart';
 import 'package:roadline/partials/components/bottom_widget.dart';
 import 'package:roadline/partials/components/screen.dart';
@@ -7,16 +8,19 @@ import 'package:roadline/partials/components/shadow_box.dart';
 import 'package:roadline/partials/headers/home_header.dart';
 import 'package:roadline/partials/navbar/main_nav_bar.dart';
 import 'package:roadline/partials/sidebar/side_bar.dart';
+import 'package:roadline/providers/project.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
-class Home extends StatelessWidget {
-  Home({super.key});
+class HomeScreen extends StatelessWidget {
+  HomeScreen({super.key});
 
   final _key = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
+    final projectProvider = ProjectProvider();
+
     return Screen(
       mainKey: _key,
       drawer: const Drawer(
@@ -48,22 +52,51 @@ class Home extends StatelessWidget {
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const <Widget>[
-                                Text(
-                                  'Favoris',
-                                  style: TextStyle(
-                                    color: kPrimaryColor,
-                                    fontSize: kCardTitleFontSize,
-                                    fontWeight: FontWeight.w700,
+                              children: <Widget>[
+                                const SizedBox(
+                                  width: double.infinity,
+                                  child: Text(
+                                    'Favoris',
+                                    style: TextStyle(
+                                      color: kPrimaryColor,
+                                      fontSize: kCardTitleFontSize,
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: kDefaultElementSpacing * 0.75,
                                 ),
-                                /*Padding(
+                                StreamBuilder<List<Project>>(
+                                  stream: projectProvider.favoriteProjectStream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<List<Project>> snapshot) {
+                                    if (snapshot.hasData) {
+                                      final projects = snapshot.data;
+                                      if (projects != null &&
+                                          projects.isNotEmpty) {
+                                        return ListView.builder(
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          padding: const EdgeInsets.only(),
+                                          itemCount: projects.length,
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            final project = projects[index];
+                                            return ProjectCard(
+                                              project: project,
+                                            );
+                                          },
+                                        );
+                                      }
+                                    }
+
+                                    return const Center(
+                                      child: Padding(
                                         padding: EdgeInsets.only(
                                           top: kDefaultElementSpacing * 0.5,
-                                          bottom: kDefaultElementSpacing * 0.75,
+                                          bottom: kDefaultElementSpacing * 1.75,
                                         ),
                                         child: Text(
                                           'Aucun projet en favoris',
@@ -74,8 +107,12 @@ class Home extends StatelessWidget {
                                           ),
                                           textAlign: TextAlign.center,
                                         ),
-                                      ),*/
-                                ProjectCard(
+                                      ),
+                                    );
+                                  },
+                                ),
+
+                                /*ProjectCard(
                                   name: 'Nom du projet 1',
                                   date: 'Date du projet',
                                   nbCompleted: 2,
@@ -92,7 +129,7 @@ class Home extends StatelessWidget {
                                   date: 'Date du projet',
                                   nbCompleted: 7,
                                   nbTasks: 10,
-                                ),
+                                ),*/
                               ],
                             ),
                           ),

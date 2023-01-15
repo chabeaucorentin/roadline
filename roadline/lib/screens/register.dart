@@ -10,8 +10,8 @@ import 'package:roadline/partials/links/link.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
-class Register extends StatelessWidget {
-  Register({super.key});
+class RegisterScreen extends StatelessWidget {
+  RegisterScreen({super.key});
 
   final userActionController = UserActionController();
 

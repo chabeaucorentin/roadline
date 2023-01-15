@@ -10,8 +10,8 @@ import 'package:roadline/partials/tabbar/tasks_tab_bar.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
-class Tasks extends StatelessWidget {
-  Tasks({super.key});
+class TasksScreen extends StatelessWidget {
+  TasksScreen({super.key});
 
   final _key = GlobalKey<ScaffoldState>();
 

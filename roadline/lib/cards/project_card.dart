@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:roadline/models/project.dart';
 import 'package:roadline/partials/components/progress_bar.dart';
-import 'package:roadline/routes/routes.dart';
+import 'package:roadline/screens/project.dart';
 import 'package:roadline/styles/constants.dart';
 
 @immutable
 class ProjectCard extends StatelessWidget {
-  const ProjectCard(
-      {required this.name,
-      this.date,
-      required this.nbCompleted,
-      required this.nbTasks,
-      super.key});
+  const ProjectCard({required this.project, super.key});
 
-  final String name;
-  final String? date;
-  final int nbCompleted;
-  final int nbTasks;
+  final Project project;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +25,14 @@ class ProjectCard extends StatelessWidget {
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, kProjectRoute);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProjectScreen(
+                      project: project,
+                    ),
+                  ),
+                );
               },
               child: Container(
                 padding: const EdgeInsets.all(
@@ -62,7 +62,7 @@ class ProjectCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            name,
+                            project.title,
                             style: const TextStyle(
                               color: kCardContentColor,
                               fontSize: kCardTitleFontSize,
@@ -75,9 +75,9 @@ class ProjectCard extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              if (date != null) ...[
+                              if (project.endDate != null) ...[
                                 Text(
-                                  date!,
+                                  project.endDate!,
                                   style: const TextStyle(
                                     color: kSecondaryColor,
                                     fontSize: kBigFontSize,
@@ -89,7 +89,7 @@ class ProjectCard extends StatelessWidget {
                               Row(
                                 children: <Widget>[
                                   Text(
-                                    nbCompleted.toString(),
+                                    '1',
                                     style: const TextStyle(
                                       color: kCardContentColor,
                                       fontSize: kBigFontSize,
@@ -111,7 +111,7 @@ class ProjectCard extends StatelessWidget {
                                     width: kSpacingPadding / 2.0,
                                   ),
                                   Text(
-                                    nbTasks.toString(),
+                                    '2',
                                     style: const TextStyle(
                                       color: kSecondaryColor,
                                       fontSize: kBigFontSize,
@@ -126,7 +126,7 @@ class ProjectCard extends StatelessWidget {
                             height: kSpacingPadding,
                           ),
                           ProgressBar(
-                            percent: nbCompleted / nbTasks,
+                            percent: 0.5, //nbCompleted / nbTasks,
                           ),
                         ],
                       ),

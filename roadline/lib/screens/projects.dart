@@ -1,23 +1,25 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:roadline/cards/project_card.dart';
+import 'package:roadline/models/project.dart';
 import 'package:roadline/partials/buttons/button.dart';
 import 'package:roadline/partials/components/bottom_widget.dart';
 import 'package:roadline/partials/components/screen.dart';
 import 'package:roadline/partials/components/shadow_box.dart';
 import 'package:roadline/partials/navbar/main_nav_bar.dart';
 import 'package:roadline/partials/sidebar/side_bar.dart';
+import 'package:roadline/providers/project.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
-class Projects extends StatelessWidget {
-  Projects({super.key});
+class ProjectsScreen extends StatelessWidget {
+  ProjectsScreen({super.key});
 
   final _key = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
+    final projectProvider = ProjectProvider();
+
     return Screen(
       mainKey: _key,
       drawer: const Drawer(
@@ -41,17 +43,13 @@ class Projects extends StatelessWidget {
                 ),
                 child: Stack(
                   children: <Widget>[
-                    StreamBuilder<QuerySnapshot>(
-                      stream: FirebaseFirestore.instance
-                          .collection('users')
-                          .doc(FirebaseAuth.instance.currentUser!.uid)
-                          .collection('projects')
-                          .snapshots(),
+                    StreamBuilder<List<Project>>(
+                      stream: projectProvider.projectStream,
                       builder: (BuildContext context,
-                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                          AsyncSnapshot<List<Project>> snapshot) {
                         if (snapshot.hasData) {
-                          final projects = snapshot.data!.docs;
-                          if (projects.isNotEmpty) {
+                          final projects = snapshot.data;
+                          if (projects != null && projects.isNotEmpty) {
                             return ListView.builder(
                               padding: const EdgeInsets.only(
                                 left: kDefaultElementSpacing,
@@ -60,17 +58,9 @@ class Projects extends StatelessWidget {
                               ),
                               itemCount: projects.length,
                               itemBuilder: (BuildContext context, int index) {
-                                final project = projects[index].data()
-                                    as Map<String, dynamic>;
+                                final project = projects[index];
                                 return ProjectCard(
-                                  name: project.containsKey('title')
-                                      ? project['title']
-                                      : 'Projet',
-                                  date: project.containsKey('endDate')
-                                      ? project['endDate']
-                                      : null,
-                                  nbCompleted: 5,
-                                  nbTasks: 10,
+                                  project: project,
                                 );
                               },
                             );

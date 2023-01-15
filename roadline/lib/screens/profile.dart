@@ -6,8 +6,8 @@ import 'package:roadline/partials/components/screen.dart';
 import 'package:roadline/partials/headers/profile_header.dart';
 import 'package:roadline/styles/constants.dart';
 
-class Profile extends StatelessWidget {
-  Profile({super.key});
+class ProfileScreen extends StatelessWidget {
+  ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
