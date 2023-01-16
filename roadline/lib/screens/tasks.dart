@@ -64,7 +64,7 @@ class TasksScreen extends StatelessWidget {
                                   ),
                                   textAlign: TextAlign.center,
                                 ),*/
-                                TaskCard(
+                                /*TaskCard(
                                   completed: false,
                                   name: 'Tâche 1',
                                 ),
@@ -83,7 +83,7 @@ class TasksScreen extends StatelessWidget {
                                   projectName: 'Nom du projet',
                                   name: 'Tâche 4',
                                   date: 'Date et heure',
-                                ),
+                                ),*/
                               ],
                             ),
                           ),

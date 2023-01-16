@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:roadline/cards/task_card.dart';
 import 'package:roadline/models/project.dart';
+import 'package:roadline/models/task.dart';
 import 'package:roadline/partials/buttons/button.dart';
 import 'package:roadline/partials/components/bottom_widget.dart';
 import 'package:roadline/partials/components/screen.dart';
 import 'package:roadline/partials/components/shadow_box.dart';
 import 'package:roadline/partials/headers/project_header.dart';
+import 'package:roadline/providers/project.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
@@ -16,6 +18,8 @@ class ProjectScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final projectProvider = ProjectProvider(id: project.id!);
+
     return Screen(
       child: Column(
         children: <Widget>[
@@ -39,8 +43,8 @@ class ProjectScreen extends StatelessWidget {
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const <Widget>[
-                                Text(
+                              children: <Widget>[
+                                const Text(
                                   'Tâches',
                                   style: TextStyle(
                                     color: kPrimaryColor,
@@ -48,28 +52,57 @@ class ProjectScreen extends StatelessWidget {
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: kDefaultElementSpacing * 0.75,
                                 ),
-                                TaskCard(
-                                  completed: true,
-                                  name: 'Tâche 1',
-                                  date: 'Date et heure',
-                                ),
-                                TaskCard(
-                                  completed: true,
-                                  name: 'Tâche 2',
-                                  date: 'Date et heure',
-                                ),
-                                TaskCard(
-                                  completed: true,
-                                  name: 'Tâche 3',
-                                  date: 'Date et heure',
-                                ),
-                                TaskCard(
-                                  completed: true,
-                                  name: 'Tâche 4',
-                                  date: 'Date et heure',
+                                StreamBuilder<List<Task>>(
+                                  stream: projectProvider.taskStream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<List<Task>> snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.active &&
+                                        snapshot.hasData) {
+                                      final tasks = snapshot.data;
+                                      if (tasks != null &&
+                                          tasks.isNotEmpty) {
+                                        return ListView.builder(
+                                          physics:
+                                          const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          padding: const EdgeInsets.only(),
+                                          itemCount: tasks.length,
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            final task = tasks[index];
+                                            return TaskCard(
+                                              task: task,
+                                            );
+                                          },
+                                        );
+                                      }
+                                    }
+
+                                    return Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                          top: kDefaultElementSpacing * 0.5,
+                                          bottom: kDefaultElementSpacing * 1.75,
+                                        ),
+                                        child: snapshot.connectionState ==
+                                            ConnectionState.waiting
+                                            ? const CircularProgressIndicator()
+                                            : const Text(
+                                          'Aucune tâche',
+                                          style: TextStyle(
+                                            color: kPrimaryColor,
+                                            fontSize: kBigFontSize,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
                               ],
                             ),

@@ -1,24 +1,23 @@
-import 'package:flutter/cupertino.dart';
-
-@immutable
 class Task {
-  const Task(
-      {required this.id,
-      this.name = "Tâche",
+  Task(
+      {this.id,
+      this.projectId,
+      this.title = 'Tâche',
       this.notes,
       this.date,
       this.time,
       this.isCompleted = false});
 
-  final String id;
-  final String name;
-  final String? notes;
-  final String? date;
-  final String? time;
-  final bool isCompleted;
+  String? id;
+  String? projectId;
+  String title;
+  String? notes;
+  String? date;
+  String? time;
+  bool isCompleted;
 
   @override
   String toString() {
-    return '{id: $id, name: $name, notes: $notes, date: $date, time: $time, isCompleted: $isCompleted}';
+    return '{id: $id, projectId: $projectId, name: $title, notes: $notes, date: $date, time: $time, isCompleted: $isCompleted}';
   }
 }

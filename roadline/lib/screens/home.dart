@@ -116,25 +116,6 @@ class HomeScreen extends StatelessWidget {
                                     );
                                   },
                                 ),
-
-                                /*ProjectCard(
-                                  name: 'Nom du projet 1',
-                                  date: 'Date du projet',
-                                  nbCompleted: 2,
-                                  nbTasks: 5,
-                                ),
-                                ProjectCard(
-                                  name: 'Nom du projet 2',
-                                  date: 'Date du projet',
-                                  nbCompleted: 5,
-                                  nbTasks: 10,
-                                ),
-                                ProjectCard(
-                                  name: 'Nom du projet 3',
-                                  date: 'Date du projet',
-                                  nbCompleted: 7,
-                                  nbTasks: 10,
-                                ),*/
                               ],
                             ),
                           ),

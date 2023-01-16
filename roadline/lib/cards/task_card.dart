@@ -1,25 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:roadline/models/task.dart';
 import 'package:roadline/styles/constants.dart';
 
 @immutable
-class TaskCard extends StatefulWidget {
-  const TaskCard(
-      {required this.completed,
-      this.projectName,
-      required this.name,
-      this.date,
-      super.key});
+class TaskCard extends StatelessWidget {
+  const TaskCard({required this.task, super.key});
 
-  final bool completed;
-  final String? projectName;
-  final String name;
-  final String? date;
+  final Task task;
 
-  @override
-  State<TaskCard> createState() => _TaskCardState();
-}
-
-class _TaskCardState extends State<TaskCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -49,7 +37,7 @@ class _TaskCardState extends State<TaskCard> {
                 ),
                 width: 30.0,
                 height: 30.0,
-                child: widget.completed
+                child: task.isCompleted
                     ? const Icon(
                         Icons.check,
                         size: 20.0,
@@ -67,7 +55,7 @@ class _TaskCardState extends State<TaskCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                if (widget.projectName != null) ...[
+                /*if (widget.projectName != null) ...[
                   Row(
                     children: <Widget>[
                       const Icon(
@@ -91,21 +79,21 @@ class _TaskCardState extends State<TaskCard> {
                   const SizedBox(
                     height: kSpacingPadding - 4.0,
                   ),
-                ],
+                ],*/
                 Text(
-                  widget.name,
+                  task.title,
                   style: const TextStyle(
                     color: kCardContentColor,
                     fontSize: kCardTitleFontSize,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                if (widget.date != null) ...[
+                if (task.date != null) ...[
                   const SizedBox(
                     height: kSpacingPadding - 4.0,
                   ),
                   Text(
-                    widget.date!,
+                    task.date!,
                     style: const TextStyle(
                       color: kSecondaryColor,
                       fontSize: kBigFontSize,
