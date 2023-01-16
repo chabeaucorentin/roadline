@@ -11,12 +11,9 @@ class ProjectProvider {
 
   final String id;
 
-  StreamController<Project> get projectStreamController =>
-      _getProjectStreamController();
+  Stream<Project> get projectStream => _getProjectStream();
 
-  Stream<Project> get projectStream => projectStreamController.stream;
-
-  StreamController<Project> _getProjectStreamController() {
+  Stream<Project> _getProjectStream() {
     final streamController = StreamController<Project>();
 
     final projectChangedSubscription = FirebaseFirestore.instance
@@ -26,24 +23,24 @@ class ProjectProvider {
         .doc(id)
         .snapshots()
         .listen((snapshot) {
-      final project = Project(
-        id: id,
-      );
       if (snapshot.exists) {
+        final project = Project(
+          id: id,
+        );
         if (snapshot.data()!.containsKey('title')) {
           project.title = snapshot['title'];
         }
         if (snapshot.data()!.containsKey('isFavorite')) {
           project.isFavorite = snapshot['isFavorite'];
         }
+        streamController.add(project);
       }
-      streamController.add(project);
     });
 
     streamController.onCancel = () {
       projectChangedSubscription.cancel();
     };
 
-    return streamController;
+    return streamController.stream;
   }
 }

@@ -10,17 +10,14 @@ import 'package:roadline/styles/constants.dart';
 class ProjectNavBar extends StatelessWidget {
   const ProjectNavBar(
       {required this.project,
-      required this.projectStreamController,
       super.key});
 
   final Project project;
-  final StreamController<Project> projectStreamController;
 
   @override
   Widget build(BuildContext context) {
     final projectController = ProjectController(project);
-    final favoriteStreamController =
-        ProjectProvider(id: project.id!).projectStreamController;
+    final projectProvider = ProjectProvider(id: project.id!);
 
     return ColoredBox(
       color: kDarkBackgroundColor,
@@ -56,7 +53,7 @@ class ProjectNavBar extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () => projectController.reverseFavorite(context),
                   child: StreamBuilder<Project>(
-                    stream: favoriteStreamController.stream,
+                    stream: projectProvider.projectStream,
                     builder: (BuildContext context,
                         AsyncSnapshot<Project> snapshot) {
                       return Icon(
@@ -89,11 +86,7 @@ class ProjectNavBar extends StatelessWidget {
               MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: GestureDetector(
-                  onTap: () {
-                    favoriteStreamController.close();
-                    projectStreamController.close();
-                    projectController.delete(context);
-                  },
+                  onTap: () => projectController.delete(context),
                   child: const Icon(
                     Icons.delete,
                     size: kAdjustmentIconSize,

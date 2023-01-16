@@ -12,7 +12,7 @@ class ProjectHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final projectStreamController = ProjectProvider(id: project.id!).projectStreamController;
+    final projectProvider = ProjectProvider(id: project.id!);
 
     return DecoratedBox(
       decoration: const BoxDecoration(
@@ -25,7 +25,6 @@ class ProjectHeader extends StatelessWidget {
         children: <Widget>[
           ProjectNavBar(
             project: project,
-            projectStreamController: projectStreamController,
           ),
           Padding(
             padding: const EdgeInsets.only(
@@ -57,7 +56,7 @@ class ProjectHeader extends StatelessWidget {
                       height: kDefaultElementSpacing * 2.0 - 4.0,
                     ),
                     StreamBuilder<Project>(
-                      stream: projectStreamController.stream,
+                      stream: projectProvider.projectStream,
                       builder: (BuildContext context,
                           AsyncSnapshot<Project> snapshot) {
                         return Text(
