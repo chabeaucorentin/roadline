@@ -8,7 +8,7 @@ import 'package:roadline/partials/components/shadow_box.dart';
 import 'package:roadline/partials/headers/home_header.dart';
 import 'package:roadline/partials/navbar/main_nav_bar.dart';
 import 'package:roadline/partials/sidebar/side_bar.dart';
-import 'package:roadline/providers/project.dart';
+import 'package:roadline/providers/projects.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final projectProvider = ProjectProvider();
+    final projectsProvider = ProjectsProvider();
 
     return Screen(
       mainKey: _key,
@@ -68,10 +68,12 @@ class HomeScreen extends StatelessWidget {
                                   height: kDefaultElementSpacing * 0.75,
                                 ),
                                 StreamBuilder<List<Project>>(
-                                  stream: projectProvider.favoriteProjectStream,
+                                  stream: projectsProvider.favoriteProjectStream,
                                   builder: (BuildContext context,
                                       AsyncSnapshot<List<Project>> snapshot) {
-                                    if (snapshot.hasData) {
+                                    if (snapshot.connectionState ==
+                                            ConnectionState.active &&
+                                        snapshot.hasData) {
                                       final projects = snapshot.data;
                                       if (projects != null &&
                                           projects.isNotEmpty) {
@@ -92,21 +94,24 @@ class HomeScreen extends StatelessWidget {
                                       }
                                     }
 
-                                    return const Center(
+                                    return Center(
                                       child: Padding(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                           top: kDefaultElementSpacing * 0.5,
                                           bottom: kDefaultElementSpacing * 1.75,
                                         ),
-                                        child: Text(
-                                          'Aucun projet en favoris',
-                                          style: TextStyle(
-                                            color: kPrimaryColor,
-                                            fontSize: kBigFontSize,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
+                                        child: snapshot.connectionState ==
+                                                ConnectionState.waiting
+                                            ? const CircularProgressIndicator()
+                                            : const Text(
+                                                'Aucun projet en favoris',
+                                                style: TextStyle(
+                                                  color: kPrimaryColor,
+                                                  fontSize: kBigFontSize,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
                                       ),
                                     );
                                   },

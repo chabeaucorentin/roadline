@@ -1,22 +1,37 @@
-import 'package:flutter/cupertino.dart';
-
-@immutable
 class Project {
-  const Project(
-      {required this.id,
-      required this.title,
-      this.description,
-      this.endDate,
-      required this.isFavorite});
+  Project(
+      {this.id,
+        this.title = 'Projet',
+        this.description,
+        this.endDate,
+        this.isFavorite = false});
 
-  final String id;
-  final String title;
-  final String? description;
-  final String? endDate;
-  final bool isFavorite;
+  String? id;
+  String title;
+  String? description;
+  String? endDate;
+  bool isFavorite;
+
+  Map<String, dynamic> getMap() {
+    final map = <String, dynamic>{
+      'title': title.trim(),
+    };
+
+    if (description != null && description!.isNotEmpty) {
+      map['description'] = description!;
+    }
+    if (endDate != null && endDate!.isNotEmpty) {
+      map['date'] = endDate!;
+    }
+    if (isFavorite) {
+      map['isFavorite'] = isFavorite;
+    }
+
+    return map;
+  }
 
   @override
   String toString() {
-    return '{id: $id, name: $title, description: $description, date: $endDate, isFavorite: $isFavorite}';
+    return '{id: $id, name: $title, notes: $description, date: $endDate, isCompleted: $isFavorite}';
   }
 }

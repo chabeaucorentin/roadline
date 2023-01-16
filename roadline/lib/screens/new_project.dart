@@ -19,7 +19,7 @@ class NewProjectScreen extends StatefulWidget {
 }
 
 class _NewProjectScreenState extends State<NewProjectScreen> {
-  final projectController = ProjectController();
+  final projectController = ProjectController.empty();
 
   @override
   void initState() {
@@ -77,7 +77,7 @@ class _NewProjectScreenState extends State<NewProjectScreen> {
                                       height: kDefaultElementSpacing,
                                     ),
                                     ProjectNameInput(
-                                      projectController: projectController,
+                                      project: projectController.project,
                                     ),
                                     const SizedBox(
                                       height: kDefaultElementSpacing - 4.0,
@@ -94,7 +94,7 @@ class _NewProjectScreenState extends State<NewProjectScreen> {
                                       height: kSpacingPadding,
                                     ),
                                     DescTextArea(
-                                      projectController: projectController,
+                                      project: projectController.project,
                                     ),
                                     const SizedBox(
                                       height: kDefaultElementSpacing,
@@ -122,7 +122,7 @@ class _NewProjectScreenState extends State<NewProjectScreen> {
                                         height: kDefaultElementSpacing,
                                       ),
                                       DatePicker(
-                                        projectController: projectController,
+                                        project: projectController.project,
                                       ),
                                     ],
                                     const SizedBox(

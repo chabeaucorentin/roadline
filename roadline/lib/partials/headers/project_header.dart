@@ -1,7 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:roadline/models/project.dart';
 import 'package:roadline/partials/navbar/project_nav_bar.dart';
+import 'package:roadline/providers/project.dart';
 import 'package:roadline/styles/constants.dart';
 
 @immutable
@@ -12,6 +12,8 @@ class ProjectHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final projectStreamController = ProjectProvider(id: project.id!).projectStreamController;
+
     return DecoratedBox(
       decoration: const BoxDecoration(
         color: kDarkBackgroundColor,
@@ -21,7 +23,10 @@ class ProjectHeader extends StatelessWidget {
       ),
       child: Column(
         children: <Widget>[
-          const ProjectNavBar(),
+          ProjectNavBar(
+            project: project,
+            projectStreamController: projectStreamController,
+          ),
           Padding(
             padding: const EdgeInsets.only(
               left: kDefaultElementSpacing,
@@ -51,13 +56,19 @@ class ProjectHeader extends StatelessWidget {
                     const SizedBox(
                       height: kDefaultElementSpacing * 2.0 - 4.0,
                     ),
-                    Text(
-                      project.title,
-                      style: const TextStyle(
-                        color: kDarkLighterColor,
-                        fontSize: kHeaderFontSize,
-                        fontWeight: FontWeight.w500,
-                      ),
+                    StreamBuilder<Project>(
+                      stream: projectStreamController.stream,
+                      builder: (BuildContext context,
+                          AsyncSnapshot<Project> snapshot) {
+                        return Text(
+                          snapshot.hasData ? snapshot.data!.title : '',
+                          style: const TextStyle(
+                            color: kDarkLighterColor,
+                            fontSize: kHeaderFontSize,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),

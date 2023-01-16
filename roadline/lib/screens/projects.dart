@@ -7,7 +7,7 @@ import 'package:roadline/partials/components/screen.dart';
 import 'package:roadline/partials/components/shadow_box.dart';
 import 'package:roadline/partials/navbar/main_nav_bar.dart';
 import 'package:roadline/partials/sidebar/side_bar.dart';
-import 'package:roadline/providers/project.dart';
+import 'package:roadline/providers/projects.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
@@ -18,7 +18,7 @@ class ProjectsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final projectProvider = ProjectProvider();
+    final projectsProvider = ProjectsProvider();
 
     return Screen(
       mainKey: _key,
@@ -44,10 +44,12 @@ class ProjectsScreen extends StatelessWidget {
                 child: Stack(
                   children: <Widget>[
                     StreamBuilder<List<Project>>(
-                      stream: projectProvider.projectStream,
+                      stream: projectsProvider.projectStream,
                       builder: (BuildContext context,
                           AsyncSnapshot<List<Project>> snapshot) {
-                        if (snapshot.hasData) {
+                        if (snapshot.connectionState ==
+                                ConnectionState.active &&
+                            snapshot.hasData) {
                           final projects = snapshot.data;
                           if (projects != null && projects.isNotEmpty) {
                             return ListView.builder(
@@ -67,15 +69,18 @@ class ProjectsScreen extends StatelessWidget {
                           }
                         }
 
-                        return const Center(
-                          child: Text(
-                            'Aucun projet',
-                            style: TextStyle(
-                              color: kPrimaryColor,
-                              fontSize: kBigFontSize,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+                        return Center(
+                          child: snapshot.connectionState ==
+                                  ConnectionState.waiting
+                              ? const CircularProgressIndicator()
+                              : const Text(
+                                  'Aucun projet',
+                                  style: TextStyle(
+                                    color: kPrimaryColor,
+                                    fontSize: kBigFontSize,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
                         );
                       },
                     ),

@@ -25,9 +25,7 @@ class ProjectScreen extends StatelessWidget {
                 SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
-                      ProjectHeader(
-                        project: project,
-                      ),
+                      ProjectHeader(project: project),
                       Padding(
                         padding: const EdgeInsets.only(
                           left: kDefaultElementSpacing,

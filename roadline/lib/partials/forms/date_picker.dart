@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:roadline/controllers/project.dart';
+import 'package:roadline/models/project.dart';
 import 'package:roadline/partials/forms/data_input.dart';
 
 @immutable
 class DatePicker extends StatelessWidget {
-  const DatePicker({required this.projectController, super.key});
+  const DatePicker({required this.project, super.key});
 
-  final ProjectController projectController;
+  final Project project;
 
   @override
   Widget build(BuildContext context) {
     return DataInput(
-      value: projectController.date,
+      value: project.endDate,
       icon: Icons.calendar_month,
       keyboardType: TextInputType.datetime,
       onChanged: (value) {
-        projectController.date = value;
+        project.endDate = value;
       },
       validator: (value) {
         return null;

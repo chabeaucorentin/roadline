@@ -2,57 +2,48 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:roadline/models/project.dart';
 
+@immutable
 class ProjectProvider {
-  Stream<List<Project>> get projectStream => _getProjectStream();
+  const ProjectProvider({required this.id});
 
-  Stream<List<Project>> get favoriteProjectStream =>
-      _getFavoriteProjectStream();
+  final String id;
 
-  Stream<List<Project>> _getProjectStream() {
-    final streamController = StreamController<List<Project>>();
+  StreamController<Project> get projectStreamController =>
+      _getProjectStreamController();
+
+  Stream<Project> get projectStream => projectStreamController.stream;
+
+  StreamController<Project> _getProjectStreamController() {
+    final streamController = StreamController<Project>();
 
     final projectChangedSubscription = FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .collection('projects')
-        .orderBy('title')
+        .doc(id)
         .snapshots()
         .listen((snapshot) {
-      List<Project> projects = snapshot.docs.map((doc) {
-        final Map<String, dynamic> data = doc.data();
-        return Project(
-          id: doc.id,
-          title: data.containsKey('title') ? data['title'] : 'Projet',
-          endDate: data.containsKey('endDate') ? data['endDate'] : null,
-          isFavorite:
-              data.containsKey('isFavorite') ? data['isFavorite'] : false,
-        );
-      }).toList();
-      streamController.add(projects);
+      final project = Project(
+        id: id,
+      );
+      if (snapshot.exists) {
+        if (snapshot.data()!.containsKey('title')) {
+          project.title = snapshot['title'];
+        }
+        if (snapshot.data()!.containsKey('isFavorite')) {
+          project.isFavorite = snapshot['isFavorite'];
+        }
+      }
+      streamController.add(project);
     });
 
     streamController.onCancel = () {
       projectChangedSubscription.cancel();
     };
 
-    return streamController.stream;
-  }
-
-  Stream<List<Project>> _getFavoriteProjectStream() {
-    final streamController = StreamController<List<Project>>();
-
-    final favoriteProjectSubscription = projectStream.listen((snapshot) {
-      List<Project> projects =
-          snapshot.where((project) => project.isFavorite).toList();
-      streamController.add(projects);
-    });
-
-    streamController.onCancel = () {
-      favoriteProjectSubscription.cancel();
-    };
-
-    return streamController.stream;
+    return streamController;
   }
 }

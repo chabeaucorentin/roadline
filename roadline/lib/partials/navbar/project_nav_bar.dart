@@ -1,12 +1,27 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:roadline/controllers/project.dart';
+import 'package:roadline/models/project.dart';
+import 'package:roadline/providers/project.dart';
 import 'package:roadline/styles/constants.dart';
 
 @immutable
 class ProjectNavBar extends StatelessWidget {
-  const ProjectNavBar({super.key});
+  const ProjectNavBar(
+      {required this.project,
+      required this.projectStreamController,
+      super.key});
+
+  final Project project;
+  final StreamController<Project> projectStreamController;
 
   @override
   Widget build(BuildContext context) {
+    final projectController = ProjectController(project);
+    final favoriteStreamController =
+        ProjectProvider(id: project.id!).projectStreamController;
+
     return ColoredBox(
       color: kDarkBackgroundColor,
       child: Center(
@@ -39,10 +54,19 @@ class ProjectNavBar extends StatelessWidget {
               MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: GestureDetector(
-                  child: const Icon(
-                    Icons.star_border, //star
-                    size: kAdjustmentIconSize,
-                    color: kDarkLighterColor,
+                  onTap: () => projectController.reverseFavorite(context),
+                  child: StreamBuilder<Project>(
+                    stream: favoriteStreamController.stream,
+                    builder: (BuildContext context,
+                        AsyncSnapshot<Project> snapshot) {
+                      return Icon(
+                        snapshot.hasData && snapshot.data!.isFavorite
+                            ? Icons.star
+                            : Icons.star_border,
+                        size: kAdjustmentIconSize,
+                        color: kDarkLighterColor,
+                      );
+                    },
                   ),
                 ),
               ),
@@ -65,6 +89,11 @@ class ProjectNavBar extends StatelessWidget {
               MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: GestureDetector(
+                  onTap: () {
+                    favoriteStreamController.close();
+                    projectStreamController.close();
+                    projectController.delete(context);
+                  },
                   child: const Icon(
                     Icons.delete,
                     size: kAdjustmentIconSize,
