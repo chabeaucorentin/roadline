@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:roadline/models/project.dart';
 import 'package:roadline/models/task.dart';
+import 'package:roadline/routes/routes.dart';
+import 'package:roadline/utils/status_bar.dart';
 
 @immutable
 class ProjectProvider {
@@ -12,11 +14,11 @@ class ProjectProvider {
 
   final String id;
 
-  Stream<Project> get projectStream => _getProjectStream();
+  Stream<Project> getProjectStream(BuildContext context) => _getProjectStream(context);
 
   Stream<List<Task>> get taskStream => _getTaskStream();
 
-  Stream<Project> _getProjectStream() {
+  Stream<Project> _getProjectStream(BuildContext context) {
     final streamController = StreamController<Project>();
 
     final projectChangedSubscription = FirebaseFirestore.instance
@@ -33,10 +35,20 @@ class ProjectProvider {
         if (snapshot.data()!.containsKey('title')) {
           project.title = snapshot['title'];
         }
+        if (snapshot.data()!.containsKey('description')) {
+          project.description = snapshot['description'];
+        }
+        if (snapshot.data()!.containsKey('endDate')) {
+          project.endDate = snapshot['endDate'];
+        }
         if (snapshot.data()!.containsKey('isFavorite')) {
           project.isFavorite = snapshot['isFavorite'];
         }
         streamController.add(project);
+      } else {
+        StatusBar.showErrorMessage('Le projet a été supprimé');
+        streamController.close();
+        Navigator.pushNamed(context, kHomeRoute);
       }
     });
 

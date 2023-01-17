@@ -2,7 +2,7 @@ class Task {
   Task(
       {this.id,
       this.projectId,
-      this.title = 'Tâche',
+      this.title = '',
       this.notes,
       this.date,
       this.time,
@@ -15,6 +15,27 @@ class Task {
   String? date;
   String? time;
   bool isCompleted;
+
+  Map<String, dynamic> getMap() {
+    final map = <String, dynamic>{
+      'title': title.trim(),
+    };
+
+    if (notes != null && notes!.isNotEmpty) {
+      map['notes'] = notes!;
+    }
+    if (date != null && date!.isNotEmpty) {
+      map['date'] = date!;
+    }
+    if (time != null && time!.isNotEmpty) {
+      map['time'] = time!;
+    }
+    if (isCompleted) {
+      map['isCompleted'] = isCompleted;
+    }
+
+    return map;
+  }
 
   @override
   String toString() {

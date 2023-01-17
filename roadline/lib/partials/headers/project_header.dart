@@ -56,7 +56,7 @@ class ProjectHeader extends StatelessWidget {
                       height: kDefaultElementSpacing * 2.0 - 4.0,
                     ),
                     StreamBuilder<Project>(
-                      stream: projectProvider.projectStream,
+                      stream: projectProvider.getProjectStream(context),
                       builder: (BuildContext context,
                           AsyncSnapshot<Project> snapshot) {
                         return Text(

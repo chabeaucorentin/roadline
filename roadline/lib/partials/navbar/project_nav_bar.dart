@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:roadline/controllers/project.dart';
 import 'package:roadline/models/project.dart';
 import 'package:roadline/providers/project.dart';
+import 'package:roadline/screens/new_project.dart';
 import 'package:roadline/styles/constants.dart';
 
 @immutable
@@ -53,7 +54,7 @@ class ProjectNavBar extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () => projectController.reverseFavorite(context),
                   child: StreamBuilder<Project>(
-                    stream: projectProvider.projectStream,
+                    stream: projectProvider.getProjectStream(context),
                     builder: (BuildContext context,
                         AsyncSnapshot<Project> snapshot) {
                       return Icon(
@@ -73,6 +74,16 @@ class ProjectNavBar extends StatelessWidget {
               MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NewProjectScreen.edit(
+                          project: project,
+                        ),
+                      ),
+                    );
+                  },
                   child: const Icon(
                     Icons.edit,
                     size: kAdjustmentIconSize,

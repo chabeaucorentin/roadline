@@ -1,19 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:roadline/models/project.dart';
+import 'package:roadline/models/task.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/utils/loader.dart';
 import 'package:roadline/utils/status_bar.dart';
 
-class ProjectController {
-  ProjectController(this.project);
+class TaskController {
+  TaskController(this.task);
 
   final formKey = GlobalKey<FormState>();
   final hasDate = ValueNotifier<bool>(false);
-  Project project;
+  final hasTime = ValueNotifier<bool>(false);
+  Task task;
 
-  Future<void> create(BuildContext context) async {
+  Future<void> add(BuildContext context) async {
     if (formKey.currentState != null && formKey.currentState!.validate()) {
       try {
         Loader.showSpinner(context);
@@ -22,12 +23,15 @@ class ProjectController {
             .collection('users')
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .collection('projects')
+            .doc(task.projectId)
+            .collection('tasks')
             .doc()
-            .set(project.getMap())
+            .set(task.getMap())
             .then((value) {
           StatusBar.showSuccessMessage(
-            'Projet créé avec succès',
+            'Tâche créée avec succès',
           );
+          Navigator.pop(context);
           Navigator.pushNamed(context, kProjectsRoute);
         });
       } on FirebaseException catch (e) {
@@ -46,11 +50,13 @@ class ProjectController {
             .collection('users')
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .collection('projects')
-            .doc(project.id)
-            .update(project.getMap())
+            .doc(task.projectId)
+            .collection('tasks')
+            .doc(task.id)
+            .update(task.getMap())
             .then((value) {
           StatusBar.showSuccessMessage(
-            'Projet mis à jour avec succès',
+            'Tâche mise à jour avec succès',
           );
           Navigator.pop(context);
           Navigator.pop(context);
@@ -68,39 +74,31 @@ class ProjectController {
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .collection('projects')
-          .doc(project.id)
+          .doc(task.projectId)
+          .collection('tasks')
+          .doc(task.id)
           .delete()
           .then((value) {
         StatusBar.showSuccessMessage(
-          'Projet supprimé avec succès',
+          'Tâche supprimée avec succès',
         );
-        Navigator.pop(context);
       });
     } on FirebaseException catch (e) {
       StatusBar.showErrorMessage(e.code);
     }
   }
 
-  Future<void> reverseFavorite(BuildContext context) async {
+  Future<void> reverseStatus(BuildContext context) async {
     try {
-      project.isFavorite = !project.isFavorite;
+      task.isCompleted = !task.isCompleted;
       await FirebaseFirestore.instance
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .collection('projects')
-          .doc(project.id)
-          .update({'isFavorite': project.isFavorite})
-          .then((value) {
-        if (project.isFavorite) {
-          StatusBar.showSuccessMessage(
-            'Projet ajouté aux favoris',
-          );
-        } else {
-          StatusBar.showSuccessMessage(
-            'Projet supprimé des favoris',
-          );
-        }
-      });
+          .doc(task.projectId)
+          .collection('tasks')
+          .doc(task.id)
+          .update({'isCompleted': task.isCompleted});
     } on FirebaseException catch (e) {
       StatusBar.showErrorMessage(e.code);
     }

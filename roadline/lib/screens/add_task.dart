@@ -1,30 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
+import 'package:roadline/controllers/task.dart';
+import 'package:roadline/models/task.dart';
 import 'package:roadline/partials/buttons/button.dart';
 import 'package:roadline/partials/components/bottom_padding.dart';
 import 'package:roadline/partials/components/screen.dart';
 import 'package:roadline/partials/forms/date_picker.dart';
 import 'package:roadline/partials/forms/desc_text_area.dart';
-import 'package:roadline/partials/forms/project_name_input.dart';
+import 'package:roadline/partials/forms/project_dropdown.dart';
 import 'package:roadline/partials/forms/task_name_input.dart';
 import 'package:roadline/partials/forms/time_picker.dart';
 import 'package:roadline/partials/navbar/close_nav_bar.dart';
-import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
-class AddTaskScreen extends StatelessWidget {
+class AddTaskScreen extends StatefulWidget {
   AddTaskScreen({super.key});
 
-  final _asDate = ValueNotifier<bool>(true);
-  final _asTime = ValueNotifier<bool>(true);
+  AddTaskScreen.edit({required this.task, super.key}) {
+    isEdit = true;
+  }
+
+  Task task = Task();
+  bool isEdit = false;
+
+  @override
+  State<AddTaskScreen> createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
+  late TaskController taskController;
+
+  @override
+  void initState() {
+    super.initState();
+    taskController = TaskController(widget.task);
+    taskController.hasDate.addListener(() {
+      setState(() {
+        if (!taskController.hasDate.value && taskController.hasTime.value) {
+          taskController.hasTime.value = false;
+        }
+      });
+    });
+    taskController.hasTime.addListener(() {
+      setState(() {
+        if (!taskController.hasDate.value && taskController.hasTime.value) {
+          taskController.hasDate.value = true;
+        }
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    taskController.hasDate.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Screen(
       child: Column(
         children: <Widget>[
-          const CloseNavBar(
-            title: 'Ajouter une tâche',
+          CloseNavBar(
+            title: widget.isEdit ? 'Modifier une tâche' : 'Ajouter une tâche',
           ),
           Expanded(
             child: LayoutBuilder(
@@ -52,11 +90,15 @@ class AddTaskScreen extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  const TaskNameInput(),
+                                  TaskNameInput(
+                                    task: taskController.task,
+                                  ),
                                   const SizedBox(
                                     height: kDefaultElementSpacing,
                                   ),
-                                  //const ProjectNameInput(),
+                                  ProjectDropdown(
+                                    task: taskController.task,
+                                  ),
                                   const SizedBox(
                                     height: kDefaultElementSpacing - 4.0,
                                   ),
@@ -71,7 +113,9 @@ class AddTaskScreen extends StatelessWidget {
                                   const SizedBox(
                                     height: kSpacingPadding,
                                   ),
-                                  //const DescTextArea(),
+                                  DescTextArea.task(
+                                    task: taskController.task,
+                                  ),
                                   const SizedBox(
                                     height: kDefaultElementSpacing,
                                   ),
@@ -88,15 +132,19 @@ class AddTaskScreen extends StatelessWidget {
                                         ),
                                       ),
                                       AdvancedSwitch(
-                                        controller: _asDate,
+                                        controller: taskController.hasDate,
                                         activeColor: kSwitchColor,
                                       ),
                                     ],
                                   ),
-                                  const SizedBox(
-                                    height: kDefaultElementSpacing,
-                                  ),
-                                  //const DatePicker(),
+                                  if (taskController.hasDate.value) ...[
+                                    const SizedBox(
+                                      height: kDefaultElementSpacing,
+                                    ),
+                                    DatePicker.task(
+                                      task: taskController.task,
+                                    ),
+                                  ],
                                   const SizedBox(
                                     height: kDefaultElementSpacing,
                                   ),
@@ -113,15 +161,19 @@ class AddTaskScreen extends StatelessWidget {
                                         ),
                                       ),
                                       AdvancedSwitch(
-                                        controller: _asTime,
+                                        controller: taskController.hasTime,
                                         activeColor: kSwitchColor,
                                       ),
                                     ],
                                   ),
-                                  const SizedBox(
-                                    height: kDefaultElementSpacing,
-                                  ),
-                                  const TimePicker(),
+                                  if (taskController.hasTime.value) ...[
+                                    const SizedBox(
+                                      height: kDefaultElementSpacing,
+                                    ),
+                                    TimePicker(
+                                      task: taskController.task,
+                                    ),
+                                  ],
                                   const SizedBox(
                                     height: kDefaultElementSpacing,
                                   ),
@@ -129,13 +181,18 @@ class AddTaskScreen extends StatelessWidget {
                               ),
                               Column(
                                 children: <Widget>[
-                                  Button(
-                                    'Ajouter',
-                                    onTap: () {
-                                      Navigator.pushNamed(
-                                          context, kRegisterRoute);
-                                    },
-                                  ),
+                                  if (widget.isEdit) ...[
+                                    Button(
+                                      'Modifier',
+                                      onTap: () =>
+                                          taskController.update(context),
+                                    ),
+                                  ] else ...[
+                                    Button(
+                                      'Ajouter',
+                                      onTap: () => taskController.add(context),
+                                    ),
+                                  ],
                                   const BottomPadding(),
                                 ],
                               ),

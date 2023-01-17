@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:roadline/controllers/project.dart';
+import 'package:roadline/models/project.dart';
 import 'package:roadline/partials/buttons/button.dart';
 import 'package:roadline/partials/components/bottom_padding.dart';
 import 'package:roadline/partials/components/image_selector.dart';
@@ -14,16 +15,24 @@ import 'package:roadline/styles/constants.dart';
 class NewProjectScreen extends StatefulWidget {
   NewProjectScreen({super.key});
 
+  NewProjectScreen.edit({required this.project, super.key}) {
+    isEdit = true;
+  }
+
+  Project project = Project();
+  bool isEdit = false;
+
   @override
   State<NewProjectScreen> createState() => _NewProjectScreenState();
 }
 
 class _NewProjectScreenState extends State<NewProjectScreen> {
-  final projectController = ProjectController.empty();
+  late ProjectController projectController;
 
   @override
   void initState() {
     super.initState();
+    projectController = ProjectController(widget.project);
     projectController.hasDate.addListener(() {
       setState(() {});
     });
@@ -40,8 +49,8 @@ class _NewProjectScreenState extends State<NewProjectScreen> {
     return Screen(
       child: Column(
         children: <Widget>[
-          const CloseNavBar(
-            title: 'Créer un projet',
+          CloseNavBar(
+            title: widget.isEdit ? 'Modifier un projet' : 'Créer un projet',
           ),
           Expanded(
             child: LayoutBuilder(
@@ -93,7 +102,7 @@ class _NewProjectScreenState extends State<NewProjectScreen> {
                                     const SizedBox(
                                       height: kSpacingPadding,
                                     ),
-                                    DescTextArea(
+                                    DescTextArea.project(
                                       project: projectController.project,
                                     ),
                                     const SizedBox(
@@ -121,7 +130,7 @@ class _NewProjectScreenState extends State<NewProjectScreen> {
                                       const SizedBox(
                                         height: kDefaultElementSpacing,
                                       ),
-                                      DatePicker(
+                                      DatePicker.project(
                                         project: projectController.project,
                                       ),
                                     ],
@@ -132,11 +141,19 @@ class _NewProjectScreenState extends State<NewProjectScreen> {
                                 ),
                                 Column(
                                   children: <Widget>[
-                                    Button(
-                                      'Créer',
-                                      onTap: () =>
-                                          projectController.create(context),
-                                    ),
+                                    if (widget.isEdit) ...[
+                                      Button(
+                                        'Modifier',
+                                        onTap: () =>
+                                            projectController.update(context),
+                                      ),
+                                    ] else ...[
+                                      Button(
+                                        'Créer',
+                                        onTap: () =>
+                                            projectController.create(context),
+                                      ),
+                                    ],
                                     const BottomPadding(),
                                   ],
                                 )

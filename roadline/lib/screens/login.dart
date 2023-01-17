@@ -12,10 +12,10 @@ import 'package:roadline/styles/constants.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
-  final userActionController = UserActionController();
-
   @override
   Widget build(BuildContext context) {
+    final userActionController = UserActionController();
+
     return Screen(
       isBottomDark: true,
       child: LayoutBuilder(

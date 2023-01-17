@@ -1,7 +1,7 @@
 class Project {
   Project(
       {this.id,
-        this.title = 'Projet',
+        this.title = '',
         this.description,
         this.endDate,
         this.isFavorite = false});
@@ -21,7 +21,7 @@ class Project {
       map['description'] = description!;
     }
     if (endDate != null && endDate!.isNotEmpty) {
-      map['date'] = endDate!;
+      map['endDate'] = endDate!;
     }
     if (isFavorite) {
       map['isFavorite'] = isFavorite;
