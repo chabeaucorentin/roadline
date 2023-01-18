@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:roadline/models/project.dart';
-import 'package:roadline/routes/routes.dart';
+import 'package:roadline/screens/project.dart';
 import 'package:roadline/utils/loader.dart';
 import 'package:roadline/utils/status_bar.dart';
 
@@ -18,17 +18,26 @@ class ProjectController {
       try {
         Loader.showSpinner(context);
 
-        await FirebaseFirestore.instance
+        final docRef = FirebaseFirestore.instance
             .collection('users')
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .collection('projects')
-            .doc()
-            .set(project.getMap())
-            .then((value) {
+            .doc();
+        project.id = docRef.id;
+        await docRef.set(project.getMap()).then((value) {
           StatusBar.showSuccessMessage(
             'Projet créé avec succès',
           );
-          Navigator.pushNamed(context, kProjectsRoute);
+          Navigator.pop(context);
+          Navigator.pop(context);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProjectScreen(
+                project: project,
+              ),
+            ),
+          );
         });
       } on FirebaseException catch (e) {
         Navigator.pop(context);
@@ -89,8 +98,7 @@ class ProjectController {
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .collection('projects')
           .doc(project.id)
-          .update({'isFavorite': project.isFavorite})
-          .then((value) {
+          .update({'isFavorite': project.isFavorite}).then((value) {
         if (project.isFavorite) {
           StatusBar.showSuccessMessage(
             'Projet ajouté aux favoris',

@@ -31,7 +31,6 @@ class ProjectCard extends StatelessWidget {
             endActionPane: ActionPane(
               motion: const ScrollMotion(),
               dismissible: DismissiblePane(
-                closeOnCancel: false,
                 onDismissed: () {
                   projectController.delete(context);
                 },

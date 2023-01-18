@@ -87,7 +87,7 @@ class ProjectProvider {
           task.date = data['date'];
         }
         if (data.containsKey('time')) {
-          task.date = data['time'];
+          task.time = data['time'];
         }
         if (data.containsKey('isCompleted')) {
           task.isCompleted = data['isCompleted'];

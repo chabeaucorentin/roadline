@@ -8,7 +8,7 @@ import 'package:roadline/partials/components/screen.dart';
 import 'package:roadline/partials/components/shadow_box.dart';
 import 'package:roadline/partials/headers/project_header.dart';
 import 'package:roadline/providers/project.dart';
-import 'package:roadline/routes/routes.dart';
+import 'package:roadline/screens/add_task.dart';
 import 'package:roadline/styles/constants.dart';
 
 class ProjectScreen extends StatelessWidget {
@@ -60,14 +60,13 @@ class ProjectScreen extends StatelessWidget {
                                   builder: (BuildContext context,
                                       AsyncSnapshot<List<Task>> snapshot) {
                                     if (snapshot.connectionState ==
-                                        ConnectionState.active &&
+                                            ConnectionState.active &&
                                         snapshot.hasData) {
                                       final tasks = snapshot.data;
-                                      if (tasks != null &&
-                                          tasks.isNotEmpty) {
+                                      if (tasks != null && tasks.isNotEmpty) {
                                         return ListView.builder(
                                           physics:
-                                          const NeverScrollableScrollPhysics(),
+                                              const NeverScrollableScrollPhysics(),
                                           shrinkWrap: true,
                                           padding: const EdgeInsets.only(),
                                           itemCount: tasks.length,
@@ -89,17 +88,17 @@ class ProjectScreen extends StatelessWidget {
                                           bottom: kDefaultElementSpacing * 1.75,
                                         ),
                                         child: snapshot.connectionState ==
-                                            ConnectionState.waiting
+                                                ConnectionState.waiting
                                             ? const CircularProgressIndicator()
                                             : const Text(
-                                          'Aucune tâche',
-                                          style: TextStyle(
-                                            color: kPrimaryColor,
-                                            fontSize: kBigFontSize,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
+                                                'Aucune tâche',
+                                                style: TextStyle(
+                                                  color: kPrimaryColor,
+                                                  fontSize: kBigFontSize,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
                                       ),
                                     );
                                   },
@@ -120,7 +119,14 @@ class ProjectScreen extends StatelessWidget {
             child: Button(
               'Ajouter une tâche',
               onTap: () {
-                Navigator.pushNamed(context, kAddTaskRoute);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddTaskScreen.add(
+                      project: project,
+                    ),
+                  ),
+                );
               },
             ),
           ),

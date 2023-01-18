@@ -2,6 +2,7 @@ class Task {
   Task(
       {this.id,
       this.projectId,
+      this.projectTitle,
       this.title = '',
       this.notes,
       this.date,
@@ -10,6 +11,7 @@ class Task {
 
   String? id;
   String? projectId;
+  String? projectTitle;
   String title;
   String? notes;
   String? date;

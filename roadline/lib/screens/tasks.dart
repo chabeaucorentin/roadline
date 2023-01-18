@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:roadline/cards/task_card.dart';
+import 'package:roadline/models/task.dart';
 import 'package:roadline/partials/buttons/button.dart';
 import 'package:roadline/partials/components/bottom_widget.dart';
 import 'package:roadline/partials/components/screen.dart';
 import 'package:roadline/partials/components/shadow_box.dart';
 import 'package:roadline/partials/navbar/main_nav_bar.dart';
 import 'package:roadline/partials/sidebar/side_bar.dart';
-import 'package:roadline/partials/tabbar/tasks_tab_bar.dart';
+import 'package:roadline/providers/tasks.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
@@ -17,6 +18,8 @@ class TasksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tasksProvider = TasksProvider();
+
     return Screen(
       mainKey: _key,
       drawer: const Drawer(
@@ -28,7 +31,7 @@ class TasksScreen extends StatelessWidget {
             mainKey: _key,
             title: 'Tâches',
           ),
-          const TasksTabBar(),
+          //const TasksTabBar(),
           Expanded(
             child: ColoredBox(
               color: kDarkBackgroundColor,
@@ -41,54 +44,46 @@ class TasksScreen extends StatelessWidget {
                 ),
                 child: Stack(
                   children: <Widget>[
-                    SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          left: kDefaultElementSpacing,
-                          top: kDefaultElementSpacing,
-                          right: kDefaultElementSpacing,
-                        ),
-                        child: Center(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints(
-                              maxWidth: kMainMaxWidth,
-                            ),
-                            child: Column(
-                              children: const <Widget>[
-                                /*const Text(
-                                  'Aucune tâche',
-                                  style: TextStyle(
-                                    color: kPrimaryColor,
-                                    fontSize: kBigFontSize,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),*/
-                                /*TaskCard(
-                                  completed: false,
-                                  name: 'Tâche 1',
-                                ),
-                                TaskCard(
-                                  completed: true,
-                                  name: 'Tâche 2',
-                                  date: 'Date et heure',
-                                ),
-                                TaskCard(
-                                  completed: false,
-                                  projectName: 'Nom du projet',
-                                  name: 'Tâche 3',
-                                ),
-                                TaskCard(
-                                  completed: true,
-                                  projectName: 'Nom du projet',
-                                  name: 'Tâche 4',
-                                  date: 'Date et heure',
-                                ),*/
-                              ],
+                    StreamBuilder<List<Task>>(
+                      stream: tasksProvider.taskStream,
+                      builder: (BuildContext context,
+                          AsyncSnapshot<List<Task>> snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.active &&
+                            snapshot.hasData) {
+                          final tasks = snapshot.data;
+                          if (tasks != null && tasks.isNotEmpty) {
+                            return ListView.builder(
+                              padding: const EdgeInsets.only(
+                                left: kDefaultElementSpacing,
+                                top: kDefaultElementSpacing,
+                                right: kDefaultElementSpacing,
+                              ),
+                              itemCount: tasks.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                final task = tasks[index];
+                                return TaskCard(
+                                  task: task,
+                                );
+                              },
+                            );
+                          }
+                        }
+
+                        return Center(
+                          child: snapshot.connectionState ==
+                              ConnectionState.waiting
+                              ? const CircularProgressIndicator()
+                              : const Text(
+                            'Aucune tâche',
+                            style: TextStyle(
+                              color: kPrimaryColor,
+                              fontSize: kBigFontSize,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                        ),
-                      ),
+                        );
+                      },
                     ),
                     const ShadowBox(),
                   ],

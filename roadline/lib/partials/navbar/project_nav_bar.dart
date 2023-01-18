@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:roadline/controllers/project.dart';
 import 'package:roadline/models/project.dart';
@@ -9,9 +7,7 @@ import 'package:roadline/styles/constants.dart';
 
 @immutable
 class ProjectNavBar extends StatelessWidget {
-  const ProjectNavBar(
-      {required this.project,
-      super.key});
+  const ProjectNavBar({required this.project, super.key});
 
   final Project project;
 

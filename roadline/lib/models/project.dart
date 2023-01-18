@@ -32,6 +32,6 @@ class Project {
 
   @override
   String toString() {
-    return '{id: $id, name: $title, notes: $description, date: $endDate, isCompleted: $isFavorite}';
+    return '{id: $id, title: $title, description: $description, endDate: $endDate, isFavorite: $isFavorite}';
   }
 }

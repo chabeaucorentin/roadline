@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:roadline/controllers/task.dart';
 import 'package:roadline/models/task.dart';
+import 'package:roadline/screens/add_task.dart';
 import 'package:roadline/styles/constants.dart';
 
 @immutable
@@ -23,7 +24,6 @@ class TaskCard extends StatelessWidget {
         endActionPane: ActionPane(
           motion: const ScrollMotion(),
           dismissible: DismissiblePane(
-            closeOnCancel: false,
             onDismissed: () {
               taskController.delete(context);
             },
@@ -33,7 +33,14 @@ class TaskCard extends StatelessWidget {
               backgroundColor: kButtonBackgroundColor,
               foregroundColor: kButtonContentColor,
               onPressed: (BuildContext c) {
-                //CODE
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddTaskScreen.edit(
+                      task: task,
+                    ),
+                  ),
+                );
               },
               icon: Icons.edit,
               borderRadius:
@@ -94,7 +101,7 @@ class TaskCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    /*if (widget.projectName != null) ...[
+                    if (task.projectTitle != null) ...[
                         Row(
                           children: <Widget>[
                             const Icon(
@@ -106,7 +113,7 @@ class TaskCard extends StatelessWidget {
                               width: kSpacingPadding - 4.0,
                             ),
                             Text(
-                              widget.projectName!,
+                              task.projectTitle!,
                               style: const TextStyle(
                                 color: kCaptionColor,
                                 fontSize: kDefaultFontSize,
@@ -118,7 +125,7 @@ class TaskCard extends StatelessWidget {
                         const SizedBox(
                           height: kSpacingPadding - 4.0,
                         ),
-                      ],*/
+                      ],
                     Text(
                       task.title,
                       style: const TextStyle(
@@ -131,13 +138,41 @@ class TaskCard extends StatelessWidget {
                       const SizedBox(
                         height: kSpacingPadding - 4.0,
                       ),
-                      Text(
-                        task.date!,
-                        style: const TextStyle(
-                          color: kSecondaryColor,
-                          fontSize: kBigFontSize,
-                          fontWeight: FontWeight.w700,
-                        ),
+                      Row(
+                        children: <Widget>[
+                          Text(
+                            task.date!,
+                            style: const TextStyle(
+                              color: kSecondaryColor,
+                              fontSize: kBigFontSize,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          if (task.time != null) ...[
+                            const SizedBox(
+                              width: kSpacingPadding / 2.0,
+                            ),
+                            const Text(
+                              'à',
+                              style: TextStyle(
+                                color: kPrimaryColor,
+                                fontSize: kBigFontSize,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: kSpacingPadding / 2.0,
+                            ),
+                            Text(
+                              task.time!,
+                              style: const TextStyle(
+                                color: kSecondaryColor,
+                                fontSize: kBigFontSize,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ]
+                        ],
                       ),
                     ],
                   ],

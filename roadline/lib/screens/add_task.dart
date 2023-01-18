@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:roadline/controllers/task.dart';
+import 'package:roadline/models/project.dart';
 import 'package:roadline/models/task.dart';
 import 'package:roadline/partials/buttons/button.dart';
 import 'package:roadline/partials/components/bottom_padding.dart';
@@ -15,6 +16,10 @@ import 'package:roadline/styles/constants.dart';
 
 class AddTaskScreen extends StatefulWidget {
   AddTaskScreen({super.key});
+
+  AddTaskScreen.add({required Project project, super.key}) {
+    task = Task(projectId: project.id);
+  }
 
   AddTaskScreen.edit({required this.task, super.key}) {
     isEdit = true;
@@ -36,14 +41,20 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     taskController = TaskController(widget.task);
     taskController.hasDate.addListener(() {
       setState(() {
-        if (!taskController.hasDate.value && taskController.hasTime.value) {
-          taskController.hasTime.value = false;
+        if (!taskController.hasDate.value) {
+          taskController.task.date = null;
+          if (taskController.hasTime.value) {
+            taskController.hasTime.value = false;
+            taskController.task.time = null;
+          }
         }
       });
     });
     taskController.hasTime.addListener(() {
       setState(() {
-        if (!taskController.hasDate.value && taskController.hasTime.value) {
+        if (!taskController.hasTime.value) {
+          taskController.task.time = null;
+        } else if (!taskController.hasDate.value && taskController.hasTime.value) {
           taskController.hasDate.value = true;
         }
       });
@@ -76,127 +87,141 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         top: Radius.circular(20.0),
                       ),
                     ),
-                    child: SingleChildScrollView(
-                      child: Center(
-                        child: Container(
-                          padding: const EdgeInsets.all(kDefaultElementSpacing),
-                          constraints: BoxConstraints(
-                            maxWidth: kMainMaxWidth,
-                            minHeight: constraints.maxHeight,
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  TaskNameInput(
-                                    task: taskController.task,
-                                  ),
-                                  const SizedBox(
-                                    height: kDefaultElementSpacing,
-                                  ),
-                                  ProjectDropdown(
-                                    task: taskController.task,
-                                  ),
-                                  const SizedBox(
-                                    height: kDefaultElementSpacing - 4.0,
-                                  ),
-                                  const Text(
-                                    'Notes',
-                                    style: TextStyle(
-                                      color: kPrimaryColor,
-                                      fontSize: kBigFontSize,
-                                      fontWeight: FontWeight.w700,
+                    child: Form(
+                      key: taskController.formKey,
+                      child: SingleChildScrollView(
+                        child: Center(
+                          child: Container(
+                            padding: const EdgeInsets.all(kDefaultElementSpacing),
+                            constraints: BoxConstraints(
+                              maxWidth: kMainMaxWidth,
+                              minHeight: constraints.maxHeight,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    TaskNameInput(
+                                      task: taskController.task,
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: kSpacingPadding,
-                                  ),
-                                  DescTextArea.task(
-                                    task: taskController.task,
-                                  ),
-                                  const SizedBox(
-                                    height: kDefaultElementSpacing,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      const Text(
-                                        'Date',
-                                        style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontSize: kBigFontSize,
-                                          fontWeight: FontWeight.w700,
-                                        ),
+                                    const SizedBox(
+                                      height: kDefaultElementSpacing - 4.0,
+                                    ),
+                                    const Text(
+                                      'Projet',
+                                      style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontSize: kBigFontSize,
+                                        fontWeight: FontWeight.w700,
                                       ),
-                                      AdvancedSwitch(
-                                        controller: taskController.hasDate,
-                                        activeColor: kSwitchColor,
+                                    ),
+                                    const SizedBox(
+                                      height: kSpacingPadding,
+                                    ),
+                                    ProjectDropdown(
+                                      task: taskController.task,
+                                    ),
+                                    const SizedBox(
+                                      height: kDefaultElementSpacing - 4.0,
+                                    ),
+                                    const Text(
+                                      'Notes',
+                                      style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontSize: kBigFontSize,
+                                        fontWeight: FontWeight.w700,
                                       ),
-                                    ],
-                                  ),
-                                  if (taskController.hasDate.value) ...[
+                                    ),
+                                    const SizedBox(
+                                      height: kSpacingPadding,
+                                    ),
+                                    DescTextArea.task(
+                                      task: taskController.task,
+                                    ),
                                     const SizedBox(
                                       height: kDefaultElementSpacing,
                                     ),
-                                    DatePicker.task(
-                                      task: taskController.task,
-                                    ),
-                                  ],
-                                  const SizedBox(
-                                    height: kDefaultElementSpacing,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      const Text(
-                                        'Heure',
-                                        style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontSize: kBigFontSize,
-                                          fontWeight: FontWeight.w700,
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        const Text(
+                                          'Date',
+                                          style: TextStyle(
+                                            color: kPrimaryColor,
+                                            fontSize: kBigFontSize,
+                                            fontWeight: FontWeight.w700,
+                                          ),
                                         ),
+                                        AdvancedSwitch(
+                                          controller: taskController.hasDate,
+                                          activeColor: kSwitchColor,
+                                        ),
+                                      ],
+                                    ),
+                                    if (taskController.hasDate.value) ...[
+                                      const SizedBox(
+                                        height: kDefaultElementSpacing,
                                       ),
-                                      AdvancedSwitch(
-                                        controller: taskController.hasTime,
-                                        activeColor: kSwitchColor,
+                                      DatePicker.task(
+                                        task: taskController.task,
                                       ),
                                     ],
-                                  ),
-                                  if (taskController.hasTime.value) ...[
                                     const SizedBox(
                                       height: kDefaultElementSpacing,
                                     ),
-                                    TimePicker(
-                                      task: taskController.task,
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        const Text(
+                                          'Heure',
+                                          style: TextStyle(
+                                            color: kPrimaryColor,
+                                            fontSize: kBigFontSize,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                        AdvancedSwitch(
+                                          controller: taskController.hasTime,
+                                          activeColor: kSwitchColor,
+                                        ),
+                                      ],
+                                    ),
+                                    if (taskController.hasTime.value) ...[
+                                      const SizedBox(
+                                        height: kDefaultElementSpacing,
+                                      ),
+                                      TimePicker(
+                                        task: taskController.task,
+                                      ),
+                                    ],
+                                    const SizedBox(
+                                      height: kDefaultElementSpacing,
                                     ),
                                   ],
-                                  const SizedBox(
-                                    height: kDefaultElementSpacing,
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: <Widget>[
-                                  if (widget.isEdit) ...[
-                                    Button(
-                                      'Modifier',
-                                      onTap: () =>
-                                          taskController.update(context),
-                                    ),
-                                  ] else ...[
-                                    Button(
-                                      'Ajouter',
-                                      onTap: () => taskController.add(context),
-                                    ),
+                                ),
+                                Column(
+                                  children: <Widget>[
+                                    if (widget.isEdit) ...[
+                                      Button(
+                                        'Modifier',
+                                        onTap: () =>
+                                            taskController.update(context),
+                                      ),
+                                    ] else ...[
+                                      Button(
+                                        'Ajouter',
+                                        onTap: () => taskController.add(context),
+                                      ),
+                                    ],
+                                    const BottomPadding(),
                                   ],
-                                  const BottomPadding(),
-                                ],
-                              ),
-                            ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),

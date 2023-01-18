@@ -51,8 +51,8 @@ class _TasksTabBarState extends State<TasksTabBar>
             child: TabBar(
               tabs: const <Tab>[
                 Tab(text: 'Toutes'),
-                Tab(text: 'En cours'),
-                Tab(text: 'En retard'),
+                //Tab(text: 'En cours'),
+                //Tab(text: 'En retard'),
                 Tab(text: 'Terminées'),
               ],
               controller: _tabController,
