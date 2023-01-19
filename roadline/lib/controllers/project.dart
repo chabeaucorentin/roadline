@@ -87,7 +87,6 @@ class ProjectController {
         StatusBar.showSuccessMessage(
           'Projet supprimé avec succès',
         );
-        Navigator.pop(context);
       });
     } on FirebaseException catch (e) {
       StatusBar.showErrorMessageCode(e.code);

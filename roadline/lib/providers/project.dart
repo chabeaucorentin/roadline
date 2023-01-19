@@ -52,7 +52,9 @@ class ProjectProvider {
       } else {
         StatusBar.showErrorMessage('Le projet a été supprimé');
         streamController.close();
-        Navigator.pushNamedAndRemoveUntil(context, kHomeRoute, (Route route) => false);
+        if (Navigator.canPop(context)) {
+          Navigator.pop(context);
+        }
       }
     });
 
