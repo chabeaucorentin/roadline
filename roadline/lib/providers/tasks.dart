@@ -28,7 +28,7 @@ class TasksProvider {
         final project = await doc.reference.parent.parent!.get();
         Map<String, dynamic>? projectData = project.data();
         if (projectData != null &&
-            userId == FirebaseAuth.instance.currentUser!.uid) {
+            userId == FirebaseAuth.instance.currentUser?.uid) {
           final Map<String, dynamic> data = doc.data();
           final task = Task(
             id: doc.id,
@@ -76,7 +76,7 @@ class TasksProvider {
         final project = await doc.reference.parent.parent!.get();
         Map<String, dynamic>? projectData = project.data();
         if (projectData != null &&
-            userId == FirebaseAuth.instance.currentUser!.uid) {
+            userId == FirebaseAuth.instance.currentUser?.uid) {
           counter++;
         }
       }
@@ -104,7 +104,7 @@ class TasksProvider {
         Map<String, dynamic>? projectData = project.data();
         Map<String, dynamic> data = doc.data();
         if (projectData != null &&
-            userId == FirebaseAuth.instance.currentUser!.uid &&
+            userId == FirebaseAuth.instance.currentUser?.uid &&
             (!data.containsKey('isCompleted') ||
                 data.containsKey('isCompleted') && !data['isCompleted'])) {
           counter++;
@@ -135,7 +135,7 @@ class TasksProvider {
         Map<String, dynamic>? projectData = project.data();
         Map<String, dynamic> data = doc.data();
         if (projectData != null &&
-            userId == FirebaseAuth.instance.currentUser!.uid &&
+            userId == FirebaseAuth.instance.currentUser?.uid &&
             data.containsKey('isCompleted') &&
             data['isCompleted']) {
           counter++;

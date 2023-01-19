@@ -43,7 +43,7 @@ class TaskController {
           });
         } on FirebaseException catch (e) {
           Navigator.pop(context);
-          StatusBar.showErrorMessage(e.code);
+          StatusBar.showErrorMessageCode(e.code);
         }
       } else {
         StatusBar.showErrorMessage(
@@ -74,7 +74,7 @@ class TaskController {
         });
       } on FirebaseException catch (e) {
         Navigator.pop(context);
-        StatusBar.showErrorMessage(e.code);
+        StatusBar.showErrorMessageCode(e.code);
       }
     }
   }
@@ -95,7 +95,7 @@ class TaskController {
         );
       });
     } on FirebaseException catch (e) {
-      StatusBar.showErrorMessage(e.code);
+      StatusBar.showErrorMessageCode(e.code);
     }
   }
 
@@ -111,7 +111,7 @@ class TaskController {
           .doc(task.id)
           .update({'isCompleted': task.isCompleted});
     } on FirebaseException catch (e) {
-      StatusBar.showErrorMessage(e.code);
+      StatusBar.showErrorMessageCode(e.code);
     }
   }
 }

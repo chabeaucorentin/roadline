@@ -36,7 +36,7 @@ class UserActionController {
         });
       } on FirebaseAuthException catch (e) {
         Navigator.pop(context);
-        StatusBar.showErrorMessage(e.code);
+        StatusBar.showErrorMessageCode(e.code);
       }
     }
   }
@@ -66,7 +66,7 @@ class UserActionController {
         });
       } on FirebaseAuthException catch (e) {
         Navigator.pop(context);
-        StatusBar.showErrorMessage(e.code);
+        StatusBar.showErrorMessageCode(e.code);
       }
     }
   }
@@ -89,7 +89,7 @@ class UserActionController {
         });
       } on FirebaseAuthException catch (e) {
         Navigator.pop(context);
-        StatusBar.showErrorMessage(e.code);
+        StatusBar.showErrorMessageCode(e.code);
       }
     }
   }
@@ -102,7 +102,7 @@ class UserActionController {
         );
       });
     } on FirebaseAuthException catch (e) {
-      StatusBar.showErrorMessage(e.code);
+      StatusBar.showErrorMessageCode(e.code);
     }
   }
 }

@@ -7,7 +7,11 @@ import 'package:roadline/utils/loader.dart';
 import 'package:roadline/utils/status_bar.dart';
 
 class ProjectController {
-  ProjectController(this.project);
+  ProjectController(this.project) {
+    if (project.endDate != null) {
+      hasDate.value = true;
+    }
+  }
 
   final formKey = GlobalKey<FormState>();
   final hasDate = ValueNotifier<bool>(false);
@@ -41,7 +45,7 @@ class ProjectController {
         });
       } on FirebaseException catch (e) {
         Navigator.pop(context);
-        StatusBar.showErrorMessage(e.code);
+        StatusBar.showErrorMessageCode(e.code);
       }
     }
   }
@@ -66,7 +70,7 @@ class ProjectController {
         });
       } on FirebaseException catch (e) {
         Navigator.pop(context);
-        StatusBar.showErrorMessage(e.code);
+        StatusBar.showErrorMessageCode(e.code);
       }
     }
   }
@@ -86,7 +90,7 @@ class ProjectController {
         Navigator.pop(context);
       });
     } on FirebaseException catch (e) {
-      StatusBar.showErrorMessage(e.code);
+      StatusBar.showErrorMessageCode(e.code);
     }
   }
 
@@ -110,7 +114,7 @@ class ProjectController {
         }
       });
     } on FirebaseException catch (e) {
-      StatusBar.showErrorMessage(e.code);
+      StatusBar.showErrorMessageCode(e.code);
     }
   }
 }

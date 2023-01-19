@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roadline/models/error_firebase_auth.dart';
 import 'package:roadline/styles/constants.dart';
 
 class StatusBar {
@@ -25,6 +26,10 @@ class StatusBar {
 
   static void showErrorMessage(String message) {
     showSnackBar(message, kErrorContentColor, kErrorBackgroundColor);
+  }
+
+  static void showErrorMessageCode(String code) {
+    showErrorMessage(errors.containsKey(code) ? errors[code]! : code);
   }
 
   static void showSuccessMessage(String message) {
