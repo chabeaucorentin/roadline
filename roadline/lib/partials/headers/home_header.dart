@@ -81,7 +81,8 @@ class HomeHeader extends StatelessWidget {
                       'Projets',
                       icon: Icons.inventory_2,
                       onTap: () {
-                        Navigator.pushNamed(context, kProjectsRoute);
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, kProjectsRoute, (Route route) => false);
                       },
                       isDark: true,
                     ),
@@ -94,7 +95,8 @@ class HomeHeader extends StatelessWidget {
                       'Tâches',
                       icon: Icons.checklist,
                       onTap: () {
-                        Navigator.pushNamed(context, kTasksRoute);
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, kTasksRoute, (Route route) => false);
                       },
                       isDark: true,
                     ),

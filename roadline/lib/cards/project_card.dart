@@ -3,6 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:roadline/controllers/project.dart';
 import 'package:roadline/models/project.dart';
 import 'package:roadline/partials/components/progress_bar.dart';
+import 'package:roadline/providers/project.dart';
 import 'package:roadline/screens/new_project.dart';
 import 'package:roadline/screens/project.dart';
 import 'package:roadline/styles/constants.dart';
@@ -16,6 +17,7 @@ class ProjectCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final projectController = ProjectController(project);
+    final projectProvider = ProjectProvider(id: project.id!);
 
     return Padding(
       padding: const EdgeInsets.only(
@@ -132,13 +134,22 @@ class ProjectCard extends StatelessWidget {
                                 ],
                                 Row(
                                   children: <Widget>[
-                                    Text(
-                                      '1',
-                                      style: const TextStyle(
-                                        color: kCardContentColor,
-                                        fontSize: kBigFontSize,
-                                        fontWeight: FontWeight.w900,
-                                      ),
+                                    StreamBuilder<int>(
+                                      stream: projectProvider
+                                          .taskCompletedCounterStream,
+                                      builder: (BuildContext context,
+                                          AsyncSnapshot<int> snapshot) {
+                                        return Text(
+                                          snapshot.hasData
+                                              ? snapshot.data!.toString()
+                                              : '0',
+                                          style: const TextStyle(
+                                            color: kCardContentColor,
+                                            fontSize: kBigFontSize,
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                        );
+                                      },
                                     ),
                                     const SizedBox(
                                       width: kSpacingPadding / 2.0,
@@ -154,13 +165,21 @@ class ProjectCard extends StatelessWidget {
                                     const SizedBox(
                                       width: kSpacingPadding / 2.0,
                                     ),
-                                    Text(
-                                      '2',
-                                      style: const TextStyle(
-                                        color: kSecondaryColor,
-                                        fontSize: kBigFontSize,
-                                        fontWeight: FontWeight.w700,
-                                      ),
+                                    StreamBuilder<int>(
+                                      stream: projectProvider.taskCounterStream,
+                                      builder: (BuildContext context,
+                                          AsyncSnapshot<int> snapshot) {
+                                        return Text(
+                                          snapshot.hasData
+                                              ? snapshot.data!.toString()
+                                              : '0',
+                                          style: const TextStyle(
+                                            color: kSecondaryColor,
+                                            fontSize: kBigFontSize,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        );
+                                      },
                                     ),
                                   ],
                                 ),
@@ -169,8 +188,25 @@ class ProjectCard extends StatelessWidget {
                             const SizedBox(
                               height: kSpacingPadding,
                             ),
-                            ProgressBar(
-                              percent: 0.5, //nbCompleted / nbTasks,
+                            StreamBuilder<int>(
+                              stream:
+                                  projectProvider.taskCompletedCounterStream,
+                              builder: (BuildContext c,
+                                  AsyncSnapshot<int> taskCompleted) {
+                                return StreamBuilder<int>(
+                                  stream: projectProvider.taskCounterStream,
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<int> task) {
+                                    return ProgressBar(
+                                      percent: taskCompleted.hasData &&
+                                              task.hasData &&
+                                              task.data! > 0
+                                          ? taskCompleted.data! / task.data!
+                                          : 0,
+                                    );
+                                  },
+                                );
+                              },
                             ),
                           ],
                         ),

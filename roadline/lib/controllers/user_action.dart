@@ -7,7 +7,8 @@ import 'package:roadline/utils/loader.dart';
 import 'package:roadline/utils/status_bar.dart';
 
 class UserActionController {
-  UserActionController({this.fullName, this.email, this.password, this.confirmPassword});
+  UserActionController(
+      {this.fullName, this.email, this.password, this.confirmPassword});
 
   final formKey = GlobalKey<FormState>();
   String? fullName;
@@ -83,7 +84,8 @@ class UserActionController {
           StatusBar.showSuccessMessage(
             'Un email a bien été envoyé à l’adresse email ${email!.trim()}',
           );
-          Navigator.pushNamed(context, kLoginRoute);
+          Navigator.pushNamedAndRemoveUntil(
+              context, kLoginRoute, (Route route) => false);
         });
       } on FirebaseAuthException catch (e) {
         Navigator.pop(context);

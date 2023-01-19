@@ -3,6 +3,8 @@ import 'package:roadline/partials/buttons/side_bar_button.dart';
 import 'package:roadline/partials/components/bottom_padding.dart';
 import 'package:roadline/partials/components/screen.dart';
 import 'package:roadline/partials/logos/logo.dart';
+import 'package:roadline/providers/projects.dart';
+import 'package:roadline/providers/tasks.dart';
 import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
@@ -12,6 +14,9 @@ class SideBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final projectsProvider = ProjectsProvider();
+    final tasksProvider = TasksProvider();
+
     return Screen(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,23 +40,33 @@ class SideBar extends StatelessWidget {
                       vertical: kDefaultElementSpacing,
                     ),
                     child: Column(
-                      children: const <Widget>[
-                        SideBarButton(
+                      children: <Widget>[
+                        const SideBarButton(
                           icon: Icons.home,
                           label: 'Accueil',
                           route: kHomeRoute,
                         ),
-                        SideBarButton(
-                          icon: Icons.inventory_2,
-                          label: 'Projets',
-                          counter: 8,
-                          route: kProjectsRoute,
+                        StreamBuilder<int>(
+                          stream: projectsProvider.projectCounterStream,
+                          builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                            return SideBarButton(
+                              icon: Icons.inventory_2,
+                              label: 'Projets',
+                              counter: snapshot.hasData ? snapshot.data! : 0,
+                              route: kProjectsRoute,
+                            );
+                          },
                         ),
-                        SideBarButton(
-                          icon: Icons.checklist,
-                          label: 'Tâches',
-                          counter: 40,
-                          route: kTasksRoute,
+                        StreamBuilder<int>(
+                          stream: tasksProvider.taskCounterStream,
+                          builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                            return SideBarButton(
+                              icon: Icons.checklist,
+                              label: 'Tâches',
+                              counter: snapshot.hasData ? snapshot.data! : 0,
+                              route: kTasksRoute,
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -70,17 +85,17 @@ class SideBar extends StatelessWidget {
                         SideBarButton(
                           icon: Icons.info,
                           label: 'À propos',
-                          route: kLoginRoute,
+                          route: kProfileRoute,
                         ),
                         SideBarButton(
                           icon: Icons.copyright,
                           label: 'Crédits',
-                          route: kLoginRoute,
+                          route: kProfileRoute,
                         ),
                         SideBarButton(
                           icon: Icons.settings,
                           label: 'Paramètres',
-                          route: kLoginRoute,
+                          route: kProfileRoute,
                         ),
                       ],
                     ),

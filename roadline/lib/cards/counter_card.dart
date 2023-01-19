@@ -16,7 +16,8 @@ class CounterCard extends StatelessWidget {
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, kTasksRoute);
+            Navigator.pushNamedAndRemoveUntil(
+                context, kTasksRoute, (Route route) => false);
           },
           child: ColoredBox(
             color: kDarkBackgroundColor,

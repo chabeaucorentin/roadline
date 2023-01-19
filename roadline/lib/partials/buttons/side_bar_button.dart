@@ -21,7 +21,7 @@ class SideBarButton extends StatelessWidget {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, route);
+          Navigator.pushNamedAndRemoveUntil(context, route, (Route route) => false);
         },
         child: Container(
           padding: const EdgeInsets.symmetric(

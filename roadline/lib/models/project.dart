@@ -10,6 +10,8 @@ class Project {
   String title;
   String? description;
   String? endDate;
+  int? nbCompleted;
+  int? nbTasks;
   bool isFavorite;
 
   Map<String, dynamic> getMap() {

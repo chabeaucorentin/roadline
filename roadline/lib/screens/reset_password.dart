@@ -6,6 +6,7 @@ import 'package:roadline/partials/components/bottom_padding.dart';
 import 'package:roadline/partials/components/screen.dart';
 import 'package:roadline/partials/forms/email_input.dart';
 import 'package:roadline/partials/headers/form_header.dart';
+import 'package:roadline/routes/routes.dart';
 import 'package:roadline/styles/constants.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
@@ -48,7 +49,8 @@ class ResetPasswordScreen extends StatelessWidget {
                             ),
                             Button(
                               'Envoyer le code',
-                              onTap:  () => userActionController.resetPassword(context),
+                              onTap: () =>
+                                  userActionController.resetPassword(context),
                               isDark: true,
                             ),
                           ],
@@ -69,7 +71,8 @@ class ResetPasswordScreen extends StatelessWidget {
                             child: BorderedButton(
                               'Retour à la connexion',
                               onTap: () {
-                                Navigator.pop(context);
+                                Navigator.pushNamedAndRemoveUntil(context,
+                                    kLoginRoute, (Route route) => false);
                               },
                               isDark: true,
                             ),

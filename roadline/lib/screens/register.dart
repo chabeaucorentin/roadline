@@ -69,7 +69,8 @@ class RegisterScreen extends StatelessWidget {
                             ),
                             Button(
                               'Inscription',
-                              onTap:  () => userActionController.register(context),
+                              onTap: () =>
+                                  userActionController.register(context),
                               isDark: true,
                             ),
                           ],
@@ -96,7 +97,8 @@ class RegisterScreen extends StatelessWidget {
                           Link(
                             'Connectez-vous',
                             onTap: () {
-                              Navigator.pushNamed(context, kLoginRoute);
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, kLoginRoute, (Route route) => false);
                             },
                             isBig: true,
                             isDark: true,

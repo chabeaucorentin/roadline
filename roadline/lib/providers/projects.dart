@@ -10,6 +10,8 @@ class ProjectsProvider {
   Stream<List<Project>> get favoriteProjectStream =>
       _getFavoriteProjectStream();
 
+  Stream<int> get projectCounterStream => _getProjectCounterStream();
+
   Stream<List<Project>> _getProjectStream() {
     final streamController = StreamController<List<Project>>();
 
@@ -55,6 +57,25 @@ class ProjectsProvider {
 
     streamController.onCancel = () {
       favoriteProjectSubscription.cancel();
+    };
+
+    return streamController.stream;
+  }
+
+  Stream<int> _getProjectCounterStream() {
+    final streamController = StreamController<int>();
+
+    final projectCounterSubscription = FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .collection('projects')
+        .snapshots()
+        .listen((snapshot) {
+      streamController.add(snapshot.size);
+    });
+
+    streamController.onCancel = () {
+      projectCounterSubscription.cancel();
     };
 
     return streamController.stream;

@@ -58,8 +58,10 @@ class LoginScreen extends StatelessWidget {
                               child: Link(
                                 'Mot de passe oublié ?',
                                 onTap: () {
-                                  Navigator.pushNamed(
-                                      context, kResetPasswordRoute);
+                                  Navigator.pushNamedAndRemoveUntil(
+                                      context,
+                                      kResetPasswordRoute,
+                                      (Route route) => false);
                                 },
                                 isDark: true,
                               ),
@@ -96,7 +98,8 @@ class LoginScreen extends StatelessWidget {
                           Link(
                             'Inscrivez-vous',
                             onTap: () {
-                              Navigator.pushNamed(context, kRegisterRoute);
+                              Navigator.pushNamedAndRemoveUntil(context,
+                                  kRegisterRoute, (Route route) => false);
                             },
                             isBig: true,
                             isDark: true,

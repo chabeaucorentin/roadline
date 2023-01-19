@@ -18,6 +18,10 @@ class ProjectProvider {
 
   Stream<List<Task>> get taskStream => _getTaskStream();
 
+  Stream<int> get taskCounterStream => _getTaskCounterStream();
+
+  Stream<int> get taskCompletedCounterStream => _getTaskCompletedCounterStream();
+
   Stream<Project> _getProjectStream(BuildContext context) {
     final streamController = StreamController<Project>();
 
@@ -48,7 +52,7 @@ class ProjectProvider {
       } else {
         StatusBar.showErrorMessage('Le projet a été supprimé');
         streamController.close();
-        Navigator.pushNamed(context, kHomeRoute);
+        Navigator.pushNamedAndRemoveUntil(context, kHomeRoute, (Route route) => false);
       }
     });
 
@@ -99,6 +103,49 @@ class ProjectProvider {
 
     streamController.onCancel = () {
       taskChangedSubscription.cancel();
+    };
+
+    return streamController.stream;
+  }
+
+  Stream<int> _getTaskCounterStream() {
+    final streamController = StreamController<int>();
+
+    final taskCounterSubscription = FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .collection('projects')
+        .doc(id)
+        .collection('tasks')
+        .snapshots()
+        .listen((snapshot) {
+      streamController.add(snapshot.size);
+    });
+
+    streamController.onCancel = () {
+      taskCounterSubscription.cancel();
+    };
+
+    return streamController.stream;
+  }
+
+  Stream<int> _getTaskCompletedCounterStream() {
+    final streamController = StreamController<int>();
+
+    final taskCounterSubscription = FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .collection('projects')
+        .doc(id)
+        .collection('tasks')
+        .where('isCompleted', isEqualTo: true)
+        .snapshots()
+        .listen((snapshot) {
+      streamController.add(snapshot.size);
+    });
+
+    streamController.onCancel = () {
+      taskCounterSubscription.cancel();
     };
 
     return streamController.stream;
