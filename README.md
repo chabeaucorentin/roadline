@@ -50,13 +50,17 @@ Siteweb : [https://monday.com/](https://monday.com/)
 
 ### User stories
 
-- En tant qu'**utilisateur**, je veux pouvoir **me connecter** afin de **conserver mes projets et mes tâches**.
-- En tant qu'**utilisateur**, je veux pouvoir **créer un projet** afin de **gérer mes différentes tâches**.
-- En tant qu'**utilisateur**, je veux pouvoir **afficher mes projets** afin de **pouvoir les gérer**.
-- En tant qu'**utilisateur**, je veux pouvoir **ajouter un projet à mes favoris** afin d'y **accéder plus rapidement**.
-- En tant qu'**utilisateur**, je veux pouvoir **créer une tâche** afin d'**ajouter un nouvel objectif**.
-- En tant qu'**utilisateur**, je veux pouvoir **afficher mes tâches** afin de **pouvoir les gérer**.
-- En tant qu'**utilisateur**, je veux pouvoir **terminer une tâche** afin d'**avancer dans l'évolution de mon projet**.
+- En tant qu'**utilisateur non connecté**, je veux pouvoir **me connecter** afin de **conserver mes projets et mes tâches**.
+- En tant qu'**utilisateur connecté**, je veux pouvoir **créer un projet** afin de **gérer mes différentes tâches**.
+- En tant qu'**utilisateur connecté**, je veux pouvoir **modifier un projet** afin de **mettre à jour les données**.
+- En tant qu'**utilisateur connecté**, je veux pouvoir **supprimer un projet** afin de **nettoyer mes projets restants**.
+- En tant qu'**utilisateur connecté**, je veux pouvoir **afficher mes projets** afin de **pouvoir les gérer**.
+- En tant qu'**utilisateur connecté**, je veux pouvoir **ajouter un projet à mes favoris** afin d'y **accéder plus rapidement**.
+- En tant qu'**utilisateur connecté**, je veux pouvoir **créer une tâche** afin d'**ajouter un nouvel objectif**.
+- En tant qu'**utilisateur connecté**, je veux pouvoir **modifier une tâche** afin de **mettre à jour les données**.
+- En tant qu'**utilisateur connecté**, je veux pouvoir **supprimer une tâche** afin d'**enlever un objectif**.
+- En tant qu'**utilisateur connecté**, je veux pouvoir **afficher mes tâches** afin de **pouvoir les gérer**.
+- En tant qu'**utilisateur connecté**, je veux pouvoir **terminer une tâche** afin d'**avancer dans l'évolution de mon projet**.
 
 ### Logos
 
@@ -69,6 +73,10 @@ Siteweb : [https://monday.com/](https://monday.com/)
 ### Mock-up
 
 ![Mock-up](images/mock-up.png)
+
+### Démonstration
+
+https://user-images.githubusercontent.com/114340642/213390181-b0d22f84-8cdd-4823-b5ce-36bb624b5115.mp4
 
 ## Consignes du projet
 
