@@ -84,10 +84,6 @@ __[:page_facing_up: Énoncé du projet](ressources/enonce.pdf)__
 
 ## Organisation du projet
 
-* __[:books: documentation/](documentation/)__
-
-  Ressources utiles à l'installation, à la configuration et à l'utilisation du projet.
-
 * __[:framed_picture: images/](images/)__
 
   Images présentent dans cette documentation.
