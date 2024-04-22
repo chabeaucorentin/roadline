@@ -6,7 +6,7 @@ __Bienvenue dans la documentation de RoadLine !__
 
 Ce projet est réalisé dans le cadre du cours de **Développement d’applications mobiles** en Bloc 3 en Informatique de gestion à l'INPRES.
 
-RoadLine est une application de gestion et d'aide à la réalisation de projet de vie.
+RoadLine est une application qui aide à gérer et à réaliser des projets de vie en les structurant par tâches.
 
 ## Présentation du projet
 
